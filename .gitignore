@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+
+# Environment Variables
+.env
+
+# Logs
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Large ML Models
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Vector Databases
+chroma_db/
+faiss_index/
+
+# Temporary Files
+*.tmp
+*.cache
