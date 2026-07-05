@@ -40,3 +40,4 @@ faiss_index/
 # Temporary Files
 *.tmp
 *.cache
+*.~$
