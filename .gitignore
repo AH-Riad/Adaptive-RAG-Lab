@@ -37,6 +37,7 @@ Thumbs.db
 chroma_db/
 faiss_index/
 
+
 # Temporary Files
 *.tmp
 *.cache
