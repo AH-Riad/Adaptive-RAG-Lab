@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from core.chunk import Chunk
+from .chunk import Chunk
 
 
 @dataclass
