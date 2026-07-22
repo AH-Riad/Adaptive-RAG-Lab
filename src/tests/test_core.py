@@ -1,4 +1,4 @@
-from core import Document
+from src.core import Document
 
 
 doc = Document(
@@ -6,5 +6,6 @@ doc = Document(
     source="paper.pdf",
     text="Hello Research!"
 )
+
 
 print(doc)
