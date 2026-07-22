@@ -1,0 +1,10 @@
+chromadb
+sentence-transformers
+langchain
+langchain-community
+langchain-text-splitters
+pypdf
+numpy
+pandas
+tqdm
+python-dotenv
