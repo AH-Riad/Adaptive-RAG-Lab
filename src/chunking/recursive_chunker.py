@@ -1,6 +1,6 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from core import Document, Chunk
+from src.core import Document, Chunk
 from .base_chunker import BaseChunker
 
 
