@@ -1,0 +1,15 @@
+The Transformer is a neural network architecture that relies entirely on self-attention.
+
+Unlike recurrent neural networks, the Transformer processes tokens in parallel.
+
+Multi-head attention allows the model to focus on multiple representations simultaneously.
+
+Positional encoding provides information about token order.
+
+Residual connections improve gradient flow.
+
+Layer normalization stabilizes training.
+
+The Transformer became the foundation of BERT, GPT and many modern language models.
+
+Large Language Models are built using Transformer blocks.
