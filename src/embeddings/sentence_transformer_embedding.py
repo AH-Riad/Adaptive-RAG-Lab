@@ -40,3 +40,7 @@ class SentenceTransformerEmbedding(BaseEmbedding):
             )
 
         return results
+    
+    def encode_query(self, query: str):
+
+        return self.model.encode(query).tolist()
