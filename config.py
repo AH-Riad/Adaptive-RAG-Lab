@@ -1,11 +1,10 @@
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-
 CHUNK_SIZE = 512
-
 CHUNK_OVERLAP = 50
-
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+COLLECTION_NAME = "adaptive_rag"
 TOP_K = 5
 
 VECTOR_DB = "chromadb"
 
 SIMILARITY = "cosine"
+
