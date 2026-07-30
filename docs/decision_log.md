@@ -18,6 +18,8 @@ None.
 
 Implement document loaders.
 
+### 2026-07-25
+
 ## Session: Recursive Chunker
 
 ### Goal
@@ -33,3 +35,28 @@ Implement the baseline chunking strategy.
 ### Reflection
 
 Recursive chunking preserves semantic boundaries better than fixed-size chunking and provides a strong baseline for later adaptive strategies.
+
+### 2026-07-30
+
+
+                ┌────────────────────┐
+                │ Document Loader    │ ✅
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌────────────────────┐
+                │ Recursive Chunker  │ ✅
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌────────────────────┐
+                │ Embedding Manager  │ ✅
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌────────────────────┐
+                │ ChromaDB Store     │ ✅
+                └─────────┬──────────┘
+                          │
+                          ▼
+                     Retriever
