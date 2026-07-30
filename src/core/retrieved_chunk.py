@@ -1,15 +1,9 @@
 from dataclasses import dataclass
-
-from .chunk import Chunk
-
+from typing import Dict
 
 @dataclass
 class RetrievedChunk:
-    """
-    Represents a retrieved chunk along with retrieval metadata.
-    """
-
-    chunk: Chunk
+    chunk_id: str
+    text: str
     score: float
-    rank: int
-    retriever: str
+    metadata: Dict
