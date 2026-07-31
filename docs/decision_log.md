@@ -38,7 +38,6 @@ Recursive chunking preserves semantic boundaries better than fixed-size chunking
 
 ### 2026-07-30
 
-
                 ┌────────────────────┐
                 │ Document Loader    │ ✅
                 └─────────┬──────────┘
@@ -60,3 +59,23 @@ Recursive chunking preserves semantic boundaries better than fixed-size chunking
                           │
                           ▼
                      Retriever
+
+### 2026-07-30
+
+                   User Query
+                        │
+                        ▼
+                Query Analyzer
+                        │
+                        ▼
+               QueryAnalysis
+                        │
+                        ▼
+                Decision Engine
+                        │
+        ┌───────────────┼────────────────┐
+        ▼               ▼                ▼
+
+Retrieval Type Top-K Chunk Strategy
+▼ ▼ ▼
+Retriever Pipeline
