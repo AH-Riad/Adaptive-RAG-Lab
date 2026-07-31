@@ -60,7 +60,7 @@ Recursive chunking preserves semantic boundaries better than fixed-size chunking
                           ▼
                      Retriever
 
-### 2026-07-30
+### 2026-07-31
 
                    User Query
                         │
