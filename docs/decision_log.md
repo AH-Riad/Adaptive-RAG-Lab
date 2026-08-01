@@ -79,3 +79,32 @@ Recursive chunking preserves semantic boundaries better than fixed-size chunking
 Retrieval Type Top-K Chunk Strategy
 ▼ ▼ ▼
 Retriever Pipeline
+
+### 2026-08-01
+
+                    Adaptive Retrieval Intelligence Framework
+
+                            User Query
+                                 │
+                                 ▼
+                      ┌─────────────────────┐
+                      │  Query Analyzer     │   ✅
+                      └─────────────────────┘
+                                 │
+                                 ▼
+                      ┌─────────────────────┐
+                      │ Decision Policy     │   ← Next
+                      └─────────────────────┘
+                                 │
+                                 ▼
+                      ┌─────────────────────┐
+                      │ Decision Engine     │   ← Next
+                      └─────────────────────┘
+                                 │
+                                 ▼
+                 ┌────────────────────────────────┐
+                 │ Retrieval Plan                 │
+                 └────────────────────────────────┘
+                                 │
+                                 ▼
+      Dense │ BM25 │ Hybrid │ Adaptive │ Future Policies
