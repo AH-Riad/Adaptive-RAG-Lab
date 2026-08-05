@@ -108,3 +108,9 @@ Retriever Pipeline
                                  │
                                  ▼
       Dense │ BM25 │ Hybrid │ Adaptive │ Future Policies
+
+### 2026-08-05
+
+Phase II (Current Sprint)
+This sprint is called
+Adaptive Framework Core
