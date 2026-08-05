@@ -1,29 +1,28 @@
-from typing import List
-from .component import Component
-from .adaptive_context import AdaptiveContext
+from __future__ import annotations
 
-class Pipeline:
+from src.core.adaptive_context import AdaptiveContext
+from src.core.component import Component
+
+
+class AdaptivePipeline:
     """
-    Chains components together and executes them sequentially.
+    Executes pipeline components sequentially.
     """
+
     def __init__(self):
-        self.components: List[Component] = []
+        self.components: list[Component] = []
 
-    def add(self, component: Component) -> "Pipeline":
-        """
-        Adds a component to the pipeline execution chain.
-        Returns self to allow method chaining if desired.
-        """
-        if not isinstance(component, Component):
-            raise TypeError("Only instances of 'Component' can be added to the Pipeline.")
+    def add(self, component: Component) -> None:
         self.components.append(component)
-        return self
 
     def run(self, context: AdaptiveContext) -> AdaptiveContext:
-        """
-        Passes the context sequentially through every registered component.
-        """
+
         for component in self.components:
-            # Each component modifies the context and passes it forward
+
+            context.add_log(
+                f"Running {component.__class__.__name__}"
+            )
+
             context = component.run(context)
+
         return context
