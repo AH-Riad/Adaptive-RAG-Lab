@@ -1,18 +1,23 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import Any
-from .adaptive_context import AdaptiveContext
+
+from src.core.adaptive_context import AdaptiveContext
+
 
 class Component(ABC):
     """
-    Base class for all pipeline modules.
-    Whether it's a QueryAnalyzer, DenseRetriever, or Generator,
-    they all share this exact same interface.
+    Base class for every pipeline component.
     """
-    
+
     @abstractmethod
     def run(self, context: AdaptiveContext) -> AdaptiveContext:
         """
-        Executes the component's logic, modifies the context in-place, 
-        and returns it.
+        Execute this component.
+
+        Returns
+        -------
+        AdaptiveContext
+            Updated context.
         """
-        raise NotImplementedError("Every component must implement the 'run' method.")
+        pass
