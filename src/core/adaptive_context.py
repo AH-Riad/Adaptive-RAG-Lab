@@ -1,17 +1,48 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from datetime import datetime
+from typing import Any
+
 
 @dataclass
 class AdaptiveContext:
     """
-    The central state object passed through the pipeline.
-    No component owns the data; the pipeline owns the state.
+    Shared state passed through the entire Adaptive RAG pipeline.
+
+    Every component reads from and writes to this object.
     """
+
+    # Query
     query: str
-    query_analysis: Optional[Dict[str, Any]] = None
-    retrieval_plan: Optional[Dict[str, Any]] = None
-    retrieved_documents: List[Dict[str, Any]] = field(default_factory=list)
-    confidence_report: Optional[Dict[str, Any]] = None
-    final_answer: Optional[str] = None
-    
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    query_id: str | None = None
+    timestamp: datetime = field(default_factory=datetime.now)
+
+    # Analysis
+    query_analysis: dict[str, Any] = field(default_factory=dict)
+
+    # Planning
+    retrieval_plan: dict[str, Any] = field(default_factory=dict)
+
+    # Retrieval
+    retrieved_documents: list[Any] = field(default_factory=list)
+
+    # Assessment
+    assessment: dict[str, Any] = field(default_factory=dict)
+
+    # Generation
+    generated_answer: str | None = None
+
+    # Experiment
+    metadata: dict[str, Any] = field(default_factory=dict)
+    statistics: dict[str, Any] = field(default_factory=dict)
+
+    # History
+    events: list[str] = field(default_factory=list)
+    logs: list[str] = field(default_factory=list)
+
+    def add_event(self, event: str) -> None:
+        self.events.append(event)
+
+    def add_log(self, message: str) -> None:
+        self.logs.append(message)
