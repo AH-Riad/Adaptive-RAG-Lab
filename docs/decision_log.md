@@ -114,3 +114,12 @@ Retriever Pipeline
 Phase II (Current Sprint)
 This sprint is called
 Adaptive Framework Core
+
+### 2026-08-06
+
+✓ AdaptiveContext
+✓ Component
+✓ Pipeline
+✓ Registry
+✓ Decision Types
+✓ Retrieval Plan
