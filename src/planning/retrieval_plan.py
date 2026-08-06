@@ -1,17 +1,34 @@
 from dataclasses import dataclass
 
+from src.planning.decision_types import (
+    PlannerConfidence,
+    RetrievalDifficulty,
+    RetrievalStrategy,
+)
+
 
 @dataclass
 class RetrievalPlan:
+    """
+    Output produced by the Decision Engine.
+    """
 
-    retrieval_strategy: str
+    strategy: RetrievalStrategy
 
     top_k: int
 
-    chunk_strategy: str
+    chunk_size: int
 
-    rerank: bool
+    chunk_overlap: int
 
-    retry: bool
+    rerank: bool = False
 
-    confidence_threshold: float
+    rewrite_query: bool = False
+
+    expand_query: bool = False
+
+    difficulty: RetrievalDifficulty = RetrievalDifficulty.MEDIUM
+
+    planner_confidence: PlannerConfidence = PlannerConfidence.MEDIUM
+
+    notes: str = ""
