@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 
 from src.core.adaptive_context import AdaptiveContext
 from src.planning.retrieval_plan import RetrievalPlan
+from src.planning.policy_result import PolicyResult
 
 
 class BasePolicy(ABC):
