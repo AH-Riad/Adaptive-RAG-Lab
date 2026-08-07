@@ -17,7 +17,7 @@ def main():
         rewrite_query=False,
         difficulty=RetrievalDifficulty.MEDIUM,
         planner_confidence=PlannerConfidence.HIGH,
-        notes="Initial dense retrieval."
+        decision_trace=["Initial dense retrieval."]
     )
 
     print("=" * 60)
