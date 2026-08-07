@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from src.planning.decision_types import (
     PlannerConfidence,
@@ -31,4 +31,8 @@ class RetrievalPlan:
 
     planner_confidence: PlannerConfidence = PlannerConfidence.MEDIUM
 
-    notes: str = ""
+    decision_trace: list[str] = field(default_factory=list)
+    
+    policy_confidence: dict[str, float] = field(default_factory=dict)
+    policy_reasons: dict[str, str] = field(default_factory=dict)
+    selected_policies: list[str] = field(default_factory=list)
