@@ -2,6 +2,7 @@ from src.core.adaptive_context import AdaptiveContext
 from src.planning.decision_types import RetrievalStrategy
 from src.planning.policies.base_policy import BasePolicy
 from src.planning.retrieval_plan import RetrievalPlan
+from src.planning.policy_result import PolicyResult
 
 
 class RetrievalPolicy(BasePolicy):
@@ -35,9 +36,19 @@ class RetrievalPolicy(BasePolicy):
 
         plan.selected_policies.append(self.name)
 
-        plan.policy_confidence[self.name] = confidence
+        # plan.policy_confidence[self.name] = confidence
+        # plan.policy_reasons[self.name] = reason
+        
+        plan.policy_results[self.name] = PolicyResult(
 
-        plan.policy_reasons[self.name] = reason
+            policy_name=self.name,
+
+            decision=f"strategy = {strategy.value}",
+
+            confidence=confidence,
+
+            reason=reason
+        )
 
         plan.decision_trace.append(
             f"{self.name}: {strategy.value}"
