@@ -5,7 +5,7 @@ from src.planning.decision_types import (
     RetrievalDifficulty,
     RetrievalStrategy,
 )
-
+from src.planning.policy_result import PolicyResult
 
 @dataclass
 class RetrievalPlan:
@@ -33,6 +33,8 @@ class RetrievalPlan:
 
     decision_trace: list[str] = field(default_factory=list)
     
-    policy_confidence: dict[str, float] = field(default_factory=dict)
-    policy_reasons: dict[str, str] = field(default_factory=dict)
+    # policy_confidence: dict[str, float] = field(default_factory=dict)
+    # policy_reasons: dict[str, str] = field(default_factory=dict)
+    
     selected_policies: list[str] = field(default_factory=list)
+    policy_results: dict[str, PolicyResult] = field(default_factory=dict)
