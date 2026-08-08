@@ -1,0 +1,20 @@
+query_types:
+  definition:
+    chunk_size: 128
+    confidence: 0.96
+    reason: "Definition queries."
+
+  semantic:
+    chunk_size: 256
+    confidence: 0.92
+    reason: "Balanced context."
+
+  comparison:
+    chunk_size: 400
+    confidence: 0.91
+    reason: "Need wider context."
+
+  multi_hop:
+    chunk_size: 512
+    confidence: 0.88
+    reason: "Long reasoning chain."

@@ -1,0 +1,25 @@
+query_types:
+  lexical:
+    strategy: bm25
+    confidence: 0.96
+    reason: "Keyword-oriented query."
+
+  semantic:
+    strategy: dense
+    confidence: 0.91
+    reason: "Semantic understanding required."
+
+  comparison:
+    strategy: hybrid
+    confidence: 0.94
+    reason: "Comparison benefits from lexical and semantic retrieval."
+
+  multi_hop:
+    strategy: hybrid
+    confidence: 0.90
+    reason: "Multi-hop questions require broader evidence."
+
+  ambiguous:
+    strategy: hybrid
+    confidence: 0.78
+    reason: "Ambiguous query."

@@ -1,0 +1,15 @@
+complexity:
+  low:
+    top_k: 3
+    confidence: 0.95
+    reason: "Simple query."
+
+  medium:
+    top_k: 5
+    confidence: 0.92
+    reason: "Moderate complexity."
+
+  high:
+    top_k: 8
+    confidence: 0.90
+    reason: "Complex question."
