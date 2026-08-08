@@ -1,21 +1,10 @@
 from dataclasses import dataclass, field
-from time import time
-
+from typing import List, Any
 
 @dataclass
 class RetrievalResult:
     """
-    Stores the complete retrieval execution.
+    Stores the query and the resulting chunks from the vector database.
     """
-
-    strategy: str
-
-    top_k: int
-
-    retrieved_count: int
-
-    retrieval_time: float
-
-    average_score: float
-
-    documents: list = field(default_factory=list)
+    query: str
+    retrieved_chunks: list = field(default_factory=list)
