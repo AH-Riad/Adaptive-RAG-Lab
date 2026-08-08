@@ -1,3 +1,5 @@
+from src.analyzer.query_analysis import QueryAnalysis
+
 class QueryAnalyzer:
     COMPARISON_WORDS = {
         "compare", "difference", "versus", "vs", "better"
