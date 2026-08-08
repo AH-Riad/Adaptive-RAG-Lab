@@ -3,7 +3,7 @@ from src.planning.decision_types import RetrievalStrategy
 from src.planning.policies.base_policy import BasePolicy
 from src.planning.retrieval_plan import RetrievalPlan
 from src.planning.policy_result import PolicyResult
-from src.configs.config_loader import ConfigLoader  # <-- Import the loader
+from src.configs.config_loader import ConfigLoader  
 
 class RetrievalPolicy(BasePolicy):
 
