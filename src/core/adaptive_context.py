@@ -40,9 +40,15 @@ class AdaptiveContext:
     # History
     events: list[str] = field(default_factory=list)
     logs: list[str] = field(default_factory=list)
+    analysis_confidence: dict = field(default_factory=dict)
 
+    decision_report: dict = field(default_factory=dict)
+
+    metrics: dict = field(default_factory=dict)
+    
     def add_event(self, event: str) -> None:
         self.events.append(event)
 
     def add_log(self, message: str) -> None:
         self.logs.append(message)
+    
