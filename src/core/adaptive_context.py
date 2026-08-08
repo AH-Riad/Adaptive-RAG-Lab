@@ -22,13 +22,13 @@ class AdaptiveContext:
     query_analysis: dict[str, Any] = field(default_factory=dict)
 
     # Planning
-    retrieval_plan: dict[str, Any] = field(default_factory=dict)
+    retrieval_plan: Any | None = None
 
-    # Retrieval
-    retrieved_documents: list[Any] = field(default_factory=list)
+    # Retrieval (Updated based on prompt)
+    retrieval_result: Any | None = None
 
-    # Assessment
-    assessment: dict[str, Any] = field(default_factory=dict)
+    # Assessment (Updated 'assessment' to 'evaluation' based on prompt)
+    evaluation: dict = field(default_factory=dict)
 
     # Generation
     generated_answer: str | None = None
@@ -40,10 +40,10 @@ class AdaptiveContext:
     # History
     events: list[str] = field(default_factory=list)
     logs: list[str] = field(default_factory=list)
+    
+    # State tracking metrics
     analysis_confidence: dict = field(default_factory=dict)
-
     decision_report: dict = field(default_factory=dict)
-
     metrics: dict = field(default_factory=dict)
     
     def add_event(self, event: str) -> None:
@@ -51,4 +51,3 @@ class AdaptiveContext:
 
     def add_log(self, message: str) -> None:
         self.logs.append(message)
-    
