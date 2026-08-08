@@ -22,4 +22,12 @@ class BasePolicy(ABC):
 
     @property
     def name(self) -> str:
-        return self.__class__.__name__
+        return self.__class__.__name__ 
+    
+    @property
+    def version(self) -> str:
+        return "1.0"
+
+    @property
+    def description(self) -> str:
+        return "Generic base policy."

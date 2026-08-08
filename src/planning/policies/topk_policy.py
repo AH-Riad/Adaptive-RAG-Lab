@@ -2,42 +2,40 @@ from src.core.adaptive_context import AdaptiveContext
 from src.planning.policies.base_policy import BasePolicy
 from src.planning.retrieval_plan import RetrievalPlan
 from src.planning.policy_result import PolicyResult
+from src.configs.config_loader import ConfigLoader  # <-- Added ConfigLoader
 
 
 class TopKPolicy(BasePolicy):
 
-    def apply(self, context, plan):
+    @property
+    def version(self) -> str:
+        return "1.1"
 
+    @property
+    def description(self) -> str:
+        return "Determines Top-K retrieval count based on query complexity using YAML configuration."
+
+    def apply(self, context, plan):
+        # 1. Load the YAML configuration
+        config = ConfigLoader.load("planning/topk_policy.yaml")
+        
+        # 2. Get complexity from the context
         complexity = context.query_analysis.get(
             "complexity",
             "medium"
         )
 
-        if complexity == "low":
+        # 3. Fetch settings from YAML (fallback to 'medium' if complexity is unknown)
+        entry = config["complexity"].get(complexity, config["complexity"]["medium"])
 
-            top_k = 3
-            confidence = 0.95
-            reason = "Simple query."
+        # 4. Extract values from the YAML entry
+        top_k = entry["top_k"]
+        confidence = entry["confidence"]
+        reason = entry["reason"]
 
-        elif complexity == "high":
-
-            top_k = 8
-            confidence = 0.90
-            reason = "Complex query."
-
-        else:
-
-            top_k = 5
-            confidence = 0.92
-            reason = "Moderate complexity."
-
+        # 5. Apply decisions to the plan
         plan.top_k = top_k
-
         plan.selected_policies.append(self.name)
-
-        # plan.policy_confidence[self.name] = confidence
-
-        # plan.policy_reasons[self.name] = reason
 
         plan.policy_results[self.name] = PolicyResult(
             policy_name=self.name,
@@ -47,7 +45,7 @@ class TopKPolicy(BasePolicy):
         )
 
         plan.decision_trace.append(
-            f"{self.name}: Top-K={top_k}"
+            f"{self.name}: Top-K={top_k} (v{self.version})"
         )
 
         return plan
