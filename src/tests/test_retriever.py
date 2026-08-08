@@ -1,3 +1,4 @@
+from core import chunk
 from src.loaders.text_loader import TextLoader
 from src.chunking.recursive_chunker import RecursiveChunker
 from src.embeddings.sentence_transformer_embedding import SentenceTransformerEmbedding
@@ -7,7 +8,7 @@ from src.retrievers.dense_retriever import DenseRetriever
 def main():
     print("1. Loading Document...")
     loader = TextLoader()
-    documents = loader.load("datasets/sample2.txt")
+    documents = loader.load("datasets/sample2.txt") 
 
     print("2. Chunking Document...")
     chunker = RecursiveChunker(chunk_size=150, chunk_overlap=30)
@@ -46,7 +47,7 @@ def main():
     for i, chunk in enumerate(result.retrieved_chunks):
         print(f"\n--- Result {i + 1} ---")
         print(f"ID: {chunk.chunk_id}")
-        print(f"Score (Distance): {chunk.score}")
+        print(f"Score (Relevance): {chunk.score}")
         print("-" * 30)
         print(f"{chunk.text}")
         print("=" * 60)
