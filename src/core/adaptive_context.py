@@ -24,11 +24,13 @@ class AdaptiveContext:
     # Planning
     retrieval_plan: Any | None = None
 
-    # Retrieval (Updated based on prompt)
+    # Retrieval 
     retrieval_result: Any | None = None
+    evidence_result: object | None = None
 
-    # Assessment (Updated 'assessment' to 'evaluation' based on prompt)
+    # Assessment 
     evaluation: dict = field(default_factory=dict)
+    feedback_decision: object | None = None
 
     # Generation
     generated_answer: str | None = None
