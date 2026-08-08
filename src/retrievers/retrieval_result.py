@@ -1,10 +1,21 @@
-from dataclasses import dataclass
-from typing import List
-
-from src.core import RetrievedChunk
+from dataclasses import dataclass, field
+from time import time
 
 
 @dataclass
 class RetrievalResult:
-    query: str
-    retrieved_chunks: List[RetrievedChunk]
+    """
+    Stores the complete retrieval execution.
+    """
+
+    strategy: str
+
+    top_k: int
+
+    retrieved_count: int
+
+    retrieval_time: float
+
+    average_score: float
+
+    documents: list = field(default_factory=list)
