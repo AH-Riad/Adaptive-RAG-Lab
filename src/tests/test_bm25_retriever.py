@@ -11,11 +11,11 @@ def main():
 
     # 1. Load document
 
-    loader = TextLoader(
+    loader = TextLoader()
+
+    documents = loader.load(
+        "datasets\\sample2.txt"
     )
-
-    documents = loader.load("datasets\\sample2.txt")
-
 
     print(
         f"Loaded Documents: {len(documents)}"
@@ -43,7 +43,7 @@ def main():
         top_k=3
     )
 
-    # 4. Query
+    # 4. Inspect tokenization
 
     query = "self-attention"
 
@@ -51,11 +51,28 @@ def main():
         f"\nQuery: '{query}'"
     )
 
+    print(
+        "\nQuery Tokens:",
+        retriever._tokenize(query)
+    )
+
+    print(
+        "\nFirst Chunk Tokens:"
+    )
+
+    print(
+        retriever._tokenize(
+            chunks[0].text
+        )
+    )
+
+    # 5. Retrieve
+
     result = retriever.retrieve(
         query
     )
 
-    # 5. Display results
+    # 6. Display results
 
     print("\n" + "=" * 60)
     print("BM25 RESULTS")
