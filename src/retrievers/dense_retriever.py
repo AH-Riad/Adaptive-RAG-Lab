@@ -1,6 +1,5 @@
 from src.retrievers.base_retriever import BaseRetriever
 from src.retrievers.retrieval_result import RetrievalResult
-from src.retrievers.score_normalizer import ScoreNormalizer
 from src.core import RetrievedChunk
 
 
@@ -16,10 +15,15 @@ class DenseRetriever(BaseRetriever):
         self.vector_store = vector_store
         self.top_k = top_k
 
-    def retrieve(self, query: str) -> RetrievalResult:
+    def retrieve(
+        self,
+        query: str
+    ) -> RetrievalResult:
 
         query_embedding = (
-            self.embedding_model.encode_query(query)
+            self.embedding_model.encode_query(
+                query
+            )
         )
 
         raw_results = self.vector_store.search(
@@ -55,34 +59,43 @@ class DenseRetriever(BaseRetriever):
                 else [{}] * len(ids)
             )
 
+            max_distance = (
+                max(distances)
+                if distances
+                else 1.0
+            )
+
             for i in range(len(ids)):
 
-                distance = float(
-                    distances[i]
-                )
+                distance = distances[i]
 
-                relevance_score = (
-                    ScoreNormalizer.distance_to_relevance(
-                        distance
+                if max_distance > 0:
+                    normalized_score = (
+                        1.0
+                        - (
+                            distance
+                            / max_distance
+                        )
                     )
-                )
+                else:
+                    normalized_score = 1.0
 
                 chunk = RetrievedChunk(
-
                     chunk_id=ids[i],
-
                     text=documents[i],
-
-                    score=relevance_score,
-
+                    score=normalized_score,
                     metadata={
                         **metadatas[i],
-                        "raw_distance": distance,
-                        "score_type": "normalized_relevance",
+                        "raw_dense_distance":
+                            distance,
+                        "score_type":
+                            "normalized_dense_relevance",
                     }
                 )
 
-                retrieved_chunks.append(chunk)
+                retrieved_chunks.append(
+                    chunk
+                )
 
         return RetrievalResult(
             query=query,
