@@ -1,5 +1,6 @@
-from collections import Counter
+import re
 import math
+from collections import Counter
 
 from src.retrievers.base_retriever import BaseRetriever
 from src.retrievers.retrieval_result import RetrievalResult
@@ -8,11 +9,10 @@ from src.core import RetrievedChunk
 
 class BM25Retriever(BaseRetriever):
     """
-    Lexical retrieval using the BM25 ranking function.
+    Lexical retrieval using BM25.
 
     BM25 is useful for:
     - exact keywords
-    - course codes
     - technical terms
     - names
     - identifiers
@@ -33,16 +33,30 @@ class BM25Retriever(BaseRetriever):
 
         self._build_index()
 
-    # =========================================================
     # TOKENIZATION
-    # =========================================================
 
     def _tokenize(self, text: str) -> list[str]:
-        return text.lower().split()
+        """
+        Normalize text and tokenize it.
 
-    # =========================================================
-    # BUILD BM25 INDEX
-    # =========================================================
+        Punctuation is removed so that:
+
+            self-attention.
+            self-attention,
+
+        are treated as the same lexical term.
+        """
+
+        text = text.lower()
+
+        tokens = re.findall(
+            r"\b[\w]+(?:-[\w]+)*\b",
+            text
+        )
+
+        return tokens
+
+    # BUILD INDEX
 
     def _build_index(self):
 
@@ -71,8 +85,7 @@ class BM25Retriever(BaseRetriever):
 
             self.average_document_length = 0.0
 
-        # Document frequency:
-        # How many chunks contain each term?
+        # Number of chunks containing each term
         self.document_frequency = Counter()
 
         for tokens in self.tokenized_chunks:
@@ -80,11 +93,12 @@ class BM25Retriever(BaseRetriever):
             unique_terms = set(tokens)
 
             for term in unique_terms:
-                self.document_frequency[term] += 1
 
-    # =========================================================
+                self.document_frequency[
+                    term
+                ] += 1
+
     # IDF
-    # =========================================================
 
     def _idf(self, term: str) -> float:
 
@@ -111,9 +125,7 @@ class BM25Retriever(BaseRetriever):
             )
         )
 
-    # =========================================================
     # SCORE ONE CHUNK
-    # =========================================================
 
     def _score_chunk(
         self,
@@ -162,8 +174,7 @@ class BM25Retriever(BaseRetriever):
                 *
                 (
                     1
-                    -
-                    self.b
+                    - self.b
                     +
                     self.b
                     *
@@ -183,9 +194,7 @@ class BM25Retriever(BaseRetriever):
 
         return score
 
-    # =========================================================
     # RETRIEVE
-    # =========================================================
 
     def retrieve(
         self,
@@ -224,7 +233,8 @@ class BM25Retriever(BaseRetriever):
             :self.top_k
         ]
 
-        # Normalize BM25 scores to [0, 1]
+        # Normalize scores
+
         raw_scores = [
             score
             for _, score in top_results
@@ -260,9 +270,7 @@ class BM25Retriever(BaseRetriever):
                     score=normalized_score,
                     metadata={
                         **chunk.metadata,
-
                         "raw_bm25_score": raw_score,
-
                         "score_type":
                             "normalized_bm25_relevance",
                     }
