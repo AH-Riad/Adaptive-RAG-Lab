@@ -65,6 +65,14 @@ class HybridRetriever(BaseRetriever):
             bm25_scores=bm25_scores
         )
 
+        # Remove candidates with no retrieval evidence
+
+        fusion_results = [
+            result
+            for result in fusion_results
+            if result.hybrid_score > 0.0
+        ]
+
         fusion_results = fusion_results[
             :self.top_k
         ]
@@ -74,13 +82,10 @@ class HybridRetriever(BaseRetriever):
         for result in fusion_results:
 
             if result.chunk_id in dense_chunks:
-
                 base_chunk = dense_chunks[
                     result.chunk_id
                 ]
-
             else:
-
                 base_chunk = bm25_chunks[
                     result.chunk_id
                 ]
