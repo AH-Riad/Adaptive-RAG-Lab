@@ -1,0 +1,81 @@
+Transformers and Modern Natural Language Processing
+
+The Transformer is a neural network architecture introduced to process
+sequences using attention mechanisms rather than recurrent computation.
+Its architecture is based primarily on self-attention, which allows each
+token to interact with other tokens in the sequence.
+
+Self-attention calculates relationships between tokens by producing
+query, key, and value representations. A token can therefore assign
+different levels of importance to other tokens depending on their
+relevance. This allows the model to capture long-range relationships
+more effectively than many traditional sequential architectures.
+
+Multi-head attention extends self-attention by using several attention
+heads. Each head can learn different relationships or representations
+from the same input sequence. The outputs of the attention heads are
+combined to create a richer representation.
+
+Unlike recurrent neural networks, Transformers process many tokens in
+parallel during training. This parallel computation makes them highly
+suitable for large-scale training and reduces the sequential dependency
+found in recurrent architectures.
+
+Transformers also use positional encoding because self-attention by
+itself does not inherently represent the order of tokens. Positional
+information allows the model to distinguish between different token
+positions.
+
+The Transformer encoder commonly contains multi-head self-attention, a
+feed-forward neural network, residual connections, and layer
+normalization. These components work together to transform the input
+representation through multiple layers.
+
+The decoder architecture can also use masked self-attention and
+encoder-decoder attention. Masked attention prevents a decoder from
+using information from future tokens when generating a sequence.
+
+BERT is based primarily on the Transformer encoder and was designed for
+bidirectional language understanding. GPT models use Transformer decoder
+architectures and are designed for autoregressive text generation.
+Although both are based on Transformers, their training objectives and
+architectural configurations differ.
+
+Retrieval-augmented generation, commonly called RAG, combines
+information retrieval with language generation. Instead of relying only
+on knowledge stored in model parameters, a RAG system retrieves relevant
+documents or chunks and provides them as context to a language model.
+
+Dense retrieval represents queries and documents as vectors and compares
+their semantic similarity. It can retrieve conceptually related passages
+even when the exact query words do not appear in the document.
+
+BM25 is a lexical retrieval method based on term matching. It is
+particularly useful when important words or technical phrases appear
+directly in the query and relevant documents.
+
+Hybrid retrieval combines dense and lexical retrieval signals. A
+weighted fusion method can give more importance to one retrieval signal
+depending on the retrieval objective.
+
+An adaptive RAG system can go further by analyzing the query before
+retrieval. A simple query may require only a small number of highly
+relevant chunks, while a complex comparison may benefit from broader
+retrieval. Query characteristics such as query type, complexity, lexical
+specificity, and confidence can therefore influence retrieval decisions.
+
+Confidence-aware retrieval planning can be useful when the query
+analyzer is uncertain. Instead of blindly trusting one classification,
+the system can increase retrieval breadth or select a more robust
+retrieval strategy when confidence is low.
+
+A research-oriented adaptive retrieval system should be evaluated using
+multiple query categories and measurable retrieval metrics. Useful
+experiments include lexical queries, semantic queries, comparison
+queries, ambiguous queries, and queries containing technical
+terminology.
+
+The goal of adaptive retrieval is not simply to use more retrieval
+methods. The goal is to select or combine retrieval strategies according
+to the characteristics of each query and demonstrate that this
+adaptation improves retrieval quality, efficiency, or robustness.
