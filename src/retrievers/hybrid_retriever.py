@@ -1,11 +1,12 @@
 from src.retrievers.base_retriever import BaseRetriever
 from src.retrievers.retrieval_result import RetrievalResult
+from src.retrievers.score_fusion import WeightedScoreFusion
 from src.core import RetrievedChunk
 
 
 class HybridRetriever(BaseRetriever):
     """
-    Combines dense semantic retrieval and BM25 lexical retrieval.
+    Combines dense and BM25 retrieval using score fusion.
     """
 
     def __init__(
@@ -15,15 +16,14 @@ class HybridRetriever(BaseRetriever):
         top_k: int = 3,
         alpha: float = 0.7
     ):
-        if not 0.0 <= alpha <= 1.0:
-            raise ValueError(
-                "alpha must be between 0.0 and 1.0"
-            )
 
         self.dense_retriever = dense_retriever
         self.bm25_retriever = bm25_retriever
         self.top_k = top_k
-        self.alpha = alpha
+
+        self.fusion = WeightedScoreFusion(
+            alpha=alpha
+        )
 
     def retrieve(
         self,
@@ -48,89 +48,69 @@ class HybridRetriever(BaseRetriever):
             for chunk in bm25_result.retrieved_chunks
         }
 
-        all_chunk_ids = (
-            set(dense_chunks.keys())
-            |
-            set(bm25_chunks.keys())
+        dense_scores = {
+            chunk_id: chunk.score
+            for chunk_id, chunk
+            in dense_chunks.items()
+        }
+
+        bm25_scores = {
+            chunk_id: chunk.score
+            for chunk_id, chunk
+            in bm25_chunks.items()
+        }
+
+        fusion_results = self.fusion.fuse(
+            dense_scores=dense_scores,
+            bm25_scores=bm25_scores
         )
 
-        ranked_chunks = []
-
-        for chunk_id in all_chunk_ids:
-
-            dense_score = 0.0
-            bm25_score = 0.0
-
-            if chunk_id in dense_chunks:
-                dense_score = dense_chunks[
-                    chunk_id
-                ].score
-
-            if chunk_id in bm25_chunks:
-                bm25_score = bm25_chunks[
-                    chunk_id
-                ].score
-
-            hybrid_score = (
-                self.alpha * dense_score
-                +
-                (1.0 - self.alpha)
-                * bm25_score
-            )
-
-            if chunk_id in dense_chunks:
-                base_chunk = dense_chunks[
-                    chunk_id
-                ]
-            else:
-                base_chunk = bm25_chunks[
-                    chunk_id
-                ]
-
-            ranked_chunks.append(
-                (
-                    base_chunk,
-                    dense_score,
-                    bm25_score,
-                    hybrid_score
-                )
-            )
-
-        ranked_chunks.sort(
-            key=lambda item: item[3],
-            reverse=True
-        )
-
-        ranked_chunks = ranked_chunks[
+        fusion_results = fusion_results[
             :self.top_k
         ]
 
         retrieved_chunks = []
 
-        for (
-            chunk,
-            dense_score,
-            bm25_score,
-            hybrid_score
-        ) in ranked_chunks:
+        for result in fusion_results:
+
+            if result.chunk_id in dense_chunks:
+
+                base_chunk = dense_chunks[
+                    result.chunk_id
+                ]
+
+            else:
+
+                base_chunk = bm25_chunks[
+                    result.chunk_id
+                ]
 
             metadata = dict(
-                chunk.metadata
+                base_chunk.metadata
             )
 
             metadata.update({
-                "dense_score": dense_score,
-                "bm25_score": bm25_score,
-                "hybrid_score": hybrid_score,
-                "fusion_alpha": self.alpha,
-                "score_type": "hybrid_relevance"
+                "dense_score":
+                    result.dense_score,
+
+                "bm25_score":
+                    result.bm25_score,
+
+                "hybrid_score":
+                    result.hybrid_score,
+
+                "fusion_alpha":
+                    self.fusion.alpha,
+
+                "score_type":
+                    "hybrid_relevance"
             })
 
             retrieved_chunks.append(
                 RetrievedChunk(
-                    chunk_id=chunk.chunk_id,
-                    text=chunk.text,
-                    score=hybrid_score,
+                    chunk_id=result.chunk_id,
+                    text=base_chunk.text,
+                    score=result.hybrid_score,
                     metadata=metadata
                 )
             )
