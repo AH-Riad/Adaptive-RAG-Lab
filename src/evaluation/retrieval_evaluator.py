@@ -1,86 +1,75 @@
-from dataclasses import dataclass, field
-
-
-@dataclass
-class RetrievalEvaluation:
-    query: str
-    query_type: str
-    dense_ids: list[str] = field(default_factory=list)
-    bm25_ids: list[str] = field(default_factory=list)
-    hybrid_ids: list[str] = field(default_factory=list)
+from src.evaluation.metrics import RetrievalMetrics
+from src.evaluation.evaluation_result import (
+    EvaluationResult
+)
 
 
 class RetrievalEvaluator:
     """
-    Runs the same queries through multiple retrievers.
+    Evaluates a retriever against manually verified
+    ground-truth relevance judgments.
     """
-
-    def __init__(
-        self,
-        dense_retriever,
-        bm25_retriever,
-        hybrid_retriever
-    ):
-
-        self.dense_retriever = dense_retriever
-        self.bm25_retriever = bm25_retriever
-        self.hybrid_retriever = hybrid_retriever
-
-    def evaluate_query(
-        self,
-        query: str,
-        query_type: str
-    ) -> RetrievalEvaluation:
-
-        dense_result = (
-            self.dense_retriever.retrieve(query)
-        )
-
-        bm25_result = (
-            self.bm25_retriever.retrieve(query)
-        )
-
-        hybrid_result = (
-            self.hybrid_retriever.retrieve(query)
-        )
-
-        dense_ids = [
-            chunk.chunk_id
-            for chunk in dense_result.retrieved_chunks
-        ]
-
-        bm25_ids = [
-            chunk.chunk_id
-            for chunk in bm25_result.retrieved_chunks
-        ]
-
-        hybrid_ids = [
-            chunk.chunk_id
-            for chunk in hybrid_result.retrieved_chunks
-        ]
-
-        return RetrievalEvaluation(
-            query=query,
-            query_type=query_type,
-            dense_ids=dense_ids,
-            bm25_ids=bm25_ids,
-            hybrid_ids=hybrid_ids
-        )
 
     def evaluate(
         self,
-        queries: list[dict]
-    ) -> list[RetrievalEvaluation]:
+        retriever,
+        ground_truth
+    ):
 
         results = []
 
-        for item in queries:
+        for item in ground_truth.get_all():
 
-            result = self.evaluate_query(
-                query=item["query"],
-                query_type=item["type"]
+            retrieval_result = retriever.retrieve(
+                item.query
             )
 
-            results.append(result)
+            retrieved_ids = [
+                chunk.chunk_id
+                for chunk in retrieval_result.retrieved_chunks
+            ]
+
+            precision = (
+                RetrievalMetrics.precision_at_k(
+                    retrieved_ids,
+                    item.relevant_chunks,
+                    5
+                )
+            )
+
+            recall = (
+                RetrievalMetrics.recall_at_k(
+                    retrieved_ids,
+                    item.relevant_chunks,
+                    5
+                )
+            )
+
+            mrr = (
+                RetrievalMetrics.reciprocal_rank(
+                    retrieved_ids,
+                    item.relevant_chunks
+                )
+            )
+
+            ndcg = (
+                RetrievalMetrics.ndcg_at_k(
+                    retrieved_ids,
+                    item.relevance_scores,
+                    5
+                )
+            )
+
+            results.append(
+                EvaluationResult(
+                    query=item.query,
+                    query_type=item.query_type,
+                    retriever=retriever.__class__.__name__,
+                    precision_at_5=precision,
+                    recall_at_5=recall,
+                    mrr=mrr,
+                    ndcg_at_5=ndcg
+                )
+            )
 
         return results
