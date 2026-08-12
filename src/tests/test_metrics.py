@@ -49,7 +49,6 @@ def main():
         relevance_scores,
         5
     )
-
     print("\nRetrieved:")
     print(retrieved)
 
