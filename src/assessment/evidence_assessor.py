@@ -5,27 +5,30 @@ from src.assessment.evidence_result import EvidenceResult
 
 
 class EvidenceAssessor(Component):
-    """
-    Evaluates retrieved chunks using normalized relevance scores.
-
-    Higher score means stronger evidence.
-    """
 
     def __init__(
         self,
-        relevance_threshold: float = 0.60,
-        acceptance_threshold: float = 0.65,
+        relevance_threshold: float = 0.45,
+        acceptance_threshold: float = 0.55,
+        minimum_evidence_count: int = 2
     ):
         self.relevance_threshold = relevance_threshold
         self.acceptance_threshold = acceptance_threshold
+        self.minimum_evidence_count = (
+            minimum_evidence_count
+        )
 
     def run(self, context):
 
-        retrieval_result = context.retrieval_result
+        retrieval_result = (
+            context.retrieval_result
+        )
 
         if retrieval_result is None:
+
             raise RuntimeError(
-                "Evidence assessment requires retrieval results."
+                "Evidence assessment requires "
+                "retrieval results."
             )
 
         chunks = retrieval_result.retrieved_chunks
@@ -41,13 +44,13 @@ class EvidenceAssessor(Component):
                 relevant_count=0,
                 threshold=self.acceptance_threshold,
                 reasons=[
-                    "No chunks were retrieved."
+                    "No evidence was retrieved."
                 ],
                 recommendations=[
                     "Increase Top-K.",
                     "Change retrieval strategy.",
-                    "Rewrite the query.",
-                ],
+                    "Rewrite the query."
+                ]
             )
 
             context.evidence_result = result
@@ -76,42 +79,65 @@ class EvidenceAssessor(Component):
             relevant_count / retrieved_count
         )
 
+        top_scores = sorted(
+            scores,
+            reverse=True
+        )[
+            :min(3, len(scores))
+        ]
+
+        top_evidence_score = mean(
+            top_scores
+        )
+
         confidence = (
-            0.5 * average_score
+            0.60 * top_evidence_score
             +
-            0.5 * coverage
+            0.40 * coverage
         )
 
         accepted = (
             confidence >= self.acceptance_threshold
+            and
+            relevant_count >= (
+                min(
+                    self.minimum_evidence_count,
+                    retrieved_count
+                )
+            )
         )
 
         reasons = []
-
         recommendations = []
 
         if accepted:
 
             reasons.append(
-                "Retrieved evidence passed the acceptance threshold."
+                "Evidence quality passed the "
+                "assessment criteria."
             )
 
         else:
 
             reasons.append(
-                "Retrieved evidence is below the acceptance threshold."
+                "Evidence quality did not pass "
+                "the assessment criteria."
             )
 
             if coverage < 0.50:
 
                 recommendations.append(
-                    "Increase Top-K or change retrieval strategy."
+                    "Increase Top-K or change "
+                    "retrieval strategy."
                 )
 
-            if average_score < self.relevance_threshold:
+            if top_evidence_score < (
+                self.relevance_threshold
+            ):
 
                 recommendations.append(
-                    "Consider query rewriting or reranking."
+                    "Consider query rewriting "
+                    "or reranking."
                 )
 
         result = EvidenceResult(
@@ -123,7 +149,7 @@ class EvidenceAssessor(Component):
             relevant_count=relevant_count,
             threshold=self.acceptance_threshold,
             reasons=reasons,
-            recommendations=recommendations,
+            recommendations=recommendations
         )
 
         context.evidence_result = result
