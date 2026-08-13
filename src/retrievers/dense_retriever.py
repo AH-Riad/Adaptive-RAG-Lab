@@ -15,6 +15,18 @@ class DenseRetriever(BaseRetriever):
         self.vector_store = vector_store
         self.top_k = top_k
 
+    def _distance_to_score(
+        self,
+        distance: float
+    ) -> float:
+
+        if distance < 0:
+            raise ValueError(
+                "Retrieval distance cannot be negative."
+            )
+
+        return 1.0 / (1.0 + distance)
+
     def retrieve(
         self,
         query: str
@@ -59,37 +71,28 @@ class DenseRetriever(BaseRetriever):
                 else [{}] * len(ids)
             )
 
-            max_distance = (
-                max(distances)
-                if distances
-                else 1.0
-            )
-
             for i in range(len(ids)):
 
-                distance = distances[i]
+                distance = float(
+                    distances[i]
+                )
 
-                if max_distance > 0:
-                    normalized_score = (
-                        1.0
-                        - (
-                            distance
-                            / max_distance
-                        )
+                relevance_score = (
+                    self._distance_to_score(
+                        distance
                     )
-                else:
-                    normalized_score = 1.0
+                )
 
                 chunk = RetrievedChunk(
                     chunk_id=ids[i],
                     text=documents[i],
-                    score=normalized_score,
+                    score=relevance_score,
                     metadata={
                         **metadatas[i],
                         "raw_dense_distance":
                             distance,
                         "score_type":
-                            "normalized_dense_relevance",
+                            "normalized_dense_relevance"
                     }
                 )
 
