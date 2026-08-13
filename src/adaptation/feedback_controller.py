@@ -4,15 +4,11 @@ from src.planning.decision_types import RetrievalStrategy
 
 
 class FeedbackController(Component):
-    """
-    Determines how the retrieval process should adapt
-    when retrieved evidence is insufficient.
-    """
 
     def __init__(
         self,
-        retry_threshold: float = 0.65,
-        max_top_k: int = 10,
+        retry_threshold: float = 0.55,
+        max_top_k: int = 10
     ):
         self.retry_threshold = retry_threshold
         self.max_top_k = max_top_k
@@ -24,19 +20,17 @@ class FeedbackController(Component):
 
         if evidence is None:
             raise RuntimeError(
-                "FeedbackController requires evidence_result."
+                "FeedbackController requires "
+                "evidence_result."
             )
 
         if plan is None:
             raise RuntimeError(
-                "FeedbackController requires retrieval_plan."
+                "FeedbackController requires "
+                "retrieval_plan."
             )
 
-        # --------------------------------------------------
-        # CASE 1: Evidence is already good
-        # --------------------------------------------------
-
-        if evidence.confidence >= self.retry_threshold:
+        if evidence.accepted:
 
             decision = FeedbackDecision(
                 should_retry=False,
@@ -46,13 +40,12 @@ class FeedbackController(Component):
                 rewrite_query=False,
                 rerank=False,
                 reason=(
-                    "Evidence confidence is sufficient. "
-                    "No retrieval adaptation is required."
+                    "Evidence is sufficient."
                 ),
                 confidence=evidence.confidence,
                 actions=[
                     "accept_retrieval"
-                ],
+                ]
             )
 
             context.feedback_decision = decision
@@ -63,29 +56,19 @@ class FeedbackController(Component):
 
             return context
 
-        # --------------------------------------------------
-        # CASE 2: Evidence is weak
-        # --------------------------------------------------
-
-        actions = []
-
         new_top_k = min(
             plan.top_k * 2,
             self.max_top_k
         )
 
-        actions.append(
+        actions = [
             f"increase_top_k:{plan.top_k}->{new_top_k}"
-        )
-
-        # --------------------------------------------------
-        # Determine whether to change strategy
-        # --------------------------------------------------
+        ]
 
         change_strategy = False
         new_strategy = None
 
-        if evidence.coverage < 0.50:
+        if evidence.coverage < 0.40:
 
             change_strategy = True
 
@@ -101,7 +84,7 @@ class FeedbackController(Component):
                     RetrievalStrategy.HYBRID.value
                 )
 
-            else:
+            elif plan.strategy == RetrievalStrategy.HYBRID:
 
                 new_strategy = (
                     RetrievalStrategy.DENSE.value
@@ -111,32 +94,23 @@ class FeedbackController(Component):
                 f"change_strategy:{new_strategy}"
             )
 
-        # --------------------------------------------------
-        # Query rewriting
-        # --------------------------------------------------
+        rewrite_query = (
+            evidence.average_score < 0.45
+        )
 
-        rewrite_query = False
-
-        if evidence.average_score < 0.60:
-
-            rewrite_query = True
+        if rewrite_query:
 
             actions.append(
                 "rewrite_query"
             )
 
-        # --------------------------------------------------
-        # Reranking
-        # --------------------------------------------------
-
-        rerank = False
-
-        if (
+        rerank = (
             evidence.retrieved_count >= 5
-            and evidence.average_score >= 0.50
-        ):
+            and
+            evidence.average_score >= 0.45
+        )
 
-            rerank = True
+        if rerank:
 
             actions.append(
                 "rerank_results"
@@ -150,11 +124,11 @@ class FeedbackController(Component):
             rewrite_query=rewrite_query,
             rerank=rerank,
             reason=(
-                "Evidence confidence is below the retry "
-                "threshold. Retrieval adaptation is required."
+                "Evidence did not meet the "
+                "acceptance criteria."
             ),
             confidence=evidence.confidence,
-            actions=actions,
+            actions=actions
         )
 
         context.feedback_decision = decision
