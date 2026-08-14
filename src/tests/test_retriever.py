@@ -1,4 +1,4 @@
-from core import chunk
+from src.core import chunk
 from src.loaders.text_loader import TextLoader
 from src.chunking.recursive_chunker import RecursiveChunker
 from src.embeddings.sentence_transformer_embedding import SentenceTransformerEmbedding
