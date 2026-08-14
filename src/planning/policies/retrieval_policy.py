@@ -1,46 +1,85 @@
-from src.core.adaptive_context import AdaptiveContext
+from src.configs.config_loader import ConfigLoader
 from src.planning.decision_types import RetrievalStrategy
 from src.planning.policies.base_policy import BasePolicy
-from src.planning.retrieval_plan import RetrievalPlan
 from src.planning.policy_result import PolicyResult
-from src.configs.config_loader import ConfigLoader  
+
 
 class RetrievalPolicy(BasePolicy):
 
-    @property
-    def version(self) -> str:
-        return "1.1"
+    def __init__(self):
 
-    @property
-    def description(self) -> str:
-        return "Selects retrieval strategy based on YAML configuration mapping."
+        self.config = ConfigLoader.load(
+            "planning/retrieval_policy.yaml"
+        )
 
-    def apply(self, context: AdaptiveContext, plan: RetrievalPlan):
-        
-        # 1. Load the configuration file
-        config = ConfigLoader.load("planning/retrieval_policy.yaml")
-        
-        # 2. Get the query type from the context
-        query_type = context.query_analysis.get("query_type", "semantic")
+    def apply(self, context, plan):
 
-        # 3. Fetch the exact settings from the YAML file (fallback to 'semantic' if unknown)
-        entry = config["query_types"].get(query_type, config["query_types"]["semantic"])
+        query_type = context.query_analysis.get(
+            "query_type",
+            "semantic"
+        )
 
-        # 4. Extract values from YAML
-        strategy = RetrievalStrategy(entry["strategy"])  # Converts string "hybrid" to Enum
-        confidence = entry["confidence"]
-        reason = entry["reason"]
+        query_config = self.config.get(
+            "query_types",
+            {}
+        )
+
+        entry = query_config.get(
+            query_type
+        )
+
+        if entry is None:
+
+            entry = query_config.get(
+                "semantic"
+            )
+
+        strategy = RetrievalStrategy(
+            entry["strategy"]
+        )
+
+        confidence = float(
+            entry["confidence"]
+        )
+
+        reason = str(
+            entry["reason"]
+        )
 
         plan.strategy = strategy
-        plan.selected_policies.append(self.name)
 
-        plan.policy_results[self.name] = PolicyResult(
+        plan.selected_policies.append(
+            self.name
+        )
+
+        plan.policy_results[
+            self.name
+        ] = PolicyResult(
             policy_name=self.name,
-            decision=f"strategy = {strategy.value}",
+            decision=(
+                f"strategy = {strategy.value}"
+            ),
             confidence=confidence,
             reason=reason
         )
 
-        plan.decision_trace.append(f"{self.name}: {strategy.value} (v{self.version})")
+        plan.decision_trace.append(
+            f"{self.name}: "
+            f"{strategy.value} "
+            f"(v{self.version})"
+        )
 
         return plan
+
+    @property
+    def version(self):
+
+        return "1.2"
+
+    @property
+    def description(self):
+
+        return (
+            "Selects Dense, BM25, or Hybrid "
+            "retrieval from query type."
+        )
