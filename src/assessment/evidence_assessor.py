@@ -9,14 +9,37 @@ class EvidenceAssessor(Component):
     def __init__(
         self,
         relevance_threshold: float = 0.45,
-        acceptance_threshold: float = 0.55,
-        minimum_evidence_count: int = 2
+        acceptance_threshold: float = 0.55
     ):
         self.relevance_threshold = relevance_threshold
         self.acceptance_threshold = acceptance_threshold
-        self.minimum_evidence_count = (
-            minimum_evidence_count
+
+    def _minimum_evidence_count(
+        self,
+        context
+    ) -> int:
+
+        query_analysis = context.query_analysis
+
+        query_type = query_analysis.get(
+            "query_type",
+            "ambiguous"
         )
+
+        if query_type in {
+            "lexical",
+            "technical"
+        }:
+            return 1
+
+        if query_type in {
+            "comparison",
+            "multi_hop",
+            "semantic"
+        }:
+            return 2
+
+        return 1
 
     def run(self, context):
 
@@ -96,15 +119,16 @@ class EvidenceAssessor(Component):
             0.40 * coverage
         )
 
+        minimum_evidence = (
+            self._minimum_evidence_count(
+                context
+            )
+        )
+
         accepted = (
             confidence >= self.acceptance_threshold
             and
-            relevant_count >= (
-                min(
-                    self.minimum_evidence_count,
-                    retrieved_count
-                )
-            )
+            relevant_count >= minimum_evidence
         )
 
         reasons = []
@@ -114,14 +138,14 @@ class EvidenceAssessor(Component):
 
             reasons.append(
                 "Evidence quality passed the "
-                "assessment criteria."
+                "query-specific assessment criteria."
             )
 
         else:
 
             reasons.append(
-                "Evidence quality did not pass "
-                "the assessment criteria."
+                "Evidence quality did not pass the "
+                "query-specific assessment criteria."
             )
 
             if coverage < 0.50:
@@ -138,6 +162,13 @@ class EvidenceAssessor(Component):
                 recommendations.append(
                     "Consider query rewriting "
                     "or reranking."
+                )
+
+            if relevant_count < minimum_evidence:
+
+                recommendations.append(
+                    "Retrieve additional evidence "
+                    "appropriate for the query type."
                 )
 
         result = EvidenceResult(
