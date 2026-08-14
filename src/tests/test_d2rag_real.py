@@ -1,45 +1,59 @@
-from src.core.adaptive_context import AdaptiveContext
+from src.core.adaptive_context import (
+    AdaptiveContext
+)
 
 from src.loaders.text_loader import TextLoader
-from src.chunking.recursive_chunker import RecursiveChunker
+from src.chunking.recursive_chunker import (
+    RecursiveChunker
+)
+
 from src.embeddings.sentence_transformer_embedding import (
     SentenceTransformerEmbedding
 )
 
-from src.vectorstore.chroma_store import ChromaVectorStore
+from src.vectorstore.chroma_store import (
+    ChromaVectorStore
+)
 
-from src.retrievers.dense_retriever import DenseRetriever
-from src.retrievers.bm25_retriever import BM25Retriever
-from src.retrievers.hybrid_retriever import HybridRetriever
-from src.retrievers.adaptive_retriever import AdaptiveRetriever
+from src.retrievers.dense_retriever import (
+    DenseRetriever
+)
 
-from src.analyzer.query_analyzer import QueryAnalyzer
+from src.retrievers.bm25_retriever import (
+    BM25Retriever
+)
 
-from src.adaptation.feedback_controller import (
-    FeedbackController
+from src.retrievers.hybrid_retriever import (
+    HybridRetriever
+)
+
+from src.retrievers.adaptive_retriever import (
+    AdaptiveRetriever
+)
+
+from src.analyzer.query_analyzer import (
+    QueryAnalyzer
 )
 
 from src.adaptation.adaptive_retrieval_orchestrator import (
     AdaptiveRetrievalOrchestrator
 )
 
-from src.adaptation.d2rag_engine import D2RAGEngine
+from src.adaptation.d2rag_engine import (
+    D2RAGEngine
+)
 
 
 def main():
 
     print("=" * 60)
-    print("REAL D²RAG TEST")
+    print("D²RAG STRATEGY TRACKER TEST")
     print("=" * 60)
 
     loader = TextLoader()
 
     documents = loader.load(
         "datasets/sample_retrieval_corpus.txt"
-    )
-
-    print(
-        f"Loaded Documents: {len(documents)}"
     )
 
     chunker = RecursiveChunker(
@@ -49,6 +63,10 @@ def main():
 
     chunks = chunker.split(
         documents
+    )
+
+    print(
+        f"Loaded Documents: {len(documents)}"
     )
 
     print(
@@ -127,12 +145,6 @@ def main():
 
     for query in queries:
 
-        print("\n" + "=" * 60)
-        print("QUERY")
-        print("=" * 60)
-
-        print(query)
-
         context = AdaptiveContext(
             query=query
         )
@@ -141,8 +153,15 @@ def main():
             context
         )
 
-        plan = context.retrieval_plan
-        evidence = context.evidence_result
+        report = context.decision_report
+
+        print("\n" + "=" * 60)
+        print("QUERY")
+        print("=" * 60)
+
+        print(
+            query
+        )
 
         print(
             "\nQuery Type:",
@@ -152,63 +171,116 @@ def main():
         )
 
         print(
+            "Initial Strategy:",
+            report[
+                "initial_strategy"
+            ]
+        )
+
+        print(
+            "Initial Top-K:",
+            report[
+                "initial_top_k"
+            ]
+        )
+
+        print(
             "Planner Confidence:",
-            plan.planner_confidence.value
-        )
-
-        print(
-            "Selected Strategy:",
-            plan.strategy.value
-        )
-
-        print(
-            "Top-K:",
-            plan.top_k
-        )
-
-        print(
-            "Evidence Confidence:",
             round(
-                evidence.confidence,
+                report[
+                    "initial_planner_confidence"
+                ],
                 4
             )
         )
 
         print(
-            "Evidence Accepted:",
-            evidence.accepted
+            "\nAttempt History:"
+        )
+
+        for attempt in report[
+            "attempt_history"
+        ]:
+
+            print(
+                f"Attempt "
+                f"{attempt['attempt_number']}: "
+                f"strategy="
+                f"{attempt['strategy']}, "
+                f"top_k="
+                f"{attempt['top_k']}, "
+                f"evidence="
+                f"{attempt['evidence_confidence']:.4f}, "
+                f"accepted="
+                f"{attempt['evidence_accepted']}"
+            )
+
+        print(
+            "\nStrategy Transitions:"
+        )
+
+        transitions = report[
+            "strategy_transitions"
+        ]
+
+        if transitions:
+
+            for transition in transitions:
+
+                print(
+                    f"Attempt "
+                    f"{transition['attempt_number']}: "
+                    f"{transition['old_strategy']} "
+                    f"-> "
+                    f"{transition['new_strategy']}"
+                )
+
+        else:
+
+            print(
+                "No strategy transition."
+            )
+
+        print(
+            "\nFinal Strategy:",
+            report[
+                "final_strategy"
+            ]
+        )
+
+        print(
+            "Final Top-K:",
+            report[
+                "final_top_k"
+            ]
+        )
+
+        print(
+            "Final Evidence Confidence:",
+            round(
+                report[
+                    "final_evidence_confidence"
+                ],
+                4
+            )
         )
 
         print(
             "Attempts:",
-            context.decision_report[
+            report[
                 "retrieval_attempts"
             ]
         )
 
         print(
             "Status:",
-            context.decision_report[
+            report[
                 "adaptive_retrieval_status"
             ]
         )
 
-        print(
-            "Retrieved Chunks:"
-        )
-
-        for chunk in (
-            context.retrieval_result.retrieved_chunks
-        ):
-
-            print(
-                chunk.chunk_id,
-                "->",
-                round(chunk.score, 4)
-            )
-
     print("\n" + "=" * 60)
-    print("REAL D²RAG TEST COMPLETED")
+    print("D²RAG STRATEGY TRACKER TEST COMPLETED")
     print("=" * 60)
 
 
