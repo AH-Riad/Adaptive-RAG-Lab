@@ -23,33 +23,31 @@ class BenchmarkHybridRetriever(BaseRetriever):
 
     def retrieve(
         self,
-        query: str,
-        query_embedding
+        query: str
     ) -> RetrievalResult:
 
         dense_result = (
             self.dense_retriever.retrieve(
-                query=query,
-                query_embedding=query_embedding
+                query
             )
         )
 
         bm25_result = (
             self.bm25_retriever.retrieve(
-                query=query
+                query
             )
         )
 
         dense_chunks = {
             chunk.chunk_id: chunk
-            for chunk
-            in dense_result.retrieved_chunks
+            for chunk in
+            dense_result.retrieved_chunks
         }
 
         bm25_chunks = {
             chunk.chunk_id: chunk
-            for chunk
-            in bm25_result.retrieved_chunks
+            for chunk in
+            bm25_result.retrieved_chunks
         }
 
         dense_scores = {
