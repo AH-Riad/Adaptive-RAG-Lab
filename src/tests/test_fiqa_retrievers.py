@@ -1,5 +1,7 @@
 from src.evaluation.beir_loader import BEIRDataset
-from src.evaluation.benchmark_corpus import BenchmarkCorpus
+from src.evaluation.benchmark_corpus import (
+    BenchmarkCorpus
+)
 from src.evaluation.dense_benchmark_index import (
     DenseBenchmarkIndex
 )
@@ -80,6 +82,7 @@ def main():
     dense = BenchmarkDenseRetriever(
         index=dense_index,
         documents_by_id=documents_by_id,
+        embedding_model=embedding_model,
         top_k=5
     )
 
@@ -103,39 +106,19 @@ def main():
         query
     )
 
-    query_embedding = (
-        embedding_model.encode_query(
-            query
-        )
-    )
+    results = {
+        "DENSE": dense.retrieve(query),
+        "BM25S": bm25.retrieve(query),
+        "HYBRID": hybrid.retrieve(query)
+    }
 
-    dense_result = dense.retrieve(
-        query=query,
-        query_embedding=query_embedding
-    )
-
-    bm25_result = bm25.retrieve(
-        query
-    )
-
-    hybrid_result = hybrid.retrieve(
-        query=query,
-        query_embedding=query_embedding
-    )
-
-    for name, result in [
-        ("DENSE", dense_result),
-        ("BM25S", bm25_result),
-        ("HYBRID", hybrid_result)
-    ]:
+    for name, result in results.items():
 
         print(
             "\n" + "=" * 60
         )
 
-        print(
-            name
-        )
+        print(name)
 
         print(
             "=" * 60
