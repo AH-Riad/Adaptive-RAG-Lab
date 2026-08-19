@@ -9,17 +9,24 @@ class BenchmarkDenseRetriever(BaseRetriever):
         self,
         index,
         documents_by_id,
+        embedding_model,
         top_k: int = 5
     ):
         self.index = index
         self.documents_by_id = documents_by_id
+        self.embedding_model = embedding_model
         self.top_k = top_k
 
     def retrieve(
         self,
-        query: str,
-        query_embedding
+        query: str
     ) -> RetrievalResult:
+
+        query_embedding = (
+            self.embedding_model.encode_query(
+                query
+            )
+        )
 
         results = self.index.search(
             query_embedding=query_embedding,
