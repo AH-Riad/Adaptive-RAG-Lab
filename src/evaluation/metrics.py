@@ -2,9 +2,6 @@ import math
 
 
 class RetrievalMetrics:
-    """
-    Calculates standard information-retrieval metrics.
-    """
 
     @staticmethod
     def precision_at_k(
@@ -18,7 +15,9 @@ class RetrievalMetrics:
         if not retrieved:
             return 0.0
 
-        relevant = set(relevant_ids)
+        relevant = set(
+            relevant_ids
+        )
 
         hits = sum(
             1
@@ -39,7 +38,10 @@ class RetrievalMetrics:
             return 0.0
 
         retrieved = retrieved_ids[:k]
-        relevant = set(relevant_ids)
+
+        relevant = set(
+            relevant_ids
+        )
 
         hits = sum(
             1
@@ -50,19 +52,25 @@ class RetrievalMetrics:
         return hits / len(relevant)
 
     @staticmethod
-    def reciprocal_rank(
+    def reciprocal_rank_at_k(
         retrieved_ids: list[str],
-        relevant_ids: list[str]
+        relevant_ids: list[str],
+        k: int
     ) -> float:
 
-        relevant = set(relevant_ids)
+        relevant = set(
+            relevant_ids
+        )
+
+        retrieved = retrieved_ids[:k]
 
         for rank, chunk_id in enumerate(
-            retrieved_ids,
+            retrieved,
             start=1
         ):
 
             if chunk_id in relevant:
+
                 return 1.0 / rank
 
         return 0.0
@@ -105,10 +113,12 @@ class RetrievalMetrics:
         if not relevance_scores:
             return 0.0
 
-        actual_dcg = RetrievalMetrics.dcg_at_k(
-            retrieved_ids,
-            relevance_scores,
-            k
+        actual_dcg = (
+            RetrievalMetrics.dcg_at_k(
+                retrieved_ids,
+                relevance_scores,
+                k
+            )
         )
 
         ideal_ids = sorted(
@@ -117,10 +127,12 @@ class RetrievalMetrics:
             reverse=True
         )
 
-        ideal_dcg = RetrievalMetrics.dcg_at_k(
-            ideal_ids,
-            relevance_scores,
-            k
+        ideal_dcg = (
+            RetrievalMetrics.dcg_at_k(
+                ideal_ids,
+                relevance_scores,
+                k
+            )
         )
 
         if ideal_dcg == 0:
