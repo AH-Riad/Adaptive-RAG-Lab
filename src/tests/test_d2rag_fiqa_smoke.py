@@ -163,7 +163,6 @@ def main():
     total_recall = 0.0
     total_mrr = 0.0
     total_ndcg = 0.0
-
     accepted = 0
     total_attempts = 0
     strategy_changes = 0
