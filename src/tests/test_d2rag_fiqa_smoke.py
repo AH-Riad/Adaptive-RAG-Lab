@@ -54,7 +54,6 @@ from src.evaluation.metrics import (
     RetrievalMetrics
 )
 
-
 def main():
 
     print("=" * 60)
