@@ -1,0 +1,6493 @@
+{
+  "queries": 648,
+  "strategy_selection_accuracy": 0.49382716049382713,
+  "adaptation_rate": 0.31635802469135804,
+  "strategy_transition_rate": 0.2978395061728395,
+  "successful_recovery_rate": 0.04145077720207254,
+  "failed_adaptation_rate": 0.9585492227979274,
+  "average_oracle_regret": 0.06034895554728918,
+  "initial_better_count": 27,
+  "final_better_count": 9,
+  "query_details": [
+    {
+      "query_id": "8",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "15",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "18",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "26",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "34",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "42",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "56",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "68",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "89",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.34519134224686937,
+      "final_ndcg": 0.34519134224686937,
+      "oracle_ndcg": 0.34519134224686937,
+      "adapted": false
+    },
+    {
+      "query_id": "90",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": true
+    },
+    {
+      "query_id": "94",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.43067655807339306,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "98",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "104",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.3065735963827292,
+      "adapted": true
+    },
+    {
+      "query_id": "106",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.43067655807339306,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": true
+    },
+    {
+      "query_id": "109",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "475",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "503",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "504",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "515",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "529",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "547",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "549",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "559",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "570",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "585",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "588",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "594",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "603",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "604",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.4776237035032179,
+      "final_ndcg": 0.4776237035032179,
+      "oracle_ndcg": 0.4776237035032179,
+      "adapted": false
+    },
+    {
+      "query_id": "620",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "622",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "659",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6164336326286644,
+      "final_ndcg": 0.6164336326286644,
+      "oracle_ndcg": 0.6164336326286644,
+      "adapted": false
+    },
+    {
+      "query_id": "672",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "684",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "687",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "689",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "691",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "699",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "701",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "715",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "721",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "744",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "750",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.8503449055347546,
+      "adapted": false
+    },
+    {
+      "query_id": "753",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "766",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": false
+    },
+    {
+      "query_id": "776",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "810",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "813",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.3065735963827292,
+      "adapted": false
+    },
+    {
+      "query_id": "849",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "852",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.7039180890341347,
+      "final_ndcg": 0.7039180890341347,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": false
+    },
+    {
+      "query_id": "853",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "858",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "859",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "864",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7227265726449519,
+      "final_ndcg": 0.7227265726449519,
+      "oracle_ndcg": 0.7227265726449519,
+      "adapted": false
+    },
+    {
+      "query_id": "879",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "885",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "895",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": true
+    },
+    {
+      "query_id": "904",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "928",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "929",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "932",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.8503449055347546,
+      "adapted": false
+    },
+    {
+      "query_id": "939",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "945",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "957",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.7039180890341347,
+      "final_ndcg": 0.6713860725233041,
+      "oracle_ndcg": 0.7039180890341347,
+      "adapted": false
+    },
+    {
+      "query_id": "988",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1074",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1085",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1090",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1150",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1157",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "1159",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1198",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1230",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1281",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": true
+    },
+    {
+      "query_id": "1284",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1297",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1306",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.16812753627111746,
+      "final_ndcg": 0.16812753627111746,
+      "oracle_ndcg": 0.24630238874073,
+      "adapted": false
+    },
+    {
+      "query_id": "1309",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3903800499921017,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": true
+    },
+    {
+      "query_id": "1310",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "1321",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1322",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1391",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": true
+    },
+    {
+      "query_id": "1393",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3156484524795145,
+      "final_ndcg": 0.27727342735504823,
+      "oracle_ndcg": 0.48522855511632257,
+      "adapted": false
+    },
+    {
+      "query_id": "1415",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1416",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1441",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1451",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1469",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1530",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.4367467095119258,
+      "final_ndcg": 0.4367467095119258,
+      "oracle_ndcg": 0.4367467095119258,
+      "adapted": true
+    },
+    {
+      "query_id": "1670",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7653606369886217,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": false
+    },
+    {
+      "query_id": "1676",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5585075862632192,
+      "final_ndcg": 0.5585075862632192,
+      "oracle_ndcg": 0.5585075862632192,
+      "adapted": true
+    },
+    {
+      "query_id": "1736",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.5531464700081437,
+      "final_ndcg": 0.5087403079104241,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": true
+    },
+    {
+      "query_id": "1748",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7653606369886217,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": false
+    },
+    {
+      "query_id": "1783",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1812",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1815",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1819",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16958010263680806,
+      "final_ndcg": 0.16958010263680806,
+      "oracle_ndcg": 0.16958010263680806,
+      "adapted": false
+    },
+    {
+      "query_id": "1824",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1826",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1832",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "1871",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5413996682199069,
+      "final_ndcg": 0.5413996682199069,
+      "oracle_ndcg": 0.5413996682199069,
+      "adapted": false
+    },
+    {
+      "query_id": "1877",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1889",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "1915",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "1920",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "1933",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1948",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "1994",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.4703652827859579,
+      "final_ndcg": 0.4703652827859579,
+      "oracle_ndcg": 0.4703652827859579,
+      "adapted": true
+    },
+    {
+      "query_id": "2010",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6713860725233041,
+      "final_ndcg": 0.6713860725233041,
+      "oracle_ndcg": 0.6713860725233041,
+      "adapted": false
+    },
+    {
+      "query_id": "2051",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2070",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.23463936301137822,
+      "adapted": false
+    },
+    {
+      "query_id": "2075",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5531464700081437,
+      "final_ndcg": 0.5531464700081437,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": false
+    },
+    {
+      "query_id": "2076",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2088",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2108",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": false
+    },
+    {
+      "query_id": "2118",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2154",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.5,
+      "adapted": true
+    },
+    {
+      "query_id": "2181",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2183",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3156484524795145,
+      "final_ndcg": 0.3156484524795145,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "2204",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2264",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "2296",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": true
+    },
+    {
+      "query_id": "2306",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "2316",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "2318",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "2330",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "2334",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6713860725233041,
+      "final_ndcg": 0.6508205185601091,
+      "oracle_ndcg": 0.6713860725233041,
+      "adapted": false
+    },
+    {
+      "query_id": "2348",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.48522855511632257,
+      "adapted": true
+    },
+    {
+      "query_id": "2376",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2383",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "2384",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "2385",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "2388",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2395",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2398",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2399",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2400",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "2407",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": true
+    },
+    {
+      "query_id": "2416",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.75369761125927,
+      "final_ndcg": 0.7095272044910244,
+      "oracle_ndcg": 0.8318724637288826,
+      "adapted": false
+    },
+    {
+      "query_id": "2423",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5087403079104241,
+      "final_ndcg": 0.48522855511632257,
+      "oracle_ndcg": 0.5087403079104241,
+      "adapted": false
+    },
+    {
+      "query_id": "2443",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2445",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2460",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2465",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2472",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2486",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2498",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2513",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.43067655807339306,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": true
+    },
+    {
+      "query_id": "2516",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6366824387328317,
+      "final_ndcg": 0.6366824387328317,
+      "oracle_ndcg": 0.6366824387328317,
+      "adapted": false
+    },
+    {
+      "query_id": "2549",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "2551",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5307212739772434,
+      "final_ndcg": 0.5307212739772434,
+      "oracle_ndcg": 0.5307212739772434,
+      "adapted": true
+    },
+    {
+      "query_id": "2568",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6843515475204855,
+      "final_ndcg": 0.6843515475204855,
+      "oracle_ndcg": 0.6843515475204855,
+      "adapted": true
+    },
+    {
+      "query_id": "2579",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.21398626473452756,
+      "final_ndcg": 0.21398626473452756,
+      "oracle_ndcg": 0.21398626473452756,
+      "adapted": true
+    },
+    {
+      "query_id": "2580",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.7039180890341347,
+      "adapted": false
+    },
+    {
+      "query_id": "2587",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2589",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6508205185601091,
+      "final_ndcg": 0.38364913903790027,
+      "oracle_ndcg": 0.6713860725233041,
+      "adapted": true
+    },
+    {
+      "query_id": "2590",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "2593",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.20210734650054757,
+      "final_ndcg": 0.20210734650054757,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "2598",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.23719771276929622,
+      "final_ndcg": 0.23719771276929622,
+      "oracle_ndcg": 0.23719771276929622,
+      "adapted": false
+    },
+    {
+      "query_id": "2648",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2676",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.43067655807339306,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": false
+    },
+    {
+      "query_id": "2685",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2695",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2713",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.23719771276929622,
+      "adapted": false
+    },
+    {
+      "query_id": "2724",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.23719771276929622,
+      "adapted": true
+    },
+    {
+      "query_id": "2737",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2747",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2749",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8503449055347546,
+      "final_ndcg": 0.8503449055347546,
+      "oracle_ndcg": 0.8503449055347546,
+      "adapted": false
+    },
+    {
+      "query_id": "2790",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "2801",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "2856",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7365896932159578,
+      "final_ndcg": 0.7365896932159578,
+      "oracle_ndcg": 0.7365896932159578,
+      "adapted": false
+    },
+    {
+      "query_id": "2857",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5855700749881525,
+      "final_ndcg": 0.5855700749881525,
+      "oracle_ndcg": 0.5855700749881525,
+      "adapted": false
+    },
+    {
+      "query_id": "2880",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2885",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2891",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2895",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2903",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "2923",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38356636737133565,
+      "final_ndcg": 0.38356636737133565,
+      "oracle_ndcg": 0.38356636737133565,
+      "adapted": false
+    },
+    {
+      "query_id": "2964",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "2968",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6240505200038379,
+      "final_ndcg": 0.6240505200038379,
+      "oracle_ndcg": 0.6240505200038379,
+      "adapted": false
+    },
+    {
+      "query_id": "2994",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3006",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.21398626473452756,
+      "final_ndcg": 0.21398626473452756,
+      "oracle_ndcg": 0.21398626473452756,
+      "adapted": false
+    },
+    {
+      "query_id": "3008",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.24630238874073,
+      "final_ndcg": 0.24630238874073,
+      "oracle_ndcg": 0.24630238874073,
+      "adapted": false
+    },
+    {
+      "query_id": "3014",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "3033",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "3039",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "3049",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3903800499921017,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": false
+    },
+    {
+      "query_id": "3051",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8772153153380493,
+      "final_ndcg": 0.8772153153380493,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3067",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3085",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.3065735963827292,
+      "adapted": false
+    },
+    {
+      "query_id": "3091",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3103",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "3115",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5531464700081437,
+      "final_ndcg": 0.5531464700081437,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": false
+    },
+    {
+      "query_id": "3125",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 0.5,
+      "adapted": true
+    },
+    {
+      "query_id": "3148",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.5087403079104241,
+      "final_ndcg": 0.5087403079104241,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": false
+    },
+    {
+      "query_id": "3149",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3177",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3179",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "3186",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "3189",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3254",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": true
+    },
+    {
+      "query_id": "3264",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.24630238874073,
+      "final_ndcg": 0.24630238874073,
+      "oracle_ndcg": 0.24630238874073,
+      "adapted": false
+    },
+    {
+      "query_id": "3357",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "3369",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3394",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6366824387328317,
+      "final_ndcg": 0.6366824387328317,
+      "oracle_ndcg": 0.6366824387328317,
+      "adapted": false
+    },
+    {
+      "query_id": "3404",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3405",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3446",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5087403079104241,
+      "final_ndcg": 0.5087403079104241,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": false
+    },
+    {
+      "query_id": "3451",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "3453",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.8772153153380493,
+      "final_ndcg": 0.8772153153380493,
+      "oracle_ndcg": 0.9197207891481876,
+      "adapted": false
+    },
+    {
+      "query_id": "3480",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3490",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3500",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": true
+    },
+    {
+      "query_id": "3503",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.7860137352654724,
+      "final_ndcg": 0.7860137352654724,
+      "oracle_ndcg": 0.7860137352654724,
+      "adapted": false
+    },
+    {
+      "query_id": "3512",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "3528",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3530",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": true
+    },
+    {
+      "query_id": "3534",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "3566",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.49818925746641285,
+      "final_ndcg": 0.49818925746641285,
+      "oracle_ndcg": 0.49818925746641285,
+      "adapted": true
+    },
+    {
+      "query_id": "3569",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3594",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5585075862632192,
+      "final_ndcg": 0.5585075862632192,
+      "oracle_ndcg": 0.5585075862632192,
+      "adapted": true
+    },
+    {
+      "query_id": "3612",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "3615",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.2640681225725909,
+      "adapted": false
+    },
+    {
+      "query_id": "3625",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": true
+    },
+    {
+      "query_id": "3682",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3683",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.639945385422766,
+      "final_ndcg": 0.639945385422766,
+      "oracle_ndcg": 0.639945385422766,
+      "adapted": false
+    },
+    {
+      "query_id": "3694",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "3724",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3735",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3759",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3767",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "3771",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5531464700081437,
+      "final_ndcg": 0.5531464700081437,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": false
+    },
+    {
+      "query_id": "3781",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.2640681225725909,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "3789",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6366824387328317,
+      "final_ndcg": 0.6366824387328317,
+      "oracle_ndcg": 0.6366824387328317,
+      "adapted": true
+    },
+    {
+      "query_id": "3791",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": true
+    },
+    {
+      "query_id": "3801",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "3822",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.15101961822780524,
+      "final_ndcg": 0.15101961822780524,
+      "oracle_ndcg": 0.15101961822780524,
+      "adapted": true
+    },
+    {
+      "query_id": "3829",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3830",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3837",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "3859",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "3875",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.9197207891481876,
+      "final_ndcg": 0.9197207891481876,
+      "oracle_ndcg": 0.9197207891481876,
+      "adapted": false
+    },
+    {
+      "query_id": "3888",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3909",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5087403079104241,
+      "final_ndcg": 0.5087403079104241,
+      "oracle_ndcg": 0.5087403079104241,
+      "adapted": true
+    },
+    {
+      "query_id": "3932",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "3934",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.34620964322385606,
+      "final_ndcg": 0.34620964322385606,
+      "oracle_ndcg": 0.34620964322385606,
+      "adapted": false
+    },
+    {
+      "query_id": "3995",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4007",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "4011",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7653606369886217,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": true
+    },
+    {
+      "query_id": "4019",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.14606834984270645,
+      "adapted": false
+    },
+    {
+      "query_id": "4031",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4037",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "4047",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.75369761125927,
+      "final_ndcg": 0.75369761125927,
+      "oracle_ndcg": 0.8318724637288826,
+      "adapted": false
+    },
+    {
+      "query_id": "4071",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4084",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8772153153380493,
+      "final_ndcg": 0.8772153153380493,
+      "oracle_ndcg": 0.8772153153380493,
+      "adapted": true
+    },
+    {
+      "query_id": "4102",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4103",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4105",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4116",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "4125",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4142",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.4144299250118475,
+      "final_ndcg": 0.4144299250118475,
+      "oracle_ndcg": 0.44149241373678083,
+      "adapted": false
+    },
+    {
+      "query_id": "4153",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4179",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "4188",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4205",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4233",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6992148198508501,
+      "final_ndcg": 0.6992148198508501,
+      "oracle_ndcg": 0.6992148198508501,
+      "adapted": false
+    },
+    {
+      "query_id": "4265",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "4286",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "4289",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "4306",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3903800499921017,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.5585075862632192,
+      "adapted": false
+    },
+    {
+      "query_id": "4312",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.7227265726449519,
+      "adapted": false
+    },
+    {
+      "query_id": "4335",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6366824387328317,
+      "final_ndcg": 0.6366824387328317,
+      "oracle_ndcg": 0.6366824387328317,
+      "adapted": true
+    },
+    {
+      "query_id": "4339",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4394",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4409",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6992148198508501,
+      "final_ndcg": 0.6992148198508501,
+      "oracle_ndcg": 0.6992148198508501,
+      "adapted": true
+    },
+    {
+      "query_id": "4411",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4414",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "4415",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.19519002499605084,
+      "final_ndcg": 0.19519002499605084,
+      "oracle_ndcg": 0.19519002499605084,
+      "adapted": false
+    },
+    {
+      "query_id": "4433",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4447",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "4464",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": true
+    },
+    {
+      "query_id": "4465",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4484",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4499",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4500",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4504",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "4514",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "4523",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "4539",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4571",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7039180890341347,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": false
+    },
+    {
+      "query_id": "4600",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.43067655807339306,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": false
+    },
+    {
+      "query_id": "4605",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.27727342735504823,
+      "final_ndcg": 0.27727342735504823,
+      "oracle_ndcg": 0.36005461457723403,
+      "adapted": false
+    },
+    {
+      "query_id": "4615",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6843515475204855,
+      "final_ndcg": 0.6843515475204855,
+      "oracle_ndcg": 0.6843515475204855,
+      "adapted": false
+    },
+    {
+      "query_id": "4640",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4641",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5087403079104241,
+      "final_ndcg": 0.5087403079104241,
+      "oracle_ndcg": 0.5087403079104241,
+      "adapted": false
+    },
+    {
+      "query_id": "4678",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4681",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4700",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4714",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8318724637288826,
+      "final_ndcg": 0.8318724637288826,
+      "oracle_ndcg": 0.8318724637288826,
+      "adapted": false
+    },
+    {
+      "query_id": "4756",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4767",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4775",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4777",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4785",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4804",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5012658353418871,
+      "final_ndcg": 0.5012658353418871,
+      "oracle_ndcg": 0.5012658353418871,
+      "adapted": true
+    },
+    {
+      "query_id": "4813",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4823",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "4827",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "4837",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4844",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "4845",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7653606369886217,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": true
+    },
+    {
+      "query_id": "4846",
+      "initial_strategy": "dense",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4863",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.18154179253735267,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": false
+    },
+    {
+      "query_id": "4865",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "4920",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.9674679834891693,
+      "final_ndcg": 0.9674679834891693,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4942",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4946",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4955",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4962",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4968",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "4981",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7653606369886217,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": false
+    },
+    {
+      "query_id": "4999",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3903800499921017,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": false
+    },
+    {
+      "query_id": "5021",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5030",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5045",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5054",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5061",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5064",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "5067",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": true
+    },
+    {
+      "query_id": "5080",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5083",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5085",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5086",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5090",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "5125",
+      "initial_strategy": "dense",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5134",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.23719771276929622,
+      "final_ndcg": 0.23719771276929622,
+      "oracle_ndcg": 0.23719771276929622,
+      "adapted": true
+    },
+    {
+      "query_id": "5150",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5155",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5172",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5178",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5087403079104241,
+      "final_ndcg": 0.5087403079104241,
+      "oracle_ndcg": 0.5087403079104241,
+      "adapted": true
+    },
+    {
+      "query_id": "5185",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5196",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5206",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5228",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5231",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5241",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.14606834984270645,
+      "final_ndcg": 0.14606834984270645,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "5254",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5255",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5264",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5087403079104241,
+      "final_ndcg": 0.5087403079104241,
+      "oracle_ndcg": 0.5087403079104241,
+      "adapted": false
+    },
+    {
+      "query_id": "5271",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.4776237035032179,
+      "adapted": false
+    },
+    {
+      "query_id": "5331",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5343",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "5347",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5356",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16958010263680806,
+      "final_ndcg": 0.16958010263680806,
+      "oracle_ndcg": 0.16958010263680806,
+      "adapted": true
+    },
+    {
+      "query_id": "5369",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5374",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5380",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5402",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5410",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": false
+    },
+    {
+      "query_id": "5422",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16812753627111746,
+      "final_ndcg": 0.16812753627111746,
+      "oracle_ndcg": 0.16812753627111746,
+      "adapted": false
+    },
+    {
+      "query_id": "5427",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5460",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.16958010263680806,
+      "adapted": false
+    },
+    {
+      "query_id": "5464",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5503",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "5505",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5511",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "5534",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "5549",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5585",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5592",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5616",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 0.5,
+      "adapted": true
+    },
+    {
+      "query_id": "5620",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5646",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5653",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5683",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5710",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5741",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.3065735963827292,
+      "adapted": false
+    },
+    {
+      "query_id": "5763",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.20210734650054757,
+      "final_ndcg": 0.20210734650054757,
+      "oracle_ndcg": 0.20210734650054757,
+      "adapted": true
+    },
+    {
+      "query_id": "5782",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.21398626473452756,
+      "final_ndcg": 0.21398626473452756,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "5790",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5808",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5853",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16958010263680806,
+      "final_ndcg": 0.16958010263680806,
+      "oracle_ndcg": 0.16958010263680806,
+      "adapted": false
+    },
+    {
+      "query_id": "5862",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.19519002499605084,
+      "final_ndcg": 0.19519002499605084,
+      "oracle_ndcg": 0.19519002499605084,
+      "adapted": false
+    },
+    {
+      "query_id": "5888",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "5903",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "5906",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2640681225725909,
+      "final_ndcg": 0.2640681225725909,
+      "oracle_ndcg": 0.2640681225725909,
+      "adapted": false
+    },
+    {
+      "query_id": "5940",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "5951",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.48522855511632257,
+      "final_ndcg": 0.48522855511632257,
+      "oracle_ndcg": 0.48522855511632257,
+      "adapted": true
+    },
+    {
+      "query_id": "5970",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.23463936301137822,
+      "final_ndcg": 0.23463936301137822,
+      "oracle_ndcg": 0.23463936301137822,
+      "adapted": true
+    },
+    {
+      "query_id": "5981",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8687949224876582,
+      "final_ndcg": 0.8687949224876582,
+      "oracle_ndcg": 0.8687949224876582,
+      "adapted": false
+    },
+    {
+      "query_id": "5993",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.13120507751234178,
+      "final_ndcg": 0.13120507751234178,
+      "oracle_ndcg": 0.34519134224686937,
+      "adapted": false
+    },
+    {
+      "query_id": "6002",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6004",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6005",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": false
+    },
+    {
+      "query_id": "6009",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6041",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6366824387328317,
+      "final_ndcg": 0.6366824387328317,
+      "oracle_ndcg": 0.6366824387328317,
+      "adapted": false
+    },
+    {
+      "query_id": "6080",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "6110",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.6548086577531307,
+      "adapted": false
+    },
+    {
+      "query_id": "6121",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "6122",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": true
+    },
+    {
+      "query_id": "6131",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.21398626473452756,
+      "final_ndcg": 0.21398626473452756,
+      "oracle_ndcg": 0.48522855511632257,
+      "adapted": false
+    },
+    {
+      "query_id": "6133",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "6142",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "6146",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6199",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.19519002499605084,
+      "final_ndcg": 0.19519002499605084,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": false
+    },
+    {
+      "query_id": "6219",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "6221",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6252",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6262",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.4776237035032179,
+      "final_ndcg": 0.4776237035032179,
+      "oracle_ndcg": 0.4776237035032179,
+      "adapted": false
+    },
+    {
+      "query_id": "6278",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "6395",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6410",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6420",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6441",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": false
+    },
+    {
+      "query_id": "6467",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "6468",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "6479",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6525",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.49818925746641285,
+      "adapted": false
+    },
+    {
+      "query_id": "6554",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "6562",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6611",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "6612",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6625",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "6629",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6635",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.5855700749881525,
+      "final_ndcg": 0.5855700749881525,
+      "oracle_ndcg": 0.5855700749881525,
+      "adapted": false
+    },
+    {
+      "query_id": "6644",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6647",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7653606369886217,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": true
+    },
+    {
+      "query_id": "6668",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "6679",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.5307212739772434,
+      "final_ndcg": 0.5307212739772434,
+      "oracle_ndcg": 0.5307212739772434,
+      "adapted": false
+    },
+    {
+      "query_id": "6683",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "6713",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "6715",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.23719771276929622,
+      "final_ndcg": 0.23719771276929622,
+      "oracle_ndcg": 0.23719771276929622,
+      "adapted": false
+    },
+    {
+      "query_id": "6746",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "6787",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6792",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "6800",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "6803",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3191471544989227,
+      "final_ndcg": 0.3191471544989227,
+      "oracle_ndcg": 0.5855700749881525,
+      "adapted": false
+    },
+    {
+      "query_id": "6807",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6814",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6832",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6835",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "6849",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6862",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6867",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16958010263680806,
+      "final_ndcg": 0.16958010263680806,
+      "oracle_ndcg": 0.16958010263680806,
+      "adapted": false
+    },
+    {
+      "query_id": "6875",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": true
+    },
+    {
+      "query_id": "6890",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "6891",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": true
+    },
+    {
+      "query_id": "6896",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6901",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "6907",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6909",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "6959",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "6985",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7017",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7068",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "7071",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7080",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7096",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "7098",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "7105",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "7109",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.4776237035032179,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.4776237035032179,
+      "adapted": false
+    },
+    {
+      "query_id": "7124",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5413996682199069,
+      "final_ndcg": 0.5413996682199069,
+      "oracle_ndcg": 0.5413996682199069,
+      "adapted": false
+    },
+    {
+      "query_id": "7141",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "7145",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7178",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "7188",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7205",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7206",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "7218",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "7221",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7269",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "7279",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3903800499921017,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": false
+    },
+    {
+      "query_id": "7295",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7311",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7326",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7329",
+      "initial_strategy": "dense",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "7344",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "7345",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.20210734650054757,
+      "final_ndcg": 0.23463936301137822,
+      "oracle_ndcg": 0.23463936301137822,
+      "adapted": true
+    },
+    {
+      "query_id": "7377",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.43067655807339306,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": true
+    },
+    {
+      "query_id": "7431",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7441",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": false
+    },
+    {
+      "query_id": "7445",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7448",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": true
+    },
+    {
+      "query_id": "7456",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7463",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3391602052736161,
+      "final_ndcg": 0.3391602052736161,
+      "oracle_ndcg": 0.3391602052736161,
+      "adapted": false
+    },
+    {
+      "query_id": "7467",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7484",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7509",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7512",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7513",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "7529",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7533",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7534",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": true
+    },
+    {
+      "query_id": "7590",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.6934264036172708,
+      "final_ndcg": 0.6509209298071326,
+      "oracle_ndcg": 0.6934264036172708,
+      "adapted": true
+    },
+    {
+      "query_id": "7592",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7594",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7622",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7633",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3903800499921017,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": false
+    },
+    {
+      "query_id": "7674",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "7700",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7702",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5012658353418871,
+      "final_ndcg": 0.5012658353418871,
+      "oracle_ndcg": 0.5706417189553201,
+      "adapted": false
+    },
+    {
+      "query_id": "7705",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "7734",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "7747",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "7754",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "7758",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7801",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.23719771276929622,
+      "final_ndcg": 0.23719771276929622,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "7803",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7823",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "7876",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "7879",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7880",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7911",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7925",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "7928",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.19519002499605084,
+      "final_ndcg": 0.19519002499605084,
+      "oracle_ndcg": 0.19519002499605084,
+      "adapted": true
+    },
+    {
+      "query_id": "7936",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.20210734650054757,
+      "final_ndcg": 0.20210734650054757,
+      "oracle_ndcg": 0.23463936301137822,
+      "adapted": false
+    },
+    {
+      "query_id": "7992",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "8002",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.23463936301137822,
+      "final_ndcg": 0.18154179253735267,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": false
+    },
+    {
+      "query_id": "8005",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8013",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8017",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.43067655807339306,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": true
+    },
+    {
+      "query_id": "8034",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8040",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8072",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "8079",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7039180890341347,
+      "final_ndcg": 0.7039180890341347,
+      "oracle_ndcg": 0.7039180890341347,
+      "adapted": false
+    },
+    {
+      "query_id": "8102",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16812753627111746,
+      "final_ndcg": 0.16812753627111746,
+      "oracle_ndcg": 0.16812753627111746,
+      "adapted": false
+    },
+    {
+      "query_id": "8116",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "8121",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8202",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8230",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8247",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16812753627111746,
+      "final_ndcg": 0.16812753627111746,
+      "oracle_ndcg": 0.16812753627111746,
+      "adapted": false
+    },
+    {
+      "query_id": "8271",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "8275",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8296",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8332",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6508205185601091,
+      "final_ndcg": 0.6508205185601091,
+      "oracle_ndcg": 0.6508205185601091,
+      "adapted": true
+    },
+    {
+      "query_id": "8351",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.3065735963827292,
+      "adapted": false
+    },
+    {
+      "query_id": "8378",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "8456",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": true
+    },
+    {
+      "query_id": "8475",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8687949224876582,
+      "final_ndcg": 0.8687949224876582,
+      "oracle_ndcg": 0.8687949224876582,
+      "adapted": false
+    },
+    {
+      "query_id": "8507",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8512",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8513",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8532",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8537",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8539",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.24630238874073,
+      "final_ndcg": 0.24630238874073,
+      "oracle_ndcg": 0.24630238874073,
+      "adapted": true
+    },
+    {
+      "query_id": "8544",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8592",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.20210734650054757,
+      "final_ndcg": 0.20210734650054757,
+      "oracle_ndcg": 0.23463936301137822,
+      "adapted": false
+    },
+    {
+      "query_id": "8632",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.3065735963827292,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "8635",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8702",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.23463936301137822,
+      "final_ndcg": 0.23463936301137822,
+      "oracle_ndcg": 0.7039180890341347,
+      "adapted": false
+    },
+    {
+      "query_id": "8779",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2640681225725909,
+      "final_ndcg": 0.2640681225725909,
+      "oracle_ndcg": 0.2640681225725909,
+      "adapted": false
+    },
+    {
+      "query_id": "8789",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.7653606369886217,
+      "final_ndcg": 0.7653606369886217,
+      "oracle_ndcg": 0.7653606369886217,
+      "adapted": false
+    },
+    {
+      "query_id": "8795",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8832",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8834",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6548086577531307,
+      "final_ndcg": 0.6548086577531307,
+      "oracle_ndcg": 0.6548086577531307,
+      "adapted": false
+    },
+    {
+      "query_id": "8855",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8874",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "8934",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": false
+    },
+    {
+      "query_id": "8937",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "8947",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "8959",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "8970",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.9197207891481876,
+      "final_ndcg": 0.9197207891481876,
+      "oracle_ndcg": 0.9197207891481876,
+      "adapted": false
+    },
+    {
+      "query_id": "8974",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5531464700081437,
+      "final_ndcg": 0.5531464700081437,
+      "oracle_ndcg": 0.5531464700081437,
+      "adapted": false
+    },
+    {
+      "query_id": "8982",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9060",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "9088",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9108",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9115",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.20210734650054757,
+      "final_ndcg": 0.20210734650054757,
+      "oracle_ndcg": 0.20210734650054757,
+      "adapted": true
+    },
+    {
+      "query_id": "9126",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9164",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.18154179253735267,
+      "final_ndcg": 0.18154179253735267,
+      "oracle_ndcg": 0.20210734650054757,
+      "adapted": false
+    },
+    {
+      "query_id": "9174",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.16958010263680806,
+      "final_ndcg": 0.16958010263680806,
+      "oracle_ndcg": 0.16958010263680806,
+      "adapted": true
+    },
+    {
+      "query_id": "9188",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8772153153380493,
+      "final_ndcg": 0.8772153153380493,
+      "oracle_ndcg": 0.8772153153380493,
+      "adapted": false
+    },
+    {
+      "query_id": "9245",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9275",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9291",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9296",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": true
+    },
+    {
+      "query_id": "9329",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "9332",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9381",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9385",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.43067655807339306,
+      "adapted": false
+    },
+    {
+      "query_id": "9391",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.44149241373678083,
+      "final_ndcg": 0.44149241373678083,
+      "oracle_ndcg": 0.44149241373678083,
+      "adapted": false
+    },
+    {
+      "query_id": "9403",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9481",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6509209298071326,
+      "final_ndcg": 0.6509209298071326,
+      "oracle_ndcg": 0.8503449055347546,
+      "adapted": false
+    },
+    {
+      "query_id": "9487",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9548",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9556",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "9565",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.6131471927654584,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "9598",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9617",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.46927872602275644,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "9633",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2640681225725909,
+      "final_ndcg": 0.2640681225725909,
+      "oracle_ndcg": 0.2640681225725909,
+      "adapted": false
+    },
+    {
+      "query_id": "9643",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "9644",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "9646",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.6934264036172708,
+      "final_ndcg": 0.6934264036172708,
+      "oracle_ndcg": 0.8772153153380493,
+      "adapted": false
+    },
+    {
+      "query_id": "9668",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "9701",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "9733",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9735",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "9737",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.4367467095119258,
+      "final_ndcg": 0.23463936301137822,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9771",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9808",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9824",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9871",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9882",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "9925",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.6131471927654584,
+      "adapted": false
+    },
+    {
+      "query_id": "9929",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6934264036172708,
+      "final_ndcg": 0.6934264036172708,
+      "oracle_ndcg": 0.6934264036172708,
+      "adapted": false
+    },
+    {
+      "query_id": "9961",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "9979",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.3903800499921017,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.3903800499921017,
+      "adapted": false
+    },
+    {
+      "query_id": "10034",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10039",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    },
+    {
+      "query_id": "10109",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.6843515475204855,
+      "final_ndcg": 0.639945385422766,
+      "oracle_ndcg": 0.6843515475204855,
+      "adapted": true
+    },
+    {
+      "query_id": "10122",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10136",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.23463936301137822,
+      "final_ndcg": 0.23463936301137822,
+      "oracle_ndcg": 0.23463936301137822,
+      "adapted": true
+    },
+    {
+      "query_id": "10137",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5,
+      "final_ndcg": 0.5,
+      "oracle_ndcg": 0.5,
+      "adapted": false
+    },
+    {
+      "query_id": "10152",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10183",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "10213",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10246",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10267",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.14606834984270645,
+      "final_ndcg": 0.14606834984270645,
+      "oracle_ndcg": 0.14606834984270645,
+      "adapted": true
+    },
+    {
+      "query_id": "10414",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.9197207891481876,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "10447",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.23463936301137822,
+      "final_ndcg": 0.23463936301137822,
+      "oracle_ndcg": 0.23463936301137822,
+      "adapted": false
+    },
+    {
+      "query_id": "10462",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10482",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10497",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.8687949224876582,
+      "final_ndcg": 0.8687949224876582,
+      "oracle_ndcg": 0.8687949224876582,
+      "adapted": true
+    },
+    {
+      "query_id": "10526",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.3065735963827292,
+      "adapted": true
+    },
+    {
+      "query_id": "10547",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": true
+    },
+    {
+      "query_id": "10558",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10596",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.6843515475204855,
+      "final_ndcg": 0.6843515475204855,
+      "oracle_ndcg": 0.7227265726449519,
+      "adapted": false
+    },
+    {
+      "query_id": "10601",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10628",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.38685280723454163,
+      "oracle_ndcg": 0.38685280723454163,
+      "adapted": true
+    },
+    {
+      "query_id": "10639",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10645",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "BM25S",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.3065735963827292,
+      "adapted": false
+    },
+    {
+      "query_id": "10674",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5855700749881525,
+      "final_ndcg": 0.5855700749881525,
+      "oracle_ndcg": 0.5855700749881525,
+      "adapted": true
+    },
+    {
+      "query_id": "10710",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": true
+    },
+    {
+      "query_id": "10734",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.639945385422766,
+      "final_ndcg": 0.639945385422766,
+      "oracle_ndcg": 0.6843515475204855,
+      "adapted": false
+    },
+    {
+      "query_id": "10792",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6934264036172708,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": true
+    },
+    {
+      "query_id": "10808",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5307212739772434,
+      "final_ndcg": 0.5307212739772434,
+      "oracle_ndcg": 0.5307212739772434,
+      "adapted": false
+    },
+    {
+      "query_id": "10809",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.20210734650054757,
+      "final_ndcg": 0.20210734650054757,
+      "oracle_ndcg": 0.46927872602275644,
+      "adapted": false
+    },
+    {
+      "query_id": "10812",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.5855700749881525,
+      "final_ndcg": 0.5855700749881525,
+      "oracle_ndcg": 0.6366824387328317,
+      "adapted": false
+    },
+    {
+      "query_id": "10827",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10845",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10912",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10932",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10975",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "10979",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.5585075862632192,
+      "final_ndcg": 0.3903800499921017,
+      "oracle_ndcg": 0.5585075862632192,
+      "adapted": false
+    },
+    {
+      "query_id": "10994",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false
+    },
+    {
+      "query_id": "11039",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Hybrid",
+      "initial_ndcg": 0.5296347172140421,
+      "final_ndcg": 0.5296347172140421,
+      "oracle_ndcg": 0.6548086577531307,
+      "adapted": false
+    },
+    {
+      "query_id": "11054",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 1.0,
+      "final_ndcg": 1.0,
+      "oracle_ndcg": 1.0,
+      "adapted": false
+    },
+    {
+      "query_id": "11088",
+      "initial_strategy": "dense",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.6309297535714575,
+      "final_ndcg": 0.6309297535714575,
+      "oracle_ndcg": 0.6309297535714575,
+      "adapted": false
+    }
+  ]
+}
