@@ -1,0 +1,102 @@
+{
+  "dataset": "fiqa",
+  "split": "dev",
+  "policy_version": "v1",
+  "objective": {
+    "recall_at_5_weight": 0.30,
+    "mrr_at_5_weight": 0.30,
+    "ndcg_at_5_weight": 0.40
+  },
+  "policy": {
+    "ambiguous": "dense",
+    "lexical": "dense",
+    "semantic": "hybrid",
+    "comparison": "hybrid"
+  },
+  "calibration_report": {
+    "ambiguous": {
+      "selected_strategy": "dense",
+      "dense": {
+        "recall_at_5": 0.3868,
+        "mrr_at_5": 0.4188,
+        "ndcg_at_5": 0.3538,
+        "combined_score": 0.3832
+      },
+      "bm25": {
+        "recall_at_5": 0.2228,
+        "mrr_at_5": 0.2870,
+        "ndcg_at_5": 0.2094,
+        "combined_score": 0.2367
+      },
+      "hybrid": {
+        "recall_at_5": 0.3868,
+        "mrr_at_5": 0.4144,
+        "ndcg_at_5": 0.3546,
+        "combined_score": 0.3822
+      }
+    },
+    "lexical": {
+      "selected_strategy": "dense",
+      "dense": {
+        "recall_at_5": 0.3536,
+        "mrr_at_5": 0.4350,
+        "ndcg_at_5": 0.3445,
+        "combined_score": 0.3744
+      },
+      "bm25": {
+        "recall_at_5": 0.2493,
+        "mrr_at_5": 0.2690,
+        "ndcg_at_5": 0.2261,
+        "combined_score": 0.2459
+      },
+      "hybrid": {
+        "recall_at_5": 0.3536,
+        "mrr_at_5": 0.4138,
+        "ndcg_at_5": 0.3340,
+        "combined_score": 0.3638
+      }
+    },
+    "semantic": {
+      "selected_strategy": "hybrid",
+      "dense": {
+        "recall_at_5": 0.3853,
+        "mrr_at_5": 0.4766,
+        "ndcg_at_5": 0.3782,
+        "combined_score": 0.4098
+      },
+      "bm25": {
+        "recall_at_5": 0.2283,
+        "mrr_at_5": 0.2768,
+        "ndcg_at_5": 0.2093,
+        "combined_score": 0.2353
+      },
+      "hybrid": {
+        "recall_at_5": 0.3905,
+        "mrr_at_5": 0.4878,
+        "ndcg_at_5": 0.3872,
+        "combined_score": 0.4184
+      }
+    },
+    "comparison": {
+      "selected_strategy": "hybrid",
+      "dense": {
+        "recall_at_5": 0.4378,
+        "mrr_at_5": 0.3660,
+        "ndcg_at_5": 0.3465,
+        "combined_score": 0.3797
+      },
+      "bm25": {
+        "recall_at_5": 0.3167,
+        "mrr_at_5": 0.3047,
+        "ndcg_at_5": 0.2694,
+        "combined_score": 0.2942
+      },
+      "hybrid": {
+        "recall_at_5": 0.4778,
+        "mrr_at_5": 0.4847,
+        "ndcg_at_5": 0.4291,
+        "combined_score": 0.4604
+      }
+    }
+  }
+}
