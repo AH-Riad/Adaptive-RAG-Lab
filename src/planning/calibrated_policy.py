@@ -1,46 +1,64 @@
-from dataclasses import dataclass, field
+import json
+from pathlib import Path
+
+from src.planning.decision_types import RetrievalStrategy
 
 
-@dataclass
-class CalibratedStrategy:
-
-    strategy: str
-
-    combined_score: float
-
-    recall_at_5: float
-
-    mrr_at_5: float
-
-    ndcg_at_5: float
-
-
-@dataclass
 class CalibratedPolicy:
 
-    dataset: str
+    def __init__(
+        self,
+        path: str
+    ):
 
-    split: str
+        self.path = Path(path)
 
-    policy_version: str
+        if not self.path.exists():
 
-    strategies: dict[
-        str,
-        CalibratedStrategy
-    ] = field(
-        default_factory=dict
-    )
+            raise FileNotFoundError(
+                f"Calibrated policy not found: "
+                f"{self.path}"
+            )
+
+        with self.path.open(
+            "r",
+            encoding="utf-8"
+        ) as file:
+
+            self.data = json.load(file)
+
+        self.dataset = self.data[
+            "dataset"
+        ]
+
+        self.split = self.data[
+            "split"
+        ]
+
+        self.version = self.data[
+            "policy_version"
+        ]
+
+        self.policy = self.data[
+            "policy"
+        ]
 
     def get_strategy(
         self,
         query_type: str
-    ):
+    ) -> RetrievalStrategy:
 
-        result = self.strategies.get(
+        strategy = self.policy.get(
             query_type
         )
 
-        if result is None:
-            return None
+        if strategy is None:
 
-        return result.strategy
+            strategy = self.policy.get(
+                "ambiguous",
+                "dense"
+            )
+
+        return RetrievalStrategy(
+            strategy
+        )
