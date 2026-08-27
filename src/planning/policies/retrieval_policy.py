@@ -1,49 +1,56 @@
-from src.configs.config_loader import ConfigLoader
-from src.planning.decision_types import RetrievalStrategy
-from src.planning.policies.base_policy import BasePolicy
-from src.planning.policy_result import PolicyResult
+from src.planning.decision_types import (
+    RetrievalStrategy
+)
+
+from src.planning.policies.base_policy import (
+    BasePolicy
+)
+
+from src.planning.policy_result import (
+    PolicyResult
+)
+
+from src.planning.calibrated_policy import (
+    CalibratedPolicy
+)
 
 
 class RetrievalPolicy(BasePolicy):
 
     def __init__(self):
 
-        self.config = ConfigLoader.load(
-            "planning/retrieval_policy.yaml"
+        self.calibrated_policy = (
+            CalibratedPolicy(
+                path=(
+                    "results/logs/"
+                    "fiqa_dev_strategy_policy_v1.json"
+                )
+            )
         )
 
-    def apply(self, context, plan):
+    def apply(
+        self,
+        context,
+        plan
+    ):
 
         query_type = context.query_analysis.get(
             "query_type",
-            "semantic"
+            "ambiguous"
         )
 
-        query_config = self.config.get(
-            "query_types",
-            {}
-        )
-
-        entry = query_config.get(
-            query_type
-        )
-
-        if entry is None:
-
-            entry = query_config.get(
-                "semantic"
+        strategy = (
+            self.calibrated_policy.get_strategy(
+                query_type
             )
-
-        strategy = RetrievalStrategy(
-            entry["strategy"]
         )
 
-        confidence = float(
-            entry["confidence"]
-        )
+        confidence = 0.95
 
-        reason = str(
-            entry["reason"]
+        reason = (
+            "Strategy selected from the "
+            "frozen FiQA development calibration "
+            f"policy v{self.calibrated_policy.version}."
         )
 
         plan.strategy = strategy
@@ -57,7 +64,8 @@ class RetrievalPolicy(BasePolicy):
         ] = PolicyResult(
             policy_name=self.name,
             decision=(
-                f"strategy = {strategy.value}"
+                f"strategy = "
+                f"{strategy.value}"
             ),
             confidence=confidence,
             reason=reason
@@ -66,7 +74,8 @@ class RetrievalPolicy(BasePolicy):
         plan.decision_trace.append(
             f"{self.name}: "
             f"{strategy.value} "
-            f"(v{self.version})"
+            f"(calibrated policy "
+            f"v{self.calibrated_policy.version})"
         )
 
         return plan
@@ -74,12 +83,13 @@ class RetrievalPolicy(BasePolicy):
     @property
     def version(self):
 
-        return "1.2"
+        return "2.0"
 
     @property
     def description(self):
 
         return (
-            "Selects Dense, BM25, or Hybrid "
-            "retrieval from query type."
+            "Selects retrieval strategy using "
+            "a frozen development-set "
+            "calibration policy."
         )
