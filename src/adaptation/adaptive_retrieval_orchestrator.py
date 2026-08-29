@@ -35,7 +35,12 @@ class AdaptiveRetrievalOrchestrator(Component):
         self.evidence_assessor = (
             evidence_assessor
             if evidence_assessor is not None
-            else EvidenceAssessor()
+            else EvidenceAssessor(
+                calibrated_model_path=(
+                "results/logs/"
+                "fiqa_dev_evidence_calibrator_v1.json"
+                )
+                )
         )
 
         self.feedback_controller = (
