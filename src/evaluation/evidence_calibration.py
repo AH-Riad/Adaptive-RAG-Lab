@@ -37,9 +37,11 @@ class EvidenceCalibrationAnalyzer:
     ) -> int:
 
         return int(
-            result.get(
-                "recall_at_5",
-                0.0
+            float(
+                result.get(
+                    "recall_at_5",
+                    0.0
+                )
             ) > 0.0
         )
 
@@ -59,8 +61,10 @@ class EvidenceCalibrationAnalyzer:
                 )
             )
 
-            actual = self._actual_relevance(
-                result
+            actual = (
+                self._actual_relevance(
+                    result
+                )
             )
 
             total += (
@@ -160,12 +164,6 @@ class EvidenceCalibrationAnalyzer:
                 len(values)
             )
 
-            proportion = (
-                len(values)
-                /
-                len(self.results)
-            )
-
             bin_data.append({
                 "lower":
                     lower,
@@ -191,7 +189,9 @@ class EvidenceCalibrationAnalyzer:
             })
 
         ece = sum(
-            item["gap"] * (
+            item["gap"]
+            *
+            (
                 item["count"]
                 /
                 len(self.results)
@@ -206,8 +206,9 @@ class EvidenceCalibrationAnalyzer:
         accepted = 0
         correctly_accepted = 0
         false_accepted = 0
+
         actual_relevant = 0
-        correctly_retrieved = 0
+        actual_irrelevant = 0
 
         for result in self.results:
 
@@ -225,7 +226,12 @@ class EvidenceCalibrationAnalyzer:
             )
 
             if actual:
+
                 actual_relevant += 1
+
+            else:
+
+                actual_irrelevant += 1
 
             if predicted:
 
@@ -239,9 +245,23 @@ class EvidenceCalibrationAnalyzer:
 
                     false_accepted += 1
 
-            if predicted and actual:
+        rejected = (
+            len(self.results)
+            -
+            accepted
+        )
 
-                correctly_retrieved += 1
+        true_negative = (
+            actual_irrelevant
+            -
+            false_accepted
+        )
+
+        false_negative = (
+            actual_relevant
+            -
+            correctly_accepted
+        )
 
         acceptance_precision = (
             correctly_accepted
@@ -271,14 +291,26 @@ class EvidenceCalibrationAnalyzer:
             "accepted_count":
                 accepted,
 
+            "rejected_count":
+                rejected,
+
             "actual_relevant_count":
                 actual_relevant,
+
+            "actual_irrelevant_count":
+                actual_irrelevant,
 
             "correctly_accepted_count":
                 correctly_accepted,
 
             "false_accepted_count":
                 false_accepted,
+
+            "true_negative_count":
+                true_negative,
+
+            "false_negative_count":
+                false_negative,
 
             "acceptance_precision":
                 acceptance_precision,
@@ -291,10 +323,6 @@ class EvidenceCalibrationAnalyzer:
         }
 
     def confidence_summary(self):
-
-        if not self.results:
-
-            return {}
 
         relevant_confidences = []
         irrelevant_confidences = []
@@ -326,49 +354,44 @@ class EvidenceCalibrationAnalyzer:
                     confidence
                 )
 
-        result = {}
-
-        if relevant_confidences:
-
-            result[
-                "mean_confidence_when_relevant"
-            ] = (
-                sum(
-                    relevant_confidences
-                )
-                /
-                len(
-                    relevant_confidences
-                )
+        relevant_mean = (
+            sum(
+                relevant_confidences
             )
-
-        else:
-
-            result[
-                "mean_confidence_when_relevant"
-            ] = 0.0
-
-        if irrelevant_confidences:
-
-            result[
-                "mean_confidence_when_irrelevant"
-            ] = (
-                sum(
-                    irrelevant_confidences
-                )
-                /
-                len(
-                    irrelevant_confidences
-                )
+            /
+            len(
+                relevant_confidences
             )
+            if relevant_confidences
+            else 0.0
+        )
 
-        else:
+        irrelevant_mean = (
+            sum(
+                irrelevant_confidences
+            )
+            /
+            len(
+                irrelevant_confidences
+            )
+            if irrelevant_confidences
+            else 0.0
+        )
 
-            result[
-                "mean_confidence_when_irrelevant"
-            ] = 0.0
+        return {
+            "mean_confidence_when_relevant":
+                relevant_mean,
 
-        return result
+            "mean_confidence_when_irrelevant":
+                irrelevant_mean,
+
+            "confidence_separation":
+                (
+                    relevant_mean
+                    -
+                    irrelevant_mean
+                )
+        }
 
     def analyze(self):
 
