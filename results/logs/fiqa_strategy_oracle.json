@@ -3,11 +3,11 @@
   "oracle_eligible_queries": 415,
   "zero_oracle_queries": 233,
   "strategy_selection_accuracy": 0.7373493975903614,
-  "adaptation_rate": 0.31635802469135804,
-  "strategy_transition_rate": 0.2978395061728395,
-  "successful_recovery_rate": 0.04145077720207254,
-  "failed_adaptation_rate": 0.9585492227979274,
-  "average_oracle_regret": 0.0942316221557672,
+  "adaptation_rate": 0.23148148148148148,
+  "strategy_transition_rate": 0.22067901234567902,
+  "successful_recovery_rate": 0.03496503496503497,
+  "failed_adaptation_rate": 0.965034965034965,
+  "average_oracle_regret": 0.09092723747803226,
   "query_details": [
     {
       "query_id": "8",
@@ -138,15 +138,15 @@
     {
       "query_id": "90",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6309297535714575,
       "final_ndcg": 0.6309297535714575,
       "oracle_ndcg": 0.6309297535714575,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -208,15 +208,15 @@
     {
       "query_id": "109",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -320,15 +320,15 @@
     {
       "query_id": "559",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -572,16 +572,16 @@
     {
       "query_id": "721",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6309297535714575,
-      "final_ndcg": 1.0,
+      "final_ndcg": 0.6309297535714575,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": false,
-      "successful_recovery": true,
+      "successful_recovery": false,
       "failed_adaptation": false,
-      "oracle_regret": 0.0
+      "oracle_regret": 0.36907024642854247
     },
     {
       "query_id": "744",
@@ -796,15 +796,15 @@
     {
       "query_id": "895",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6309297535714575,
       "final_ndcg": 0.6309297535714575,
       "oracle_ndcg": 0.6309297535714575,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -824,16 +824,16 @@
     {
       "query_id": "928",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.38685280723454163,
-      "final_ndcg": 0.6131471927654584,
+      "final_ndcg": 0.3065735963827292,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": false,
-      "successful_recovery": true,
+      "successful_recovery": false,
       "failed_adaptation": false,
-      "oracle_regret": 0.0
+      "oracle_regret": 0.3065735963827292
     },
     {
       "query_id": "929",
@@ -992,15 +992,15 @@
     {
       "query_id": "1159",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -1048,16 +1048,16 @@
     {
       "query_id": "1284",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "BM25S",
       "initial_ndcg": 1.0,
-      "final_ndcg": 0.6309297535714575,
+      "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.36907024642854247
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "1297",
@@ -1272,15 +1272,15 @@
     {
       "query_id": "1676",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.5585075862632192,
       "final_ndcg": 0.5585075862632192,
       "oracle_ndcg": 0.5585075862632192,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -1482,15 +1482,15 @@
     {
       "query_id": "1933",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -1804,15 +1804,15 @@
     {
       "query_id": "2376",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -1902,15 +1902,15 @@
     {
       "query_id": "2399",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -2000,16 +2000,16 @@
     {
       "query_id": "2460",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
-      "final_ndcg": 1.0,
+      "final_ndcg": 0.9060254355346823,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.0
+      "failed_adaptation": false,
+      "oracle_regret": 0.09397456446531771
     },
     {
       "query_id": "2465",
@@ -2126,15 +2126,15 @@
     {
       "query_id": "2568",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6843515475204855,
       "final_ndcg": 0.6843515475204855,
       "oracle_ndcg": 0.6843515475204855,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -2322,29 +2322,29 @@
     {
       "query_id": "2737",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
       "query_id": "2747",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -2476,15 +2476,15 @@
     {
       "query_id": "2903",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -2896,15 +2896,15 @@
     {
       "query_id": "3405",
       "initial_strategy": "hybrid",
-      "final_strategy": "hybrid",
+      "final_strategy": "dense",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": false,
+      "adapted": true,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": false,
+      "failed_adaptation": true,
       "oracle_regret": 0.0
     },
     {
@@ -3288,16 +3288,16 @@
     {
       "query_id": "3791",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.2960819109658652,
-      "final_ndcg": 0.46927872602275644,
+      "final_ndcg": 0.5307212739772434,
       "oracle_ndcg": 0.46927872602275644,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": false,
-      "successful_recovery": true,
+      "successful_recovery": false,
       "failed_adaptation": false,
-      "oracle_regret": 0.0
+      "oracle_regret": -0.061442547954487
     },
     {
       "query_id": "3801",
@@ -3316,15 +3316,15 @@
     {
       "query_id": "3822",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.15101961822780524,
       "final_ndcg": 0.15101961822780524,
       "oracle_ndcg": 0.15101961822780524,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -3582,15 +3582,15 @@
     {
       "query_id": "4102",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -3666,15 +3666,15 @@
     {
       "query_id": "4153",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -3708,15 +3708,15 @@
     {
       "query_id": "4205",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -3946,15 +3946,15 @@
     {
       "query_id": "4465",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -4002,16 +4002,16 @@
     {
       "query_id": "4504",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "BM25S",
       "initial_ndcg": 0.6131471927654584,
-      "final_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.6131471927654584,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.22629438553091674
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "4514",
@@ -4044,15 +4044,15 @@
     {
       "query_id": "4539",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -4061,13 +4061,13 @@
       "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.7653606369886217,
-      "final_ndcg": 0.7039180890341347,
+      "final_ndcg": 0.7653606369886217,
       "oracle_ndcg": 0.7653606369886217,
       "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
       "failed_adaptation": false,
-      "oracle_regret": 0.061442547954487
+      "oracle_regret": 0.0
     },
     {
       "query_id": "4600",
@@ -4156,15 +4156,15 @@
     {
       "query_id": "4681",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -4254,15 +4254,15 @@
     {
       "query_id": "4785",
       "initial_strategy": "hybrid",
-      "final_strategy": "hybrid",
+      "final_strategy": "dense",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": false,
+      "adapted": true,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": false,
+      "failed_adaptation": true,
       "oracle_regret": 0.0
     },
     {
@@ -4352,57 +4352,57 @@
     {
       "query_id": "4845",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.7653606369886217,
       "final_ndcg": 0.7653606369886217,
       "oracle_ndcg": 0.7653606369886217,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
       "query_id": "4846",
       "initial_strategy": "dense",
-      "final_strategy": "hybrid",
-      "oracle_strategy": null,
-      "initial_ndcg": 0.0,
-      "final_ndcg": 0.0,
-      "oracle_ndcg": 0.0,
-      "adapted": true,
-      "strategy_correct": null,
-      "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.0
-    },
-    {
-      "query_id": "4863",
-      "initial_strategy": "hybrid",
-      "final_strategy": "hybrid",
-      "oracle_strategy": "Dense",
-      "initial_ndcg": 0.2960819109658652,
-      "final_ndcg": 0.18154179253735267,
-      "oracle_ndcg": 0.2960819109658652,
-      "adapted": false,
-      "strategy_correct": true,
-      "successful_recovery": false,
-      "failed_adaptation": false,
-      "oracle_regret": 0.11454011842851256
-    },
-    {
-      "query_id": "4865",
-      "initial_strategy": "hybrid",
       "final_strategy": "dense",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
+    },
+    {
+      "query_id": "4863",
+      "initial_strategy": "hybrid",
+      "final_strategy": "dense",
+      "oracle_strategy": "Dense",
+      "initial_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.2960819109658652,
+      "oracle_ndcg": 0.2960819109658652,
+      "adapted": true,
+      "strategy_correct": true,
+      "successful_recovery": false,
       "failed_adaptation": true,
+      "oracle_regret": 0.0
+    },
+    {
+      "query_id": "4865",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": null,
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false,
+      "strategy_correct": null,
+      "successful_recovery": false,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -4604,15 +4604,15 @@
     {
       "query_id": "5067",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "BM25S",
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.43067655807339306,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": false,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.43067655807339306
     },
     {
@@ -4688,15 +4688,15 @@
     {
       "query_id": "5125",
       "initial_strategy": "dense",
-      "final_strategy": "hybrid",
+      "final_strategy": "dense",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -4898,16 +4898,16 @@
     {
       "query_id": "5271",
       "initial_strategy": "hybrid",
-      "final_strategy": "hybrid",
+      "final_strategy": "dense",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.2960819109658652,
-      "final_ndcg": 0.2960819109658652,
+      "final_ndcg": 0.4776237035032179,
       "oracle_ndcg": 0.4776237035032179,
-      "adapted": false,
+      "adapted": true,
       "strategy_correct": false,
-      "successful_recovery": false,
+      "successful_recovery": true,
       "failed_adaptation": false,
-      "oracle_regret": 0.1815417925373527
+      "oracle_regret": 0.0
     },
     {
       "query_id": "5331",
@@ -5136,15 +5136,15 @@
     {
       "query_id": "5534",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6131471927654584,
       "final_ndcg": 0.6131471927654584,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -5374,15 +5374,15 @@
     {
       "query_id": "5888",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "BM25S",
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": false,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.6131471927654584
     },
     {
@@ -5500,15 +5500,15 @@
     {
       "query_id": "6004",
       "initial_strategy": "hybrid",
-      "final_strategy": "hybrid",
+      "final_strategy": "dense",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": false,
+      "adapted": true,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": false,
+      "failed_adaptation": true,
       "oracle_regret": 0.0
     },
     {
@@ -5682,15 +5682,15 @@
     {
       "query_id": "6219",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -5738,16 +5738,16 @@
     {
       "query_id": "6278",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Hybrid",
       "initial_ndcg": 0.6131471927654584,
-      "final_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.6131471927654584,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.3065735963827292
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "6395",
@@ -5808,15 +5808,15 @@
     {
       "query_id": "6467",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -6102,15 +6102,15 @@
     {
       "query_id": "6800",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 1.0,
       "final_ndcg": 1.0,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -6242,15 +6242,15 @@
     {
       "query_id": "6890",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6131471927654584,
       "final_ndcg": 0.6131471927654584,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -6662,16 +6662,16 @@
     {
       "query_id": "7329",
       "initial_strategy": "dense",
-      "final_strategy": "hybrid",
+      "final_strategy": "dense",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6131471927654584,
-      "final_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.6131471927654584,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.3065735963827292
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "7344",
@@ -6704,16 +6704,16 @@
     {
       "query_id": "7377",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Hybrid",
       "initial_ndcg": 0.6309297535714575,
-      "final_ndcg": 0.43067655807339306,
+      "final_ndcg": 0.6309297535714575,
       "oracle_ndcg": 0.6309297535714575,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.20025319549806447
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "7431",
@@ -6760,15 +6760,15 @@
     {
       "query_id": "7448",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.6309297535714575,
       "final_ndcg": 0.6309297535714575,
       "oracle_ndcg": 0.6309297535714575,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -6858,15 +6858,15 @@
     {
       "query_id": "7513",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -6914,16 +6914,16 @@
     {
       "query_id": "7590",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Hybrid",
       "initial_ndcg": 0.6934264036172708,
-      "final_ndcg": 0.6509209298071326,
+      "final_ndcg": 0.6934264036172708,
       "oracle_ndcg": 0.6934264036172708,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.04250547381013825
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "7592",
@@ -7054,15 +7054,15 @@
     {
       "query_id": "7747",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -7264,15 +7264,15 @@
     {
       "query_id": "8005",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
       "oracle_ndcg": 0.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": null,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -7670,16 +7670,16 @@
     {
       "query_id": "8632",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Hybrid",
       "initial_ndcg": 0.6131471927654584,
-      "final_ndcg": 0.3065735963827292,
+      "final_ndcg": 0.6131471927654584,
       "oracle_ndcg": 0.6131471927654584,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.3065735963827292
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "8635",
@@ -7950,15 +7950,15 @@
     {
       "query_id": "9115",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.20210734650054757,
       "final_ndcg": 0.20210734650054757,
       "oracle_ndcg": 0.20210734650054757,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -7992,15 +7992,15 @@
     {
       "query_id": "9174",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.16958010263680806,
       "final_ndcg": 0.16958010263680806,
       "oracle_ndcg": 0.16958010263680806,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -8328,21 +8328,7 @@
     {
       "query_id": "9701",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
-      "oracle_strategy": null,
-      "initial_ndcg": 0.0,
-      "final_ndcg": 0.0,
-      "oracle_ndcg": 0.0,
-      "adapted": true,
-      "strategy_correct": null,
-      "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.0
-    },
-    {
-      "query_id": "9733",
-      "initial_strategy": "dense",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
@@ -8354,9 +8340,9 @@
       "oracle_regret": 0.0
     },
     {
-      "query_id": "9735",
-      "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "query_id": "9733",
+      "initial_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": null,
       "initial_ndcg": 0.0,
       "final_ndcg": 0.0,
@@ -8365,6 +8351,20 @@
       "strategy_correct": null,
       "successful_recovery": false,
       "failed_adaptation": true,
+      "oracle_regret": 0.0
+    },
+    {
+      "query_id": "9735",
+      "initial_strategy": "hybrid",
+      "final_strategy": "hybrid",
+      "oracle_strategy": null,
+      "initial_ndcg": 0.0,
+      "final_ndcg": 0.0,
+      "oracle_ndcg": 0.0,
+      "adapted": false,
+      "strategy_correct": null,
+      "successful_recovery": false,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
@@ -8538,16 +8538,16 @@
     {
       "query_id": "10109",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Hybrid",
       "initial_ndcg": 0.6843515475204855,
-      "final_ndcg": 0.639945385422766,
+      "final_ndcg": 0.6843515475204855,
       "oracle_ndcg": 0.6843515475204855,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.044406162097719526
+      "failed_adaptation": false,
+      "oracle_regret": 0.0
     },
     {
       "query_id": "10122",
@@ -8650,30 +8650,30 @@
     {
       "query_id": "10267",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.14606834984270645,
       "final_ndcg": 0.14606834984270645,
       "oracle_ndcg": 0.14606834984270645,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
       "query_id": "10414",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.9197207891481876,
-      "final_ndcg": 1.0,
+      "final_ndcg": 0.9197207891481876,
       "oracle_ndcg": 1.0,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": false,
-      "successful_recovery": true,
+      "successful_recovery": false,
       "failed_adaptation": false,
-      "oracle_regret": 0.0
+      "oracle_regret": 0.08027921085181244
     },
     {
       "query_id": "10447",
@@ -8734,16 +8734,16 @@
     {
       "query_id": "10526",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "BM25S",
       "initial_ndcg": 0.0,
-      "final_ndcg": 0.0,
+      "final_ndcg": 0.38685280723454163,
       "oracle_ndcg": 0.3065735963827292,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": false,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.3065735963827292
+      "failed_adaptation": false,
+      "oracle_regret": -0.08027921085181244
     },
     {
       "query_id": "10547",
@@ -8804,16 +8804,16 @@
     {
       "query_id": "10628",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.38685280723454163,
-      "final_ndcg": 0.38685280723454163,
+      "final_ndcg": 0.0,
       "oracle_ndcg": 0.38685280723454163,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
-      "oracle_regret": 0.0
+      "failed_adaptation": false,
+      "oracle_regret": 0.38685280723454163
     },
     {
       "query_id": "10639",
@@ -8846,15 +8846,15 @@
     {
       "query_id": "10674",
       "initial_strategy": "hybrid",
-      "final_strategy": "dense",
+      "final_strategy": "hybrid",
       "oracle_strategy": "Dense",
       "initial_ndcg": 0.5855700749881525,
       "final_ndcg": 0.5855700749881525,
       "oracle_ndcg": 0.5855700749881525,
-      "adapted": true,
+      "adapted": false,
       "strategy_correct": true,
       "successful_recovery": false,
-      "failed_adaptation": true,
+      "failed_adaptation": false,
       "oracle_regret": 0.0
     },
     {
