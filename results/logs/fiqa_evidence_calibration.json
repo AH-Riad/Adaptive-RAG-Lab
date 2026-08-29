@@ -1,0 +1,18 @@
+{
+  "queries": 648,
+  "brier_score": 0.2830337697205134,
+  "expected_calibration_error": 0.2068415960884343,
+  "acceptance": {
+    "accepted_count": 0,
+    "actual_relevant_count": 370,
+    "correctly_accepted_count": 0,
+    "false_accepted_count": 0,
+    "acceptance_precision": 0.0,
+    "acceptance_recall": 0.0,
+    "false_acceptance_rate": 0.0
+  },
+  "confidence": {
+    "mean_confidence_when_relevant": 0.7512333044388437,
+    "mean_confidence_when_irrelevant": 0.7480678710428027
+  }
+}
