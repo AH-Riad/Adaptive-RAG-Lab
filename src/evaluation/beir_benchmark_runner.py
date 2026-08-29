@@ -73,7 +73,7 @@ class BEIRBenchmarkRunner:
                 5
             )
         )
-        
+
         ndcg = (
             RetrievalMetrics.ndcg_at_k(
                 retrieved_ids,
@@ -132,7 +132,37 @@ class BEIRBenchmarkRunner:
                 "system": name,
                 "query_id": query_id,
                 "query": query,
-                **metrics
+                **metrics,
+
+                "initial_strategy":
+                    name.lower(),
+
+                "final_strategy":
+                    name.lower(),
+
+                "initial_top_k":
+                    5,
+
+                "final_top_k":
+                    5,
+
+                "planner_confidence":
+                    1.0,
+
+                "evidence_confidence":
+                    None,
+
+                "accepted":
+                    None,
+
+                "attempts":
+                    1,
+
+                "status":
+                    "fixed_baseline",
+
+                "strategy_changes":
+                    0
             })
 
         return results
@@ -183,60 +213,81 @@ class BEIRBenchmarkRunner:
                 context.decision_report
             )
 
+            evidence = (
+                context.evidence_result
+            )
+
+            transitions = (
+                report.get(
+                    "strategy_transitions",
+                    []
+                )
+            )
+
             results.append({
                 "system": "D2RAG",
+
                 "query_id": query_id,
+
                 "query": query,
 
                 **metrics,
 
                 "initial_strategy":
                     report.get(
-                        "initial_strategy"
+                        "initial_strategy",
+                        ""
                     ),
 
                 "final_strategy":
                     report.get(
-                        "final_strategy"
+                        "final_strategy",
+                        ""
                     ),
 
                 "initial_top_k":
                     report.get(
-                        "initial_top_k"
+                        "initial_top_k",
+                        0
                     ),
 
                 "final_top_k":
                     report.get(
-                        "final_top_k"
+                        "final_top_k",
+                        0
                     ),
 
                 "planner_confidence":
                     report.get(
-                        "initial_planner_confidence"
+                        "initial_planner_confidence",
+                        0.0
                     ),
 
                 "evidence_confidence":
                     report.get(
-                        "final_evidence_confidence"
+                        "final_evidence_confidence",
+                        0.0
                     ),
+
+                "accepted":
+                    evidence.accepted
+                    if evidence is not None
+                    else False,
 
                 "attempts":
                     report.get(
-                        "retrieval_attempts"
+                        "retrieval_attempts",
+                        1
                     ),
 
                 "status":
                     report.get(
-                        "adaptive_retrieval_status"
+                        "adaptive_retrieval_status",
+                        "unknown"
                     ),
 
                 "strategy_changes":
-                    len(
-                        report.get(
-                            "strategy_transitions",
-                            []
-                        )
-                    )
+                    len(transitions)
             })
 
         return results
@@ -264,7 +315,8 @@ class BEIRBenchmarkRunner:
             count = len(rows)
 
             summary[system] = {
-                "queries": count,
+                "queries":
+                    count,
 
                 "precision_at_5": (
                     sum(
