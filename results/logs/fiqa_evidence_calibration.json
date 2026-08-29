@@ -3,16 +3,21 @@
   "brier_score": 0.2830337697205134,
   "expected_calibration_error": 0.2068415960884343,
   "acceptance": {
-    "accepted_count": 0,
+    "accepted_count": 630,
+    "rejected_count": 18,
     "actual_relevant_count": 370,
-    "correctly_accepted_count": 0,
-    "false_accepted_count": 0,
-    "acceptance_precision": 0.0,
-    "acceptance_recall": 0.0,
-    "false_acceptance_rate": 0.0
+    "actual_irrelevant_count": 278,
+    "correctly_accepted_count": 358,
+    "false_accepted_count": 272,
+    "true_negative_count": 6,
+    "false_negative_count": 12,
+    "acceptance_precision": 0.5682539682539682,
+    "acceptance_recall": 0.9675675675675676,
+    "false_acceptance_rate": 0.43174603174603177
   },
   "confidence": {
     "mean_confidence_when_relevant": 0.7512333044388437,
-    "mean_confidence_when_irrelevant": 0.7480678710428027
+    "mean_confidence_when_irrelevant": 0.7480678710428027,
+    "confidence_separation": 0.0031654333960410286
   }
 }
