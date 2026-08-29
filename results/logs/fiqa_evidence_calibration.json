@@ -1,23 +1,23 @@
 {
   "queries": 648,
-  "brier_score": 0.2830337697205134,
-  "expected_calibration_error": 0.2068415960884343,
+  "brier_score": 0.21690326688640157,
+  "expected_calibration_error": 0.06794784569103066,
   "acceptance": {
-    "accepted_count": 630,
-    "rejected_count": 18,
+    "accepted_count": 641,
+    "rejected_count": 7,
     "actual_relevant_count": 370,
     "actual_irrelevant_count": 278,
-    "correctly_accepted_count": 358,
-    "false_accepted_count": 272,
-    "true_negative_count": 6,
-    "false_negative_count": 12,
-    "acceptance_precision": 0.5682539682539682,
-    "acceptance_recall": 0.9675675675675676,
-    "false_acceptance_rate": 0.43174603174603177
+    "correctly_accepted_count": 366,
+    "false_accepted_count": 275,
+    "true_negative_count": 3,
+    "false_negative_count": 4,
+    "acceptance_precision": 0.5709828393135725,
+    "acceptance_recall": 0.9891891891891892,
+    "false_acceptance_rate": 0.4290171606864275
   },
   "confidence": {
-    "mean_confidence_when_relevant": 0.7512333044388437,
-    "mean_confidence_when_irrelevant": 0.7480678710428027,
-    "confidence_separation": 0.0031654333960410286
+    "mean_confidence_when_relevant": 0.6233036163473702,
+    "mean_confidence_when_irrelevant": 0.529039607342167,
+    "confidence_separation": 0.09426400900520315
   }
 }
