@@ -56,11 +56,19 @@ class TopKActionEvaluator:
                     in result.retrieved_chunks
                 ]
 
+                recall = (
+                    RetrievalMetrics.recall_at_k(
+                        retrieved_ids,
+                        relevant_ids,
+                        top_k
+                    )
+                )
+
                 ndcg = (
                     RetrievalMetrics.ndcg_at_k(
                         retrieved_ids,
                         relevant_scores,
-                        5
+                        top_k
                     )
                 )
 
@@ -79,7 +87,13 @@ class TopKActionEvaluator:
                             f"set_top_k_{top_k}"
                         ),
 
-                    "ndcg_at_5":
+                    "recall_at_k":
+                        recall,
+
+                    "ndcg_at_k":
+                        ndcg,
+
+                    "utility":
                         ndcg
                 })
 
