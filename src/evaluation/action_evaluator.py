@@ -16,85 +16,40 @@ class ActionEvaluator:
 
         self.retrievers = retrievers
 
-    def evaluate_query(
+    def evaluate_strategy_actions(
         self,
         query,
         relevant_scores,
         query_type,
         current_strategy,
-        current_top_k=5
+        top_k=5
     ):
 
-        evaluations = []
+        results = []
 
-        relevant_ids = list(
-            relevant_scores.keys()
-        )
-
-        # Evaluate keeping the current strategy
-        current_retriever = self.retrievers[
-            current_strategy
-        ]
-
-        current_result = (
-            current_retriever.retrieve(
-                query
-            )
-        )
-
-        current_ids = [
-            chunk.chunk_id
-            for chunk
-            in current_result.retrieved_chunks
-        ]
-
-        current_ndcg = (
-            RetrievalMetrics.ndcg_at_k(
-                current_ids,
-                relevant_scores,
-                5
-            )
-        )
-
-        evaluations.append({
-            "query":
-                query,
-
-            "query_type":
-                query_type,
-
-            "current_strategy":
-                current_strategy,
-
-            "current_top_k":
-                current_top_k,
-
-            "action":
-                "keep",
-
-            "target_strategy":
-                current_strategy,
-
-            "target_top_k":
-                current_top_k,
-
-            "ndcg_at_5":
-                current_ndcg
-        })
-
-        # Evaluate strategy switches
         for strategy in self.STRATEGIES:
-
-            if strategy == current_strategy:
-                continue
 
             retriever = self.retrievers[
                 strategy
             ]
 
-            result = retriever.retrieve(
-                query
+            original_top_k = getattr(
+                retriever,
+                "top_k",
+                5
             )
+
+            try:
+
+                retriever.top_k = top_k
+
+                result = retriever.retrieve(
+                    query
+                )
+
+            finally:
+
+                retriever.top_k = original_top_k
 
             retrieved_ids = [
                 chunk.chunk_id
@@ -102,15 +57,45 @@ class ActionEvaluator:
                 in result.retrieved_chunks
             ]
 
+            recall = (
+                RetrievalMetrics.recall_at_k(
+                    retrieved_ids,
+                    list(
+                        relevant_scores.keys()
+                    ),
+                    top_k
+                )
+            )
+
+            mrr = (
+                self._mrr_at_k(
+                    retrieved_ids,
+                    list(
+                        relevant_scores.keys()
+                    ),
+                    top_k
+                )
+            )
+
             ndcg = (
                 RetrievalMetrics.ndcg_at_k(
                     retrieved_ids,
                     relevant_scores,
-                    5
+                    top_k
                 )
             )
 
-            evaluations.append({
+            if strategy == current_strategy:
+
+                action = "keep"
+
+            else:
+
+                action = (
+                    f"switch_to_{strategy}"
+                )
+
+            results.append({
                 "query":
                     query,
 
@@ -120,20 +105,48 @@ class ActionEvaluator:
                 "current_strategy":
                     current_strategy,
 
-                "current_top_k":
-                    current_top_k,
-
-                "action":
-                    f"switch_to_{strategy}",
-
-                "target_strategy":
+                "candidate_strategy":
                     strategy,
 
-                "target_top_k":
-                    5,
+                "action":
+                    action,
 
-                "ndcg_at_5":
+                "top_k":
+                    top_k,
+
+                "recall":
+                    recall,
+
+                "mrr":
+                    mrr,
+
+                "ndcg":
+                    ndcg,
+
+                "utility":
                     ndcg
             })
 
-        return evaluations
+        return results
+
+    @staticmethod
+    def _mrr_at_k(
+        retrieved_ids,
+        relevant_ids,
+        k
+    ):
+
+        relevant = set(
+            relevant_ids
+        )
+
+        for rank, document_id in enumerate(
+            retrieved_ids[:k],
+            start=1
+        ):
+
+            if document_id in relevant:
+
+                return 1.0 / rank
+
+        return 0.0
