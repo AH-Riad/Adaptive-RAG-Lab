@@ -14,6 +14,10 @@ from src.planning.calibrated_policy import (
     CalibratedPolicy
 )
 
+from src.assessment.evidence_features import (
+    EvidenceFeatureExtractor
+)
+
 
 class ActionPolicyBuilder:
 
@@ -25,6 +29,29 @@ class ActionPolicyBuilder:
         self.output_path = Path(
             output_path
         )
+
+        self.feature_extractor = (
+            EvidenceFeatureExtractor()
+        )
+
+    @staticmethod
+    def confidence_bucket(
+        confidence
+    ):
+
+        if confidence < 0.25:
+
+            return "very_low"
+
+        if confidence < 0.50:
+
+            return "low"
+
+        if confidence < 0.75:
+
+            return "medium"
+
+        return "high"
 
     def build(
         self,
@@ -87,36 +114,56 @@ class ActionPolicyBuilder:
                 .value
             )
 
-            strategy_results = (
+            strategy_evaluations = (
                 strategy_evaluator
                 .evaluate_strategy_actions(
                     query=query,
-                    relevant_scores=(
-                        relevant_scores
-                    ),
+                    relevant_scores=relevant_scores,
                     query_type=query_type,
-                    current_strategy=(
-                        current_strategy
-                    ),
+                    current_strategy=current_strategy,
                     top_k=5
                 )
             )
 
+            current_result = next(
+                item
+                for item in strategy_evaluations
+                if item[
+                    "candidate_strategy"
+                ] == current_strategy
+            )
+
+            current_confidence = (
+                current_result[
+                    "utility"
+                ]
+            )
+
+            confidence_bucket = (
+                self.confidence_bucket(
+                    current_confidence
+                )
+            )
+
+            for item in strategy_evaluations:
+
+                state = (
+                    query_type,
+                    current_strategy,
+                    confidence_bucket,
+                    5
+                )
+
+                strategy_groups[
+                    state
+                ].append(
+                    item
+                )
+
             best_strategy = max(
-                strategy_results,
+                strategy_evaluations,
                 key=lambda item:
                     item["utility"]
-            )
-
-            strategy_state = (
-                query_type,
-                current_strategy
-            )
-
-            strategy_groups[
-                strategy_state
-            ].append(
-                best_strategy
             )
 
             strategy_records.append({
@@ -129,6 +176,9 @@ class ActionPolicyBuilder:
                 "current_strategy":
                     current_strategy,
 
+                "confidence_bucket":
+                    confidence_bucket,
+
                 "best_action":
                     best_strategy[
                         "action"
@@ -137,39 +187,38 @@ class ActionPolicyBuilder:
                 "best_ndcg_at_5":
                     best_strategy[
                         "ndcg"
-                    ],
-
-                "candidates":
-                    strategy_results
+                    ]
             })
 
-            topk_results = (
+            topk_evaluations = (
                 topk_evaluator.evaluate_query(
                     query=query,
-                    relevant_scores=(
-                        relevant_scores
-                    ),
-                    current_strategy=(
-                        current_strategy
-                    )
+                    relevant_scores=relevant_scores,
+                    current_strategy=current_strategy
                 )
             )
 
+            for item in topk_evaluations:
+
+                state = (
+                    query_type,
+                    current_strategy,
+                    confidence_bucket,
+                    item[
+                        "top_k"
+                    ]
+                )
+
+                topk_groups[
+                    state
+                ].append(
+                    item
+                )
+
             best_topk = max(
-                topk_results,
+                topk_evaluations,
                 key=lambda item:
                     item["utility"]
-            )
-
-            topk_state = (
-                query_type,
-                current_strategy
-            )
-
-            topk_groups[
-                topk_state
-            ].append(
-                best_topk
             )
 
             topk_records.append({
@@ -181,6 +230,9 @@ class ActionPolicyBuilder:
 
                 "current_strategy":
                     current_strategy,
+
+                "confidence_bucket":
+                    confidence_bucket,
 
                 "best_action":
                     best_topk[
@@ -195,23 +247,18 @@ class ActionPolicyBuilder:
                 "best_ndcg":
                     best_topk[
                         "ndcg_at_k"
-                    ],
-
-                "candidates":
-                    topk_results
+                    ]
             })
 
         strategy_policy = (
             self._aggregate(
-                strategy_groups,
-                action_key="action"
+                strategy_groups
             )
         )
 
         topk_policy = (
             self._aggregate(
-                topk_groups,
-                action_key="action"
+                topk_groups
             )
         )
 
@@ -223,7 +270,14 @@ class ActionPolicyBuilder:
                 "dev",
 
             "version":
-                "v1",
+                "v2",
+
+            "state_definition": [
+                "query_type",
+                "current_strategy",
+                "confidence_bucket",
+                "top_k"
+            ],
 
             "strategy_policy":
                 strategy_policy,
@@ -258,8 +312,7 @@ class ActionPolicyBuilder:
 
     @staticmethod
     def _aggregate(
-        groups,
-        action_key
+        groups
     ):
 
         policy = {}
@@ -268,14 +321,14 @@ class ActionPolicyBuilder:
             groups.items()
         ):
 
-            action_groups = defaultdict(
+            grouped_actions = defaultdict(
                 list
             )
 
             for row in rows:
 
-                action_groups[
-                    row[action_key]
+                grouped_actions[
+                    row["action"]
                 ].append(
                     row["utility"]
                 )
@@ -283,7 +336,7 @@ class ActionPolicyBuilder:
             candidates = {}
 
             for action, values in (
-                action_groups.items()
+                grouped_actions.items()
             ):
 
                 candidates[action] = {
@@ -309,17 +362,14 @@ class ActionPolicyBuilder:
             policy[
                 str(state)
             ] = {
-                "query_type":
-                    state[0],
-
-                "current_strategy":
-                    state[1],
-
                 "selected_action":
                     best_action,
 
                 "candidates":
-                    candidates
+                    candidates,
+
+                "samples":
+                    len(rows)
             }
 
         return policy
