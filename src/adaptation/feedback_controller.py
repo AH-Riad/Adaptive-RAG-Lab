@@ -1,140 +1,276 @@
 from src.core.component import Component
-from src.adaptation.feedback_decision import FeedbackDecision
-from src.planning.decision_types import RetrievalStrategy
+from src.adaptation.feedback_decision import (
+    FeedbackDecision
+)
+from src.adaptation.calibrated_feedback_policy import (
+    CalibratedFeedbackPolicy
+)
 
 
 class FeedbackController(Component):
 
     def __init__(
         self,
-        retry_threshold: float = 0.55,
-        max_top_k: int = 10
+        policy_path: str,
+        minimum_samples: int = 5
     ):
-        self.retry_threshold = retry_threshold
-        self.max_top_k = max_top_k
 
-    def run(self, context):
+        self.policy = CalibratedFeedbackPolicy(
+            policy_path=policy_path,
+            minimum_samples=minimum_samples
+        )
 
-        evidence = context.evidence_result
+    @staticmethod
+    def _confidence_bucket(
+        confidence
+    ):
+
+        if confidence < 0.25:
+
+            return "very_low"
+
+        if confidence < 0.50:
+
+            return "low"
+
+        if confidence < 0.75:
+
+            return "medium"
+
+        return "high"
+
+    def run(
+        self,
+        context
+    ):
+
         plan = context.retrieval_plan
 
-        if evidence is None:
-            raise RuntimeError(
-                "FeedbackController requires "
-                "evidence_result."
-            )
+        evidence = context.evidence_result
 
         if plan is None:
+
             raise RuntimeError(
-                "FeedbackController requires "
-                "retrieval_plan."
+                "Feedback requires a retrieval plan."
             )
 
-        if evidence.accepted:
+        if evidence is None:
 
-            decision = FeedbackDecision(
-                should_retry=False,
-                new_top_k=plan.top_k,
-                change_strategy=False,
-                new_strategy=None,
-                rewrite_query=False,
-                rerank=False,
-                reason=(
-                    "Evidence is sufficient."
-                ),
-                confidence=evidence.confidence,
-                actions=[
-                    "accept_retrieval"
+            raise RuntimeError(
+                "Feedback requires an evidence result."
+            )
+
+        query_analysis = (
+            context.query_analysis
+        )
+
+        query_type = query_analysis.get(
+            "query_type",
+            "ambiguous"
+        )
+
+        current_strategy = (
+            plan.strategy.value
+        )
+
+        current_top_k = (
+            plan.top_k
+        )
+
+        confidence_bucket = (
+            self._confidence_bucket(
+                evidence.confidence
+            )
+        )
+
+        strategy_result = (
+            self.policy.get_strategy_action(
+                query_type=query_type,
+                current_strategy=current_strategy,
+                confidence_bucket=confidence_bucket,
+                top_k=current_top_k
+            )
+        )
+
+        topk_result = (
+            self.policy.get_topk_action(
+                query_type=query_type,
+                current_strategy=current_strategy,
+                confidence_bucket=confidence_bucket,
+                top_k=current_top_k
+            )
+        )
+
+        selected_action = "keep"
+
+        source = "fallback"
+
+        reason = (
+            "No sufficiently supported calibrated "
+            "adaptive action was available."
+        )
+
+        target_strategy = None
+        target_top_k = None
+
+        strategy_utility = None
+        topk_utility = None
+
+        if strategy_result is not None:
+
+            strategy_utility = (
+                strategy_result[
+                    "candidates"
+                ].get(
+                    strategy_result[
+                        "selected_action"
+                    ],
+                    {}
+                ).get(
+                    "average_utility",
+                    0.0
+                )
+            )
+
+        if topk_result is not None:
+
+            topk_utility = (
+                topk_result[
+                    "candidates"
+                ].get(
+                    topk_result[
+                        "selected_action"
+                    ],
+                    {}
+                ).get(
+                    "average_utility",
+                    0.0
+                )
+            )
+
+        if (
+            strategy_result is not None
+            and
+            topk_result is not None
+        ):
+
+            if (
+                strategy_utility
+                >=
+                topk_utility
+            ):
+
+                selected_action = (
+                    strategy_result[
+                        "selected_action"
+                    ]
+                )
+
+                source = (
+                    "calibrated_strategy_policy"
+                )
+
+                reason = (
+                    "Selected by the frozen "
+                    "FiQA development strategy "
+                    "action policy."
+                )
+
+            else:
+
+                selected_action = (
+                    topk_result[
+                        "selected_action"
+                    ]
+                )
+
+                source = (
+                    "calibrated_topk_policy"
+                )
+
+                reason = (
+                    "Selected by the frozen "
+                    "FiQA development Top-K "
+                    "action policy."
+                )
+
+        elif strategy_result is not None:
+
+            selected_action = (
+                strategy_result[
+                    "selected_action"
                 ]
             )
 
-            context.feedback_decision = decision
-
-            context.add_event(
-                "feedback_evaluation_completed"
+            source = (
+                "calibrated_strategy_policy"
             )
 
-            return context
-
-        new_top_k = min(
-            plan.top_k * 2,
-            self.max_top_k
-        )
-
-        actions = [
-            f"increase_top_k:{plan.top_k}->{new_top_k}"
-        ]
-
-        change_strategy = False
-        new_strategy = None
-
-        if evidence.coverage < 0.40:
-
-            change_strategy = True
-
-            if plan.strategy == RetrievalStrategy.DENSE:
-
-                new_strategy = (
-                    RetrievalStrategy.HYBRID.value
-                )
-
-            elif plan.strategy == RetrievalStrategy.BM25:
-
-                new_strategy = (
-                    RetrievalStrategy.HYBRID.value
-                )
-
-            elif plan.strategy == RetrievalStrategy.HYBRID:
-
-                new_strategy = (
-                    RetrievalStrategy.DENSE.value
-                )
-
-            actions.append(
-                f"change_strategy:{new_strategy}"
+            reason = (
+                "Selected by the frozen "
+                "FiQA development strategy "
+                "action policy."
             )
 
-        rewrite_query = (
-            evidence.average_score < 0.45
-        )
+        elif topk_result is not None:
 
-        if rewrite_query:
-
-            actions.append(
-                "rewrite_query"
+            selected_action = (
+                topk_result[
+                    "selected_action"
+                ]
             )
 
-        rerank = (
-            evidence.retrieved_count >= 5
-            and
-            evidence.average_score >= 0.45
+            source = (
+                "calibrated_topk_policy"
+            )
+
+            reason = (
+                "Selected by the frozen "
+                "FiQA development Top-K "
+                "action policy."
+            )
+
+        confidence = max(
+            0.0,
+            min(
+                1.0,
+                evidence.confidence
+            )
         )
 
-        if rerank:
+        if selected_action.startswith(
+            "switch_to_"
+        ):
 
-            actions.append(
-                "rerank_results"
+            target_strategy = (
+                selected_action[
+                    len("switch_to_"):
+                ]
+            )
+
+        elif selected_action.startswith(
+            "set_top_k_"
+        ):
+
+            target_top_k = int(
+                selected_action[
+                    len("set_top_k_"):
+                ]
             )
 
         decision = FeedbackDecision(
-            should_retry=True,
-            new_top_k=new_top_k,
-            change_strategy=change_strategy,
-            new_strategy=new_strategy,
-            rewrite_query=rewrite_query,
-            rerank=rerank,
-            reason=(
-                "Evidence did not meet the "
-                "acceptance criteria."
-            ),
-            confidence=evidence.confidence,
-            actions=actions
+            action=selected_action,
+            reason=reason,
+            confidence=confidence,
+            source=source,
+            target_strategy=target_strategy,
+            target_top_k=target_top_k
         )
 
         context.feedback_decision = decision
 
         context.add_event(
-            "feedback_evaluation_completed"
+            "feedback_decision_created"
         )
 
         return context
