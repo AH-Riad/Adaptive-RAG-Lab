@@ -6,13 +6,18 @@ class TopKActionEvaluator:
     def __init__(
         self,
         retrievers,
-        candidate_top_k=(3, 5, 10, 15)
+        candidate_top_k=(3, 5, 10, 15),
+        cost_weight: float = 0.10
     ):
 
         self.retrievers = retrievers
 
         self.candidate_top_k = (
             candidate_top_k
+        )
+
+        self.cost_weight = (
+            cost_weight
         )
 
     def evaluate_query(
@@ -72,6 +77,25 @@ class TopKActionEvaluator:
                     )
                 )
 
+                cost_ratio = (
+                    top_k / original_top_k
+                )
+
+                cost_penalty = (
+                    self.cost_weight
+                    *
+                    max(
+                        0.0,
+                        cost_ratio - 1.0
+                    )
+                )
+
+                utility = (
+                    ndcg
+                    -
+                    cost_penalty
+                )
+
                 results.append({
                     "query":
                         query,
@@ -83,9 +107,7 @@ class TopKActionEvaluator:
                         top_k,
 
                     "action":
-                        (
-                            f"set_top_k_{top_k}"
-                        ),
+                        f"set_top_k_{top_k}",
 
                     "recall_at_k":
                         recall,
@@ -93,8 +115,14 @@ class TopKActionEvaluator:
                     "ndcg_at_k":
                         ndcg,
 
+                    "cost_ratio":
+                        cost_ratio,
+
+                    "cost_penalty":
+                        cost_penalty,
+
                     "utility":
-                        ndcg
+                        utility
                 })
 
         finally:
