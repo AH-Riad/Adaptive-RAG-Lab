@@ -273,7 +273,7 @@ def main():
     path = runner.save(
         results,
         filename=(
-            "fiqa_full_test_results.json"
+            "fiqa_d2rag_v2_results.json"
         )
     )
 

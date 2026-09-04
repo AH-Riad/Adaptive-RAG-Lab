@@ -82,15 +82,12 @@ class ActionPolicyBuilder:
     ):
 
         if confidence < 0.25:
-
             return "very_low"
 
         if confidence < 0.50:
-
             return "low"
 
         if confidence < 0.75:
-
             return "medium"
 
         return "high"
@@ -239,13 +236,13 @@ class ActionPolicyBuilder:
                 .value
             )
 
-            current_top_k = 5
-
             current_retriever = (
                 retrievers[
                     current_strategy
                 ]
             )
+
+            current_top_k = 5
 
             (
                 _,
@@ -277,20 +274,22 @@ class ActionPolicyBuilder:
             current_strategy_utility = max(
                 item["utility"]
                 for item in strategy_evaluations
-                if item["candidate_strategy"]
+                if item[
+                    "candidate_strategy"
+                ]
                 == current_strategy
+            )
+
+            strategy_state = (
+                query_type,
+                current_strategy,
+                confidence_bucket,
+                current_top_k
             )
 
             for evaluation in (
                 strategy_evaluations
             ):
-
-                state = (
-                    query_type,
-                    current_strategy,
-                    confidence_bucket,
-                    current_top_k
-                )
 
                 enriched = dict(
                     evaluation
@@ -305,7 +304,7 @@ class ActionPolicyBuilder:
                 ] = current_strategy_utility
 
                 strategy_groups[
-                    state
+                    strategy_state
                 ].append(
                     enriched
                 )
@@ -326,7 +325,9 @@ class ActionPolicyBuilder:
                 self.minimum_gain
             ):
 
-                strategy_action = "keep"
+                strategy_action = (
+                    "keep"
+                )
 
             else:
 
@@ -335,6 +336,7 @@ class ActionPolicyBuilder:
                 )
 
             strategy_records.append({
+
                 "query_id":
                     query_id,
 
@@ -354,7 +356,9 @@ class ActionPolicyBuilder:
                     confidence_bucket,
 
                 "best_action":
-                    best_strategy["action"],
+                    best_strategy[
+                        "action"
+                    ],
 
                 "selected_action":
                     strategy_action,
@@ -379,18 +383,6 @@ class ActionPolicyBuilder:
                     top_k=state_top_k
                 )
 
-                topk_evaluations = (
-                    topk_evaluator.evaluate_query(
-                        query=query,
-                        relevant_scores=(
-                            relevant_scores
-                        ),
-                        current_strategy=(
-                            current_strategy
-                        )
-                    )
-                )
-
                 state = (
                     query_type,
                     current_strategy,
@@ -398,14 +390,34 @@ class ActionPolicyBuilder:
                     state_top_k
                 )
 
+                topk_evaluations = (
+                    topk_evaluator
+                    .evaluate_query(
+                        query=query,
+                        relevant_scores=(
+                            relevant_scores
+                        ),
+                        current_strategy=(
+                            current_strategy
+                        ),
+                        current_top_k=(
+                            state_top_k
+                        )
+                    )
+                )
+
                 current_item = next(
                     item
-                    for item
-                    in topk_evaluations
-                    if item[
-                        "top_k"
-                    ]
-                    == state_top_k
+                    for item in (
+                        topk_evaluations
+                    )
+                    if (
+                        item["top_k"]
+                        == state_top_k
+                        and
+                        item["action"]
+                        == "keep"
+                    )
                 )
 
                 current_utility = (
@@ -430,6 +442,10 @@ class ActionPolicyBuilder:
                         "current_utility"
                     ] = current_utility
 
+                    enriched[
+                        "current_top_k"
+                    ] = state_top_k
+
                     topk_groups[
                         state
                     ].append(
@@ -448,22 +464,28 @@ class ActionPolicyBuilder:
                     current_utility
                 )
 
-                if topk_gain < (
-                    self.minimum_gain
+                if (
+                    best_topk["action"]
+                    != "keep"
+                    and
+                    topk_gain
+                    >= self.minimum_gain
                 ):
 
                     topk_action = (
-                        f"set_top_k_"
-                        f"{state_top_k}"
+                        best_topk[
+                            "action"
+                        ]
                     )
 
                 else:
 
                     topk_action = (
-                        best_topk["action"]
+                        "keep"
                     )
 
                 topk_records.append({
+
                     "query_id":
                         query_id,
 
@@ -496,7 +518,12 @@ class ActionPolicyBuilder:
                         ],
 
                     "utility_gain":
-                        topk_gain
+                        topk_gain,
+
+                    "incremental_recall":
+                        best_topk[
+                            "incremental_recall"
+                        ]
                 })
 
         strategy_policy = (
@@ -512,6 +539,7 @@ class ActionPolicyBuilder:
         )
 
         artifact = {
+
             "dataset":
                 "fiqa",
 
@@ -519,14 +547,18 @@ class ActionPolicyBuilder:
                 "dev",
 
             "version":
-                "v4",
+                "v5",
 
             "objective": {
+
                 "strategy_utility":
                     "nDCG@5",
 
                 "topk_utility":
-                    "nDCG@K - cost penalty",
+                    (
+                        "incremental Recall@K "
+                        "- cost penalty"
+                    ),
 
                 "cost_weight":
                     self.cost_weight,
@@ -536,11 +568,23 @@ class ActionPolicyBuilder:
             },
 
             "state_definition": [
+
                 "query_type",
                 "current_strategy",
                 "confidence_bucket",
                 "current_top_k"
             ],
+
+            "topk_candidate_rule":
+                (
+                    "keep or expand to a "
+                    "larger supported K"
+                ),
+
+            "supported_top_k":
+                list(
+                    self.SUPPORTED_TOP_K
+                ),
 
             "strategy_policy":
                 strategy_policy,
@@ -584,8 +628,8 @@ class ActionPolicyBuilder:
             groups.items()
         ):
 
-            action_groups = defaultdict(
-                list
+            action_groups = (
+                defaultdict(list)
             )
 
             for row in rows:
@@ -603,6 +647,7 @@ class ActionPolicyBuilder:
             ):
 
                 candidates[action] = {
+
                     "count":
                         len(values),
 
@@ -625,6 +670,7 @@ class ActionPolicyBuilder:
             policy[
                 str(state)
             ] = {
+
                 "selected_action":
                     selected_action,
 
