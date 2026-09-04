@@ -11,23 +11,18 @@ class TopKActionEvaluator:
     ):
 
         self.retrievers = retrievers
-
-        self.candidate_top_k = (
-            candidate_top_k
+        self.candidate_top_k = tuple(
+            sorted(candidate_top_k)
         )
-
-        self.cost_weight = (
-            cost_weight
-        )
+        self.cost_weight = cost_weight
 
     def evaluate_query(
         self,
         query,
         relevant_scores,
-        current_strategy
+        current_strategy,
+        current_top_k=5
     ):
-
-        results = []
 
         retriever = self.retrievers[
             current_strategy
@@ -43,22 +38,98 @@ class TopKActionEvaluator:
             relevant_scores.keys()
         )
 
+        candidate_top_k = [
+            top_k
+            for top_k in self.candidate_top_k
+            if top_k > current_top_k
+        ]
+
+        results = []
+
         try:
 
-            for top_k in (
-                self.candidate_top_k
-            ):
+            retriever.top_k = current_top_k
+
+            current_result = (
+                retriever.retrieve(
+                    query
+                )
+            )
+
+            current_ids = [
+                chunk.chunk_id
+                for chunk in (
+                    current_result.retrieved_chunks
+                )
+            ]
+
+            current_recall = (
+                RetrievalMetrics.recall_at_k(
+                    current_ids,
+                    relevant_ids,
+                    current_top_k
+                )
+            )
+
+            current_ndcg = (
+                RetrievalMetrics.ndcg_at_k(
+                    current_ids,
+                    relevant_scores,
+                    current_top_k
+                )
+            )
+
+            results.append({
+
+                "query":
+                    query,
+
+                "strategy":
+                    current_strategy,
+
+                "top_k":
+                    current_top_k,
+
+                "action":
+                    "keep",
+
+                "recall_at_k":
+                    current_recall,
+
+                "ndcg_at_k":
+                    current_ndcg,
+
+                "incremental_recall":
+                    0.0,
+
+                "additional_retrieval":
+                    0,
+
+                "cost_ratio":
+                    1.0,
+
+                "cost_penalty":
+                    0.0,
+
+                "utility":
+                    0.0
+            })
+
+            for top_k in candidate_top_k:
 
                 retriever.top_k = top_k
 
-                result = retriever.retrieve(
-                    query
+                result = (
+                    retriever.retrieve(
+                        query
+                    )
                 )
 
                 retrieved_ids = [
                     chunk.chunk_id
-                    for chunk
-                    in result.retrieved_chunks
+                    for chunk in (
+                        result.retrieved_chunks
+                    )
                 ]
 
                 recall = (
@@ -77,8 +148,13 @@ class TopKActionEvaluator:
                     )
                 )
 
+                incremental_recall = max(
+                    0.0,
+                    recall - current_recall
+                )
+
                 cost_ratio = (
-                    top_k / original_top_k
+                    top_k / current_top_k
                 )
 
                 cost_penalty = (
@@ -91,12 +167,13 @@ class TopKActionEvaluator:
                 )
 
                 utility = (
-                    ndcg
+                    incremental_recall
                     -
                     cost_penalty
                 )
 
                 results.append({
+
                     "query":
                         query,
 
@@ -115,6 +192,12 @@ class TopKActionEvaluator:
                     "ndcg_at_k":
                         ndcg,
 
+                    "incremental_recall":
+                        incremental_recall,
+
+                    "additional_retrieval":
+                        top_k - current_top_k,
+
                     "cost_ratio":
                         cost_ratio,
 
@@ -127,6 +210,8 @@ class TopKActionEvaluator:
 
         finally:
 
-            retriever.top_k = original_top_k
+            retriever.top_k = (
+                original_top_k
+            )
 
         return results
