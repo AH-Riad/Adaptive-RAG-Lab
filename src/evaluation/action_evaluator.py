@@ -13,7 +13,6 @@ class ActionEvaluator:
         self,
         retrievers
     ):
-
         self.retrievers = retrievers
 
     def evaluate_strategy_actions(
@@ -26,6 +25,10 @@ class ActionEvaluator:
     ):
 
         results = []
+
+        relevant_ids = list(
+            relevant_scores.keys()
+        )
 
         for strategy in self.STRATEGIES:
 
@@ -40,7 +43,6 @@ class ActionEvaluator:
             )
 
             try:
-
                 retriever.top_k = top_k
 
                 result = retriever.retrieve(
@@ -48,33 +50,27 @@ class ActionEvaluator:
                 )
 
             finally:
-
-                retriever.top_k = original_top_k
+                retriever.top_k = (
+                    original_top_k
+                )
 
             retrieved_ids = [
                 chunk.chunk_id
-                for chunk
-                in result.retrieved_chunks
+                for chunk in result.retrieved_chunks
             ]
 
             recall = (
                 RetrievalMetrics.recall_at_k(
                     retrieved_ids,
-                    list(
-                        relevant_scores.keys()
-                    ),
+                    relevant_ids,
                     top_k
                 )
             )
 
-            mrr = (
-                self._mrr_at_k(
-                    retrieved_ids,
-                    list(
-                        relevant_scores.keys()
-                    ),
-                    top_k
-                )
+            mrr = self._mrr_at_k(
+                retrieved_ids,
+                relevant_ids,
+                top_k
             )
 
             ndcg = (
@@ -96,36 +92,36 @@ class ActionEvaluator:
                 )
 
             results.append({
-                "query":
-                    query,
-
-                "query_type":
-                    query_type,
-
-                "current_strategy":
-                    current_strategy,
-
-                "candidate_strategy":
-                    strategy,
-
-                "action":
-                    action,
-
-                "top_k":
-                    top_k,
-
-                "recall":
-                    recall,
-
-                "mrr":
-                    mrr,
-
-                "ndcg":
-                    ndcg,
-
-                "utility":
-                    ndcg
+                "query": query,
+                "query_type": query_type,
+                "current_strategy": current_strategy,
+                "candidate_strategy": strategy,
+                "action": action,
+                "top_k": top_k,
+                "recall": recall,
+                "mrr": mrr,
+                "ndcg": ndcg,
+                "utility": ndcg
             })
+
+        current_utility = next(
+            item["utility"]
+            for item in results
+            if item["candidate_strategy"]
+            == current_strategy
+        )
+
+        for item in results:
+
+            item["current_utility"] = (
+                current_utility
+            )
+
+            item["utility_gain"] = (
+                item["utility"]
+                -
+                current_utility
+            )
 
         return results
 
