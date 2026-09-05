@@ -6,15 +6,24 @@ class TopKActionEvaluator:
     def __init__(
         self,
         retrievers,
-        candidate_top_k=(3, 5, 10, 15),
+        candidate_top_k=(
+            3,
+            5,
+            10,
+            15
+        ),
         cost_weight: float = 0.10
     ):
 
         self.retrievers = retrievers
+
         self.candidate_top_k = tuple(
             sorted(candidate_top_k)
         )
-        self.cost_weight = cost_weight
+
+        self.cost_weight = (
+            cost_weight
+        )
 
     def evaluate_query(
         self,
@@ -48,7 +57,9 @@ class TopKActionEvaluator:
 
         try:
 
-            retriever.top_k = current_top_k
+            retriever.top_k = (
+                current_top_k
+            )
 
             current_result = (
                 retriever.retrieve(
@@ -79,40 +90,25 @@ class TopKActionEvaluator:
                 )
             )
 
+            current_utility = (
+                current_ndcg
+            )
+
             results.append({
-
-                "query":
-                    query,
-
-                "strategy":
-                    current_strategy,
-
-                "top_k":
-                    current_top_k,
-
-                "action":
-                    "keep",
-
-                "recall_at_k":
-                    current_recall,
-
-                "ndcg_at_k":
-                    current_ndcg,
-
-                "incremental_recall":
-                    0.0,
-
-                "additional_retrieval":
-                    0,
-
-                "cost_ratio":
-                    1.0,
-
-                "cost_penalty":
-                    0.0,
-
-                "utility":
-                    0.0
+                "query": query,
+                "strategy": current_strategy,
+                "current_top_k": current_top_k,
+                "top_k": current_top_k,
+                "action": "keep",
+                "recall_at_k": current_recall,
+                "ndcg_at_k": current_ndcg,
+                "incremental_recall": 0.0,
+                "additional_retrieval": 0,
+                "cost_ratio": 1.0,
+                "cost_penalty": 0.0,
+                "utility": current_utility,
+                "current_utility": current_utility,
+                "utility_gain": 0.0
             })
 
             for top_k in candidate_top_k:
@@ -154,7 +150,9 @@ class TopKActionEvaluator:
                 )
 
                 cost_ratio = (
-                    top_k / current_top_k
+                    top_k
+                    /
+                    current_top_k
                 )
 
                 cost_penalty = (
@@ -167,45 +165,44 @@ class TopKActionEvaluator:
                 )
 
                 utility = (
-                    incremental_recall
+                    ndcg
                     -
                     cost_penalty
                 )
 
+                utility_gain = (
+                    utility
+                    -
+                    current_utility
+                )
+
                 results.append({
-
-                    "query":
-                        query,
-
-                    "strategy":
-                        current_strategy,
-
-                    "top_k":
-                        top_k,
-
-                    "action":
-                        f"set_top_k_{top_k}",
-
-                    "recall_at_k":
-                        recall,
-
-                    "ndcg_at_k":
-                        ndcg,
-
-                    "incremental_recall":
-                        incremental_recall,
-
-                    "additional_retrieval":
-                        top_k - current_top_k,
-
-                    "cost_ratio":
-                        cost_ratio,
-
-                    "cost_penalty":
-                        cost_penalty,
-
-                    "utility":
-                        utility
+                    "query": query,
+                    "strategy": current_strategy,
+                    "current_top_k": current_top_k,
+                    "top_k": top_k,
+                    "action": (
+                        f"set_top_k_{top_k}"
+                    ),
+                    "recall_at_k": recall,
+                    "ndcg_at_k": ndcg,
+                    "incremental_recall": (
+                        incremental_recall
+                    ),
+                    "additional_retrieval": (
+                        top_k - current_top_k
+                    ),
+                    "cost_ratio": cost_ratio,
+                    "cost_penalty": (
+                        cost_penalty
+                    ),
+                    "utility": utility,
+                    "current_utility": (
+                        current_utility
+                    ),
+                    "utility_gain": (
+                        utility_gain
+                    )
                 })
 
         finally:
