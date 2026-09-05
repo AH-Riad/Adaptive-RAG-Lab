@@ -48,7 +48,8 @@ class ActionPolicyBuilder:
         self,
         output_path,
         cost_weight: float = 0.10,
-        minimum_gain: float = 0.03
+        minimum_gain: float = 0.03,
+        minimum_query_support: int = 10
     ):
 
         self.output_path = Path(
@@ -61,6 +62,10 @@ class ActionPolicyBuilder:
 
         self.minimum_gain = (
             minimum_gain
+        )
+
+        self.minimum_query_support = (
+            minimum_query_support
         )
 
         self.feature_extractor = (
@@ -296,6 +301,10 @@ class ActionPolicyBuilder:
                 )
 
                 enriched[
+                    "query_id"
+                ] = query_id
+
+                enriched[
                     "confidence_bucket"
                 ] = confidence_bucket
 
@@ -321,8 +330,12 @@ class ActionPolicyBuilder:
                 current_strategy_utility
             )
 
-            if strategy_gain < (
-                self.minimum_gain
+            if (
+                best_strategy["candidate_strategy"]
+                == current_strategy
+                or
+                strategy_gain
+                < self.minimum_gain
             ):
 
                 strategy_action = (
@@ -433,6 +446,10 @@ class ActionPolicyBuilder:
                     enriched = dict(
                         evaluation
                     )
+
+                    enriched[
+                        "query_id"
+                    ] = query_id
 
                     enriched[
                         "confidence_bucket"
@@ -547,7 +564,7 @@ class ActionPolicyBuilder:
                 "dev",
 
             "version":
-                "v5",
+                "v5.1",
 
             "objective": {
 
@@ -564,7 +581,10 @@ class ActionPolicyBuilder:
                     self.cost_weight,
 
                 "minimum_gain":
-                    self.minimum_gain
+                    self.minimum_gain,
+
+                "minimum_query_support":
+                    self.minimum_query_support
             },
 
             "state_definition": [
@@ -617,8 +637,8 @@ class ActionPolicyBuilder:
 
         return artifact
 
-    @staticmethod
     def _aggregate(
+        self,
         groups
     ):
 
@@ -632,6 +652,8 @@ class ActionPolicyBuilder:
                 defaultdict(list)
             )
 
+            query_ids = set()
+
             for row in rows:
 
                 action_groups[
@@ -639,6 +661,15 @@ class ActionPolicyBuilder:
                 ].append(
                     row["utility"]
                 )
+
+                if "query_id" in row:
+                    query_ids.add(
+                        str(
+                            row[
+                                "query_id"
+                            ]
+                        )
+                    )
 
             candidates = {}
 
@@ -659,13 +690,65 @@ class ActionPolicyBuilder:
                         )
                 }
 
-            selected_action = max(
-                candidates,
-                key=lambda action:
-                    candidates[action][
-                        "average_utility"
-                    ]
+            query_count = len(
+                query_ids
             )
+
+            keep_utility = candidates.get(
+                "keep",
+                {
+                    "average_utility": 0.0
+                }
+            )[
+                "average_utility"
+            ]
+
+            eligible_actions = []
+
+            for action, data in (
+                candidates.items()
+            ):
+
+                if action == "keep":
+                    continue
+
+                gain = (
+                    data["average_utility"]
+                    -
+                    keep_utility
+                )
+
+                if (
+                    gain
+                    >= self.minimum_gain
+                    and
+                    query_count
+                    >= self.minimum_query_support
+                ):
+
+                    eligible_actions.append(
+                        (
+                            action,
+                            data[
+                                "average_utility"
+                            ],
+                            gain
+                        )
+                    )
+
+            if eligible_actions:
+
+                selected_action = max(
+                    eligible_actions,
+                    key=lambda item:
+                        item[1]
+                )[0]
+
+            else:
+
+                selected_action = (
+                    "keep"
+                )
 
             policy[
                 str(state)
@@ -677,8 +760,17 @@ class ActionPolicyBuilder:
                 "candidates":
                     candidates,
 
+                "query_count":
+                    query_count,
+
                 "samples":
-                    len(rows)
+                    len(rows),
+
+                "minimum_gain":
+                    self.minimum_gain,
+
+                "minimum_query_support":
+                    self.minimum_query_support
             }
 
         return policy
