@@ -403,19 +403,13 @@ class ActionPolicyBuilder:
                     state_top_k
                 )
 
+                # --- FIX 1: Pass current_top_k=state_top_k ---
                 topk_evaluations = (
-                    topk_evaluator
-                    .evaluate_query(
+                    topk_evaluator.evaluate_query(
                         query=query,
-                        relevant_scores=(
-                            relevant_scores
-                        ),
-                        current_strategy=(
-                            current_strategy
-                        ),
-                        current_top_k=(
-                            state_top_k
-                        )
+                        relevant_scores=relevant_scores,
+                        current_strategy=current_strategy,
+                        current_top_k=state_top_k
                     )
                 )
 
@@ -469,33 +463,28 @@ class ActionPolicyBuilder:
                         enriched
                     )
 
+                # --- FIX 2 & 3: Keep means keep current K, expand only if target K > current K and gain >= min_gain ---
                 best_topk = max(
                     topk_evaluations,
-                    key=lambda item:
-                        item["utility"]
+                    key=lambda item: item["utility"]
                 )
-
+                
                 topk_gain = (
                     best_topk["utility"]
                     -
                     current_utility
                 )
-
-                # --- GUIDE'S CORRECTED LOGIC APPLIED HERE ---
+                
                 if (
                     topk_gain < self.minimum_gain
                     or
-                    best_topk["top_k"] == state_top_k
+                    best_topk["top_k"] <= state_top_k
                 ):
-
                     topk_action = "keep"
-
                 else:
-
                     topk_action = (
                         best_topk["action"]
                     )
-                # --------------------------------------------
 
                 topk_records.append({
 
@@ -534,7 +523,7 @@ class ActionPolicyBuilder:
                         topk_gain,
 
                     "incremental_recall":
-                        best_topk.get("incremental_recall", 0.0) # Used .get() for safety
+                        best_topk.get("incremental_recall", 0.0)
                 })
 
         strategy_policy = (
