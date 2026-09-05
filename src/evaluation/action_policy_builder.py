@@ -481,25 +481,21 @@ class ActionPolicyBuilder:
                     current_utility
                 )
 
+                # --- GUIDE'S CORRECTED LOGIC APPLIED HERE ---
                 if (
-                    best_topk["action"]
-                    != "keep"
-                    and
-                    topk_gain
-                    >= self.minimum_gain
+                    topk_gain < self.minimum_gain
+                    or
+                    best_topk["top_k"] == state_top_k
                 ):
 
-                    topk_action = (
-                        best_topk[
-                            "action"
-                        ]
-                    )
+                    topk_action = "keep"
 
                 else:
 
                     topk_action = (
-                        "keep"
+                        best_topk["action"]
                     )
+                # --------------------------------------------
 
                 topk_records.append({
 
@@ -538,9 +534,7 @@ class ActionPolicyBuilder:
                         topk_gain,
 
                     "incremental_recall":
-                        best_topk[
-                            "incremental_recall"
-                        ]
+                        best_topk.get("incremental_recall", 0.0) # Used .get() for safety
                 })
 
         strategy_policy = (
