@@ -54,11 +54,12 @@ from src.evaluation.metrics import (
     RetrievalMetrics
 )
 
+
 def main():
 
-    print("=" * 60)
+    print("=" * 70)
     print("D²RAG FIQA SMOKE TEST")
-    print("=" * 60)
+    print("=" * 70)
 
     dataset = BEIRDataset(
         name="fiqa"
@@ -143,11 +144,9 @@ def main():
         hybrid_retriever=hybrid
     )
 
-    orchestrator = (
-        AdaptiveRetrievalOrchestrator(
-            adaptive_retriever=adaptive_retriever,
-            max_retries=2
-        )
+    orchestrator = AdaptiveRetrievalOrchestrator(
+        adaptive_retriever=adaptive_retriever,
+        max_retries=2
     )
 
     engine = D2RAGEngine(
@@ -159,12 +158,24 @@ def main():
         queries.items()
     )[:50]
 
-    total_recall = 0.0
-    total_mrr = 0.0
-    total_ndcg = 0.0
+    total_recall_at_5 = 0.0
+    total_mrr_at_5 = 0.0
+    total_ndcg_at_5 = 0.0
+
+    total_recall_at_final_k = 0.0
+    total_ndcg_at_final_k = 0.0
+
     accepted = 0
     total_attempts = 0
+
     strategy_changes = 0
+    top_k_changes = 0
+
+    successful_adaptations = 0
+    confidence_improvements = []
+
+    action_counts = {}
+    diagnosis_counts = {}
 
     for number, (
         query_id,
@@ -181,6 +192,8 @@ def main():
         context = engine.run(
             context
         )
+
+        report = context.decision_report
 
         retrieved_ids = [
             chunk.chunk_id
@@ -200,7 +213,121 @@ def main():
             {}
         )
 
-        recall = (
+        initial_strategy = report.get(
+            "initial_strategy"
+        )
+
+        final_strategy = report.get(
+            "final_strategy"
+        )
+
+        initial_top_k = report.get(
+            "initial_top_k",
+            5
+        )
+
+        final_top_k = report.get(
+            "final_top_k",
+            initial_top_k
+        )
+
+        attempts = report.get(
+            "retrieval_attempts",
+            1
+        )
+
+        attempt_history = report.get(
+            "attempt_history",
+            []
+        )
+
+        feedback_history = report.get(
+            "feedback_history",
+            []
+        )
+
+        strategy_transitions = report.get(
+            "strategy_transitions",
+            []
+        )
+
+        query_strategy_changed = (
+            initial_strategy != final_strategy
+        )
+
+        query_top_k_changed = (
+            initial_top_k != final_top_k
+        )
+
+        strategy_changes += int(
+            query_strategy_changed
+        )
+
+        top_k_changes += int(
+            query_top_k_changed
+        )
+
+        if query_top_k_changed or query_strategy_changed:
+            successful_adaptations += int(
+                attempts > 1
+            )
+
+        initial_confidence = None
+        final_confidence = report.get(
+            "final_evidence_confidence"
+        )
+
+        if attempt_history:
+            initial_confidence = (
+                attempt_history[0].get(
+                    "evidence_confidence"
+                )
+            )
+
+        if (
+            initial_confidence is not None
+            and final_confidence is not None
+        ):
+            confidence_delta = (
+                final_confidence
+                - initial_confidence
+            )
+
+            confidence_improvements.append(
+                confidence_delta
+            )
+        else:
+            confidence_delta = None
+
+        for feedback in feedback_history:
+
+            action = feedback.get(
+                "action"
+            )
+
+            diagnosis = feedback.get(
+                "diagnosis"
+            )
+
+            if action:
+                action_counts[action] = (
+                    action_counts.get(
+                        action,
+                        0
+                    )
+                    + 1
+                )
+
+            if diagnosis:
+                diagnosis_counts[diagnosis] = (
+                    diagnosis_counts.get(
+                        diagnosis,
+                        0
+                    )
+                    + 1
+                )
+
+        recall_at_5 = (
             RetrievalMetrics.recall_at_k(
                 retrieved_ids,
                 relevant_ids,
@@ -208,7 +335,7 @@ def main():
             )
         )
 
-        mrr = (
+        mrr_at_5 = (
             RetrievalMetrics.reciprocal_rank_at_k(
                 retrieved_ids,
                 relevant_ids,
@@ -216,7 +343,7 @@ def main():
             )
         )
 
-        ndcg = (
+        ndcg_at_5 = (
             RetrievalMetrics.ndcg_at_k(
                 retrieved_ids,
                 relevance_scores,
@@ -224,88 +351,253 @@ def main():
             )
         )
 
-        report = context.decision_report
-
-        changes = len(
-            report.get(
-                "strategy_transitions",
-                []
+        evaluation_k = max(
+            1,
+            min(
+                final_top_k,
+                len(retrieved_ids)
             )
         )
 
-        total_recall += recall
-        total_mrr += mrr
-        total_ndcg += ndcg
-
-        total_attempts += (
-            report[
-                "retrieval_attempts"
-            ]
+        recall_at_final_k = (
+            RetrievalMetrics.recall_at_k(
+                retrieved_ids,
+                relevant_ids,
+                evaluation_k
+            )
         )
 
-        strategy_changes += changes
+        ndcg_at_final_k = (
+            RetrievalMetrics.ndcg_at_k(
+                retrieved_ids,
+                relevance_scores,
+                evaluation_k
+            )
+        )
 
-        if report[
+        total_recall_at_5 += recall_at_5
+        total_mrr_at_5 += mrr_at_5
+        total_ndcg_at_5 += ndcg_at_5
+
+        total_recall_at_final_k += (
+            recall_at_final_k
+        )
+
+        total_ndcg_at_final_k += (
+            ndcg_at_final_k
+        )
+
+        total_attempts += attempts
+
+        if report.get(
             "adaptive_retrieval_status"
-        ] == "accepted":
+        ) == "accepted":
 
             accepted += 1
 
+        print()
         print(
-            f"\n[{number}/50] "
+            f"[{number}/50] "
             f"Query ID: {query_id}"
         )
 
         print(
             "Type:",
-            context.query_analysis[
-                "query_type"
-            ]
+            context.query_analysis.get(
+                "query_type",
+                "unknown"
+            )
         )
 
         print(
-            "Initial:",
-            report[
-                "initial_strategy"
-            ]
+            "Initial Strategy:",
+            initial_strategy
         )
 
         print(
-            "Final:",
-            report[
-                "final_strategy"
-            ]
+            "Final Strategy:",
+            final_strategy
+        )
+
+        print(
+            "Initial Top-K:",
+            initial_top_k
+        )
+
+        print(
+            "Final Top-K:",
+            final_top_k
         )
 
         print(
             "Recall@5:",
-            round(recall, 4)
+            round(
+                recall_at_5,
+                4
+            )
         )
 
         print(
-            "MRR:",
-            round(mrr, 4)
+            "MRR@5:",
+            round(
+                mrr_at_5,
+                4
+            )
         )
 
         print(
             "nDCG@5:",
-            round(ndcg, 4)
+            round(
+                ndcg_at_5,
+                4
+            )
         )
 
         print(
+            f"Recall@FinalK "
+            f"(K={evaluation_k}):",
+            round(
+                recall_at_final_k,
+                4
+            )
+        )
+
+        print(
+            f"nDCG@FinalK "
+            f"(K={evaluation_k}):",
+            round(
+                ndcg_at_final_k,
+                4
+            )
+        )
+
+        if confidence_delta is not None:
+            print(
+                "Confidence Delta:",
+                round(
+                    confidence_delta,
+                    4
+                )
+            )
+
+        if feedback_history:
+
+            print(
+                "Feedback Actions:"
+            )
+
+            for feedback in feedback_history:
+
+                print(
+                    "  -",
+                    feedback.get(
+                        "action"
+                    ),
+                    "| diagnosis:",
+                    feedback.get(
+                        "diagnosis"
+                    ),
+                    "| expected improvement:",
+                    round(
+                        feedback.get(
+                            "expected_improvement",
+                            0.0
+                        ),
+                        4
+                    )
+                )
+
+        else:
+
+            print(
+                "Feedback Actions: none"
+            )
+
+        if strategy_transitions:
+
+            print(
+                "Strategy Transitions:"
+            )
+
+            for transition in (
+                strategy_transitions
+            ):
+
+                print(
+                    "  -",
+                    transition.get(
+                        "old_strategy"
+                    ),
+                    "->",
+                    transition.get(
+                        "new_strategy"
+                    )
+                )
+
+        if attempt_history:
+
+            print(
+                "Attempt Trajectory:"
+            )
+
+            for attempt in (
+                attempt_history
+            ):
+
+                print(
+                    "  - Attempt",
+                    attempt.get(
+                        "attempt_number"
+                    ),
+                    ":",
+                    attempt.get(
+                        "strategy"
+                    ),
+                    f"K={attempt.get('top_k')}",
+                    "| confidence=",
+                    round(
+                        attempt.get(
+                            "evidence_confidence",
+                            0.0
+                        ),
+                        4
+                    ),
+                    "| accepted=",
+                    attempt.get(
+                        "evidence_accepted"
+                    )
+                )
+
+        print(
             "Attempts:",
-            report[
-                "retrieval_attempts"
-            ]
+            attempts
         )
 
     count = len(
         query_items
     )
 
-    print("\n" + "=" * 60)
+    average_confidence_delta = 0.0
+
+    if confidence_improvements:
+
+        average_confidence_delta = (
+            sum(
+                confidence_improvements
+            )
+            / len(
+                confidence_improvements
+            )
+        )
+
+    adaptation_rate = (
+        successful_adaptations / count
+    )
+
+    print()
+    print("=" * 70)
     print("FIQA SMOKE SUMMARY")
-    print("=" * 60)
+    print("=" * 70)
 
     print(
         "Queries:",
@@ -315,15 +607,15 @@ def main():
     print(
         "Average Recall@5:",
         round(
-            total_recall / count,
+            total_recall_at_5 / count,
             4
         )
     )
 
     print(
-        "Average MRR:",
+        "Average MRR@5:",
         round(
-            total_mrr / count,
+            total_mrr_at_5 / count,
             4
         )
     )
@@ -331,7 +623,23 @@ def main():
     print(
         "Average nDCG@5:",
         round(
-            total_ndcg / count,
+            total_ndcg_at_5 / count,
+            4
+        )
+    )
+
+    print(
+        "Average Recall@FinalK:",
+        round(
+            total_recall_at_final_k / count,
+            4
+        )
+    )
+
+    print(
+        "Average nDCG@FinalK:",
+        round(
+            total_ndcg_at_final_k / count,
             4
         )
     )
@@ -356,11 +664,77 @@ def main():
         strategy_changes
     )
 
-    print("\n" + "=" * 60)
+    print(
+        "Top-K Changes:",
+        top_k_changes
+    )
+
+    print(
+        "Adaptation Rate:",
+        round(
+            adaptation_rate,
+            4
+        )
+    )
+
+    print(
+        "Average Confidence Delta:",
+        round(
+            average_confidence_delta,
+            4
+        )
+    )
+
+    print()
+    print(
+        "Feedback Action Counts:"
+    )
+
+    if action_counts:
+
+        for action, count_value in sorted(
+            action_counts.items()
+        ):
+
+            print(
+                f"  {action}:",
+                count_value
+            )
+
+    else:
+
+        print(
+            "  none"
+        )
+
+    print()
+    print(
+        "Diagnosis Counts:"
+    )
+
+    if diagnosis_counts:
+
+        for diagnosis, count_value in sorted(
+            diagnosis_counts.items()
+        ):
+
+            print(
+                f"  {diagnosis}:",
+                count_value
+            )
+
+    else:
+
+        print(
+            "  none"
+        )
+
+    print()
+    print("=" * 70)
     print(
         "D²RAG FIQA SMOKE TEST PASSED"
     )
-    print("=" * 60)
+    print("=" * 70)
 
 
 if __name__ == "__main__":
