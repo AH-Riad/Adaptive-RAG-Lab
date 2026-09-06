@@ -3,12 +3,8 @@ from pathlib import Path
 
 from src.core.component import Component
 from src.assessment.evidence_result import EvidenceResult
-from src.assessment.evidence_features import (
-    EvidenceFeatureExtractor
-)
-from src.evaluation.evidence_calibrator import (
-    EvidenceCalibrator
-)
+from src.assessment.evidence_features import EvidenceFeatureExtractor
+from src.evaluation.evidence_calibrator import EvidenceCalibrator
 
 
 class EvidenceAssessor(Component):
@@ -24,6 +20,16 @@ class EvidenceAssessor(Component):
             relevance_threshold
         )
 
+        # This is the OPERATIONAL threshold used by D²RAG.
+        #
+        # Important:
+        # We intentionally DO NOT replace this value
+        # with the calibrator's learned threshold.
+        #
+        # The calibrator still predicts a calibrated probability,
+        # but D²RAG uses this stricter threshold to decide
+        # whether the retrieved evidence is trustworthy enough
+        # to stop the retrieval loop.
         self.acceptance_threshold = (
             acceptance_threshold
         )
@@ -33,6 +39,10 @@ class EvidenceAssessor(Component):
         )
 
         self.calibrator = None
+
+        # Keep the learned calibration threshold separately
+        # for inspection / experiment reporting.
+        self.calibrated_threshold = None
 
         if (
             calibrated_model_path
@@ -50,7 +60,11 @@ class EvidenceAssessor(Component):
                 calibrated_model_path
             )
 
-            self.acceptance_threshold = (
+            # IMPORTANT:
+            # Do NOT overwrite self.acceptance_threshold.
+            #
+            # The calibrator's threshold is stored separately.
+            self.calibrated_threshold = (
                 self.calibrator.threshold
             )
 
@@ -136,6 +150,8 @@ class EvidenceAssessor(Component):
             retrieval_result.retrieved_chunks
         )
 
+        # CASE 1: NO EVIDENCE
+
         if not chunks:
 
             result = EvidenceResult(
@@ -164,6 +180,8 @@ class EvidenceAssessor(Component):
 
             return context
 
+        # EXTRACT RETRIEVAL SCORES
+
         scores = [
             float(chunk.score)
             for chunk in chunks
@@ -188,11 +206,15 @@ class EvidenceAssessor(Component):
             retrieved_count
         )
 
+        # EXTRACT EVIDENCE FEATURES
+
         features = (
             self.feature_extractor.extract(
                 context
             )
         )
+
+        # CALCULATE CONFIDENCE
 
         if self.calibrator is not None:
 
@@ -203,7 +225,7 @@ class EvidenceAssessor(Component):
             )
 
             decision_mode = (
-                "development_calibrated"
+                "development_calibrated_probability"
             )
 
         else:
@@ -218,21 +240,56 @@ class EvidenceAssessor(Component):
                 "heuristic"
             )
 
+        # QUERY-SPECIFIC MINIMUM EVIDENCE
+
         minimum_evidence = (
             self._minimum_evidence_count(
                 context
             )
         )
 
-        accepted = (
+        # ACCEPTANCE DECISION
+        
+        # D²RAG now requires BOTH:
+        #
+        # 1. calibrated confidence >= operational threshold
+        # 2. enough relevant evidence
+        #
+        # Notice that the calibrator's learned threshold
+        # is NOT used here.
+        #
+        # Example:
+        #
+        # calibrated probability = 0.42
+        # calibrator threshold   = 0.30
+        # operational threshold  = 0.55
+        #
+        # Result:
+        # -> REJECT
+        #
+        # This is intentional because we want the retrieval
+        # controller to have a chance to react to uncertain
+        # evidence rather than accepting it immediately.
+
+        confidence_passed = (
             confidence
             >=
             self.acceptance_threshold
-            and
+        )
+
+        evidence_count_passed = (
             relevant_count
             >=
             minimum_evidence
         )
+
+        accepted = (
+            confidence_passed
+            and
+            evidence_count_passed
+        )
+
+        # REASONS / RECOMMENDATIONS
 
         reasons = []
         recommendations = []
@@ -241,16 +298,49 @@ class EvidenceAssessor(Component):
 
             reasons.append(
                 "Evidence confidence passed "
-                f"the frozen {decision_mode} "
-                "acceptance criterion."
+                f"the operational "
+                f"{decision_mode} acceptance "
+                "criterion."
+            )
+
+            reasons.append(
+                "The retrieved evidence also "
+                "satisfied the minimum evidence "
+                "requirement."
             )
 
         else:
 
             reasons.append(
-                "Evidence confidence did not "
-                "pass the acceptance criterion."
+                "Evidence did not satisfy "
+                "the D²RAG acceptance criterion."
             )
+
+            if not confidence_passed:
+
+                reasons.append(
+                    "Evidence confidence was below "
+                    f"the operational threshold "
+                    f"({self.acceptance_threshold:.2f})."
+                )
+
+                recommendations.append(
+                    "Consider changing retrieval "
+                    "strategy or increasing Top-K."
+                )
+
+            if not evidence_count_passed:
+
+                reasons.append(
+                    "The number of relevant evidence "
+                    "items was below the minimum "
+                    "required for this query type."
+                )
+
+                recommendations.append(
+                    "Retrieve additional evidence "
+                    "appropriate for the query type."
+                )
 
             if coverage < 0.50:
 
@@ -259,21 +349,7 @@ class EvidenceAssessor(Component):
                     "retrieval strategy."
                 )
 
-            if relevant_count < minimum_evidence:
-
-                recommendations.append(
-                    "Retrieve additional evidence "
-                    "appropriate for the query type."
-                )
-
-            if confidence < (
-                self.acceptance_threshold
-            ):
-
-                recommendations.append(
-                    "Consider strategy change "
-                    "or query rewriting."
-                )
+        # BUILD RESULT
 
         result = EvidenceResult(
             accepted=accepted,
