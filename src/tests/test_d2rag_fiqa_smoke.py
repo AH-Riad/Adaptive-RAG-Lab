@@ -1,57 +1,47 @@
 from src.core.adaptive_context import (
     AdaptiveContext
 )
-
 from src.evaluation.beir_loader import (
     BEIRDataset
 )
-
 from src.evaluation.benchmark_corpus import (
     BenchmarkCorpus
 )
-
 from src.evaluation.dense_benchmark_index import (
     DenseBenchmarkIndex
 )
-
 from src.evaluation.bm25s_benchmark_index import (
     BM25SBenchmarkIndex
 )
-
 from src.embeddings.sentence_transformer_embedding import (
     SentenceTransformerEmbedding
 )
-
 from src.retrievers.benchmark_dense_retriever import (
     BenchmarkDenseRetriever
 )
-
 from src.retrievers.benchmark_bm25s_retriever import (
     BenchmarkBM25SRetriever
 )
-
 from src.retrievers.benchmark_hybrid_retriever import (
     BenchmarkHybridRetriever
 )
-
 from src.retrievers.adaptive_retriever import (
     AdaptiveRetriever
 )
-
 from src.analyzer.query_analyzer import (
     QueryAnalyzer
 )
-
 from src.adaptation.adaptive_retrieval_orchestrator import (
     AdaptiveRetrievalOrchestrator
 )
-
 from src.adaptation.d2rag_engine import (
     D2RAGEngine
 )
-
 from src.evaluation.metrics import (
     RetrievalMetrics
+)
+from src.assessment.evidence_features import (
+    EvidenceFeatureExtractor
 )
 
 
@@ -154,6 +144,8 @@ def main():
         adaptive_retrieval_orchestrator=orchestrator
     )
 
+    feature_extractor = EvidenceFeatureExtractor()
+
     query_items = list(
         queries.items()
     )[:50]
@@ -194,6 +186,7 @@ def main():
         )
 
         report = context.decision_report
+        evidence = context.evidence_result
 
         retrieved_ids = [
             chunk.chunk_id
@@ -568,6 +561,37 @@ def main():
                     )
                 )
 
+        # NEW FALSE ACCEPT DIAGNOSTIC BLOCK
+        if evidence and evidence.accepted and recall_at_5 == 0.0:
+            features = feature_extractor.extract(context)
+
+            print("False-Accept Diagnostic:")
+            print("  Confidence:", round(evidence.confidence, 4))
+            print("  Coverage:", round(getattr(evidence, 'coverage', 0.0), 4))
+            print("  Relevant Count:", getattr(evidence, 'relevant_count', 0))
+            print("  Retrieved Count:", getattr(evidence, 'retrieved_count', 0))
+
+            if features:
+                print("  Top1 Score:", round(features.get("top1_score", 0.0), 4))
+                print("  Top3 Mean:", round(features.get("top3_mean", 0.0), 4))
+                print("  Top5 Mean:", round(features.get("top5_mean", 0.0), 4))
+                print("  Score Std:", round(features.get("score_std", 0.0), 4))
+                print(
+                    "  Top1-Top2 Gap:",
+                    round(features.get("top1_top2_gap", 0.0), 4)
+                )
+                print(
+                    "  Top1-Top5 Gap:",
+                    round(features.get("top1_top5_gap", 0.0), 4)
+                )
+                print(
+                    "  Dense-BM25 Agreement:",
+                    round(
+                        features.get("dense_bm25_agreement", 0.0),
+                        4
+                    )
+                )
+
         print(
             "Attempts:",
             attempts
@@ -735,7 +759,6 @@ def main():
         "D²RAG FIQA SMOKE TEST PASSED"
     )
     print("=" * 70)
-
 
 if __name__ == "__main__":
     main()
