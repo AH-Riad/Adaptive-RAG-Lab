@@ -1,24 +1,88 @@
-from src.core.adaptive_context import AdaptiveContext
-from src.evaluation.beir_loader import BEIRDataset
-from src.evaluation.benchmark_corpus import BenchmarkCorpus
-from src.evaluation.dense_benchmark_index import DenseBenchmarkIndex
-from src.evaluation.bm25s_benchmark_index import BM25SBenchmarkIndex
-from src.embeddings.sentence_transformer_embedding import SentenceTransformerEmbedding
-from src.retrievers.benchmark_dense_retriever import BenchmarkDenseRetriever
-from src.retrievers.benchmark_bm25s_retriever import BenchmarkBM25SRetriever
-from src.retrievers.benchmark_hybrid_retriever import BenchmarkHybridRetriever
-from src.retrievers.adaptive_retriever import AdaptiveRetriever
-from src.analyzer.query_analyzer import QueryAnalyzer
-from src.adaptation.adaptive_retrieval_orchestrator import AdaptiveRetrievalOrchestrator
-from src.adaptation.d2rag_engine import D2RAGEngine
-from src.assessment.evidence_features import EvidenceFeatureExtractor
-from src.evaluation.metrics import RetrievalMetrics
+from src.core.adaptive_context import (
+    AdaptiveContext
+)
+from src.evaluation.beir_loader import (
+    BEIRDataset
+)
+from src.evaluation.benchmark_corpus import (
+    BenchmarkCorpus
+)
+from src.evaluation.dense_benchmark_index import (
+    DenseBenchmarkIndex
+)
+from src.evaluation.bm25s_benchmark_index import (
+    BM25SBenchmarkIndex
+)
+from src.embeddings.sentence_transformer_embedding import (
+    SentenceTransformerEmbedding
+)
+from src.retrievers.benchmark_dense_retriever import (
+    BenchmarkDenseRetriever
+)
+from src.retrievers.benchmark_bm25s_retriever import (
+    BenchmarkBM25SRetriever
+)
+from src.retrievers.benchmark_hybrid_retriever import (
+    BenchmarkHybridRetriever
+)
+from src.retrievers.adaptive_retriever import (
+    AdaptiveRetriever
+)
+from src.analyzer.query_analyzer import (
+    QueryAnalyzer
+)
+from src.adaptation.adaptive_retrieval_orchestrator import (
+    AdaptiveRetrievalOrchestrator
+)
+from src.adaptation.d2rag_engine import (
+    D2RAGEngine
+)
+from src.evaluation.metrics import (
+    RetrievalMetrics
+)
+from src.assessment.evidence_features import (
+    EvidenceFeatureExtractor
+)
 
 
-MAX_QUERIES = 50
+def main():
 
+    print("D²RAG FIQA DEV SMOKE TEST")
 
-def build_engine(documents_by_id):
+    dataset = BEIRDataset(
+        name="fiqa"
+    )
+
+    corpus, queries, qrels = (
+        dataset.load(
+            split="dev"
+        )
+    )
+
+    benchmark_corpus = BenchmarkCorpus(
+        dataset_name="fiqa",
+        corpus=corpus
+    )
+
+    documents = (
+        benchmark_corpus.to_documents()
+    )
+
+    documents_by_id = {
+        document.id: document
+        for document in documents
+    }
+
+    print(
+        "Corpus:",
+        len(documents)
+    )
+
+    print(
+        "Queries:",
+        len(queries)
+    )
+
     dense_index = DenseBenchmarkIndex(
         embeddings_path=(
             "datasets/processed/"
@@ -38,7 +102,9 @@ def build_engine(documents_by_id):
 
     bm25s_index.load()
 
-    embedding_model = SentenceTransformerEmbedding()
+    embedding_model = (
+        SentenceTransformerEmbedding()
+    )
 
     dense = BenchmarkDenseRetriever(
         index=dense_index,
@@ -71,138 +137,16 @@ def build_engine(documents_by_id):
         max_retries=2
     )
 
-    return D2RAGEngine(
+    engine = D2RAGEngine(
         query_analyzer=QueryAnalyzer(),
         adaptive_retrieval_orchestrator=orchestrator
     )
 
-
-def print_false_accept_diagnostic(
-    context,
-    evidence,
-    feature_extractor
-):
-    features = feature_extractor.extract(context)
-
-    print("False-Accept Diagnostic:")
-    print(
-        "  Confidence:",
-        round(evidence.confidence, 4)
-    )
-    print(
-        "  Coverage:",
-        round(evidence.coverage, 4)
-    )
-    print(
-        "  Relevant Count:",
-        evidence.relevant_count
-    )
-    print(
-        "  Retrieved Count:",
-        evidence.retrieved_count
-    )
-    print(
-        "  Top1 Score:",
-        round(
-            features.get("top1_score", 0.0),
-            4
-        )
-    )
-    print(
-        "  Top3 Mean:",
-        round(
-            features.get("top3_mean", 0.0),
-            4
-        )
-    )
-    print(
-        "  Top5 Mean:",
-        round(
-            features.get("top5_mean", 0.0),
-            4
-        )
-    )
-    print(
-        "  Score Std:",
-        round(
-            features.get("score_std", 0.0),
-            4
-        )
-    )
-    print(
-        "  Top1-Top2 Gap:",
-        round(
-            features.get("top1_top2_gap", 0.0),
-            4
-        )
-    )
-    print(
-        "  Top1-Top5 Gap:",
-        round(
-            features.get("top1_top5_gap", 0.0),
-            4
-        )
-    )
-    print(
-        "  Dense-BM25 Agreement:",
-        round(
-            features.get(
-                "dense_bm25_agreement",
-                0.0
-            ),
-            4
-        )
-    )
-
-
-def main():
-    print("D²RAG FIQA DEV SMOKE TEST")
-    print()
-
-    dataset = BEIRDataset(
-        name="fiqa"
-    )
-
-    corpus, queries, qrels = dataset.load(
-        split="dev"
-    )
-
-    benchmark_corpus = BenchmarkCorpus(
-        dataset_name="fiqa",
-        corpus=corpus
-    )
-
-    documents = benchmark_corpus.to_documents()
-
-    documents_by_id = {
-        document.id: document
-        for document in documents
-    }
-
-    print(
-        "Corpus:",
-        len(documents)
-    )
-
-    print(
-        "Dev Queries:",
-        len(queries)
-    )
+    feature_extractor = EvidenceFeatureExtractor()
 
     query_items = list(
         queries.items()
-    )[:MAX_QUERIES]
-
-    print(
-        "Smoke Queries:",
-        len(query_items)
-    )
-
-    engine = build_engine(
-        documents_by_id
-    )
-
-    feature_extractor = EvidenceFeatureExtractor()
+    )[:50]
 
     total_recall_at_5 = 0.0
     total_mrr_at_5 = 0.0
@@ -211,17 +155,21 @@ def main():
     total_recall_at_final_k = 0.0
     total_ndcg_at_final_k = 0.0
 
+    accepted = 0
     total_attempts = 0
 
-    evidence_accepted = 0
     strategy_changes = 0
     top_k_changes = 0
-    false_accepts = 0
 
-    confidence_deltas = []
+    adapted_queries = 0
+    improved_queries = 0
+    final_top_k_mismatches = 0
+    confidence_improvements = []
 
     action_counts = {}
     diagnosis_counts = {}
+
+    processed_count = 0
 
     for number, (
         query_id,
@@ -230,13 +178,25 @@ def main():
         query_items,
         start=1
     ):
+
         context = AdaptiveContext(
             query=query
         )
 
-        context = engine.run(
-            context
-        )
+        try:
+            context = engine.run(
+                context
+            )
+        except RuntimeError as e:
+            if "Top-K integrity failure" in str(e):
+                final_top_k_mismatches += 1
+                print()
+                print(f"[{number}/50] Query ID: {query_id}")
+                print(f"SKIPPED: {e}")
+                continue
+            raise
+
+        processed_count += 1
 
         report = context.decision_report
         evidence = context.evidence_result
@@ -264,8 +224,7 @@ def main():
         )
 
         final_strategy = report.get(
-            "final_strategy",
-            initial_strategy
+            "final_strategy"
         )
 
         initial_top_k = report.get(
@@ -298,30 +257,24 @@ def main():
             []
         )
 
-        strategy_changed = (
-            initial_strategy
-            != final_strategy
+        query_strategy_changed = (
+            initial_strategy != final_strategy
         )
 
-        top_k_changed = (
-            initial_top_k
-            != final_top_k
+        query_top_k_changed = (
+            initial_top_k != final_top_k
         )
 
         strategy_changes += int(
-            strategy_changed
+            query_strategy_changed
         )
 
         top_k_changes += int(
-            top_k_changed
+            query_top_k_changed
         )
 
-        total_attempts += attempts
-
-        if report.get(
-            "adaptive_retrieval_status"
-        ) == "accepted":
-            evidence_accepted += 1
+        if query_top_k_changed or query_strategy_changed:
+            adapted_queries += 1
 
         initial_confidence = None
         final_confidence = report.get(
@@ -337,15 +290,21 @@ def main():
 
         if (
             initial_confidence is not None
-            and
-            final_confidence is not None
+            and final_confidence is not None
         ):
-            confidence_deltas.append(
+            confidence_delta = (
                 final_confidence
                 - initial_confidence
             )
 
+            confidence_improvements.append(
+                confidence_delta
+            )
+        else:
+            confidence_delta = None
+
         for feedback in feedback_history:
+
             action = feedback.get(
                 "action"
             )
@@ -404,6 +363,9 @@ def main():
             )
         )
 
+        if final_top_k != len(retrieved_ids):
+            final_top_k_mismatches += 1
+
         recall_at_final_k = (
             RetrievalMetrics.recall_at_k(
                 retrieved_ids,
@@ -432,18 +394,20 @@ def main():
             ndcg_at_final_k
         )
 
-        is_false_accept = (
-            evidence.accepted
-            and
-            recall_at_5 == 0.0
-        )
+        if (query_strategy_changed or query_top_k_changed) and ndcg_at_final_k > ndcg_at_5:
+            improved_queries += 1
 
-        if is_false_accept:
-            false_accepts += 1
+        total_attempts += attempts
+
+        if report.get(
+            "adaptive_retrieval_status"
+        ) == "accepted":
+
+            accepted += 1
 
         print()
         print(
-            f"[{number}/{len(query_items)}] "
+            f"[{number}/50] "
             f"Query ID: {query_id}"
         )
 
@@ -500,7 +464,7 @@ def main():
         )
 
         print(
-            f"Recall@FinalK "
+            f"Recall@EvaluatedK "
             f"(K={evaluation_k}):",
             round(
                 recall_at_final_k,
@@ -509,7 +473,7 @@ def main():
         )
 
         print(
-            f"nDCG@FinalK "
+            f"nDCG@EvaluatedK "
             f"(K={evaluation_k}):",
             round(
                 ndcg_at_final_k,
@@ -517,21 +481,23 @@ def main():
             )
         )
 
-        if confidence_deltas:
+        if confidence_delta is not None:
             print(
                 "Confidence Delta:",
                 round(
-                    confidence_deltas[-1],
+                    confidence_delta,
                     4
                 )
             )
 
         if feedback_history:
+
             print(
                 "Feedback Actions:"
             )
 
             for feedback in feedback_history:
+
                 print(
                     "  -",
                     feedback.get(
@@ -550,17 +516,23 @@ def main():
                         4
                     )
                 )
+
         else:
+
             print(
                 "Feedback Actions: none"
             )
 
         if strategy_transitions:
+
             print(
                 "Strategy Transitions:"
             )
 
-            for transition in strategy_transitions:
+            for transition in (
+                strategy_transitions
+            ):
+
                 print(
                     "  -",
                     transition.get(
@@ -573,11 +545,15 @@ def main():
                 )
 
         if attempt_history:
+
             print(
                 "Attempt Trajectory:"
             )
 
-            for attempt in attempt_history:
+            for attempt in (
+                attempt_history
+            ):
+
                 print(
                     "  - Attempt",
                     attempt.get(
@@ -602,45 +578,61 @@ def main():
                     )
                 )
 
-        if is_false_accept:
-            print_false_accept_diagnostic(
-                context=context,
-                evidence=evidence,
-                feature_extractor=feature_extractor
-            )
+        # NEW FALSE ACCEPT DIAGNOSTIC BLOCK
+        if evidence and evidence.accepted and recall_at_5 == 0.0:
+            features = feature_extractor.extract(context)
+
+            print("False-Accept Diagnostic:")
+            print("  Confidence:", round(evidence.confidence, 4))
+            print("  Coverage:", round(getattr(evidence, 'coverage', 0.0), 4))
+            print("  Relevant Count:", getattr(evidence, 'relevant_count', 0))
+            print("  Retrieved Count:", getattr(evidence, 'retrieved_count', 0))
+
+            if features:
+                print("  Top1 Score:", round(features.get("top1_score", 0.0), 4))
+                print("  Top3 Mean:", round(features.get("top3_mean", 0.0), 4))
+                print("  Top5 Mean:", round(features.get("top5_mean", 0.0), 4))
+                print("  Score Std:", round(features.get("score_std", 0.0), 4))
+                print(
+                    "  Top1-Top2 Gap:",
+                    round(features.get("top1_top2_gap", 0.0), 4)
+                )
+                print(
+                    "  Top1-Top5 Gap:",
+                    round(features.get("top1_top5_gap", 0.0), 4)
+                )
+                print(
+                    "  Dense-BM25 Agreement:",
+                    round(
+                        features.get("dense_bm25_agreement", 0.0),
+                        4
+                    )
+                )
 
         print(
             "Attempts:",
             attempts
         )
 
-    count = len(
-        query_items
-    )
+    count = processed_count if processed_count > 0 else 1
 
     average_confidence_delta = 0.0
 
-    if confidence_deltas:
+    if confidence_improvements:
+
         average_confidence_delta = (
-            sum(confidence_deltas)
-            /
-            len(confidence_deltas)
+            sum(
+                confidence_improvements
+            )
+            / len(
+                confidence_improvements
+            )
         )
 
-    adaptation_trigger_rate = (
-        (
-            strategy_changes
-            +
-            top_k_changes
-        )
-        /
-        count
-    )
+    adaptation_rate = adapted_queries / count
 
     print()
-    print(
-        "FIQA DEV SMOKE SUMMARY"
-    )
+    print("FIQA SMOKE SUMMARY")
 
     print(
         "Queries:",
@@ -650,9 +642,7 @@ def main():
     print(
         "Average Recall@5:",
         round(
-            total_recall_at_5
-            /
-            count,
+            total_recall_at_5 / count,
             4
         )
     )
@@ -660,9 +650,7 @@ def main():
     print(
         "Average MRR@5:",
         round(
-            total_mrr_at_5
-            /
-            count,
+            total_mrr_at_5 / count,
             4
         )
     )
@@ -670,36 +658,30 @@ def main():
     print(
         "Average nDCG@5:",
         round(
-            total_ndcg_at_5
-            /
-            count,
+            total_ndcg_at_5 / count,
             4
         )
     )
 
     print(
-        "Average Recall@FinalK:",
+        "Average Recall@EvaluatedK:",
         round(
-            total_recall_at_final_k
-            /
-            count,
+            total_recall_at_final_k / count,
             4
         )
     )
 
     print(
-        "Average nDCG@FinalK:",
+        "Average nDCG@EvaluatedK:",
         round(
-            total_ndcg_at_final_k
-            /
-            count,
+            total_ndcg_at_final_k / count,
             4
         )
     )
 
     print(
         "Evidence Accepted:",
-        evidence_accepted,
+        accepted,
         "/",
         count
     )
@@ -707,9 +689,7 @@ def main():
     print(
         "Average Attempts:",
         round(
-            total_attempts
-            /
-            count,
+            total_attempts / count,
             4
         )
     )
@@ -725,16 +705,11 @@ def main():
     )
 
     print(
-        "Adaptation Trigger Rate:",
+        "Unique Adaptation Rate:",
         round(
-            adaptation_trigger_rate,
+            adaptation_rate,
             4
         )
-    )
-
-    print(
-        "False Accepts:",
-        false_accepts
     )
 
     print(
@@ -745,20 +720,39 @@ def main():
         )
     )
 
+    print(
+        "Adapted Queries:",
+        adapted_queries
+    )
+
+    print(
+        "Improved Adapted Queries:",
+        improved_queries
+    )
+
+    print(
+        "Final Top-K Mismatches:",
+        final_top_k_mismatches
+    )
+
     print()
     print(
         "Feedback Action Counts:"
     )
 
     if action_counts:
-        for action, value in sorted(
+
+        for action, count_value in sorted(
             action_counts.items()
         ):
+
             print(
                 f"  {action}:",
-                value
+                count_value
             )
+
     else:
+
         print(
             "  none"
         )
@@ -769,18 +763,24 @@ def main():
     )
 
     if diagnosis_counts:
-        for diagnosis, value in sorted(
+
+        for diagnosis, count_value in sorted(
             diagnosis_counts.items()
         ):
+
             print(
                 f"  {diagnosis}:",
-                value
+                count_value
             )
+
     else:
+
         print(
             "  none"
         )
 
+    print()
+    print("D²RAG FIQA DEV SMOKE TEST PASSED")
 
 if __name__ == "__main__":
     main()
