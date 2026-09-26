@@ -578,14 +578,14 @@ def main():
                     )
                 )
 
-        # NEW FALSE ACCEPT DIAGNOSTIC BLOCK
+        # UPDATED TERMINOLOGY BLOCK
         if evidence and evidence.accepted and recall_at_5 == 0.0:
             features = feature_extractor.extract(context)
 
             print("False-Accept Diagnostic:")
             print("  Confidence:", round(evidence.confidence, 4))
-            print("  Coverage:", round(getattr(evidence, 'coverage', 0.0), 4))
-            print("  Relevant Count:", getattr(evidence, 'relevant_count', 0))
+            print("  Score Coverage:", round(getattr(evidence, 'score_coverage', getattr(evidence, 'coverage', 0.0)), 4))
+            print("  Score Relevant Count:", getattr(evidence, 'score_relevant_count', getattr(evidence, 'relevant_count', 0)))
             print("  Retrieved Count:", getattr(evidence, 'retrieved_count', 0))
 
             if features:
