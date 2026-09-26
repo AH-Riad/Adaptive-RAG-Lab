@@ -173,11 +173,6 @@ def test_retry_guard_blocks_repeated_action():
         write_policy(path, exact_state=state, exact_action="switch_to_hybrid")
 
         controller = FeedbackController(str(path))
-        controller.feature_extractor = StubFeatureExtractor({
-            "dense_bm25_agreement": None,
-            "top1_score": 0.60,
-            "top1_top2_gap": 0.10,
-        })
         context = make_context()
         context.feedback_history = [{"action": "switch_to_hybrid"}]
         controller.run(context)
