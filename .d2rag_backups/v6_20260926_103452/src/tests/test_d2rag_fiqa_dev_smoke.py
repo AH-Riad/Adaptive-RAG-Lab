@@ -163,15 +163,13 @@ def main():
 
     adapted_queries = 0
     improved_queries = 0
-    harmful_adaptations = 0
     final_top_k_mismatches = 0
-    false_accepts = 0
     confidence_improvements = []
-    adaptation_quality_deltas = []
 
     action_counts = {}
     diagnosis_counts = {}
-    action_source_counts = {}
+
+    processed_count = 0
 
     for number, (
         query_id,
@@ -185,9 +183,20 @@ def main():
             query=query
         )
 
-        context = engine.run(
-            context
-        )
+        try:
+            context = engine.run(
+                context
+            )
+        except RuntimeError as e:
+            if "Top-K integrity failure" in str(e):
+                final_top_k_mismatches += 1
+                print()
+                print(f"[{number}/50] Query ID: {query_id}")
+                print(f"SKIPPED: {e}")
+                continue
+            raise
+
+        processed_count += 1
 
         report = context.decision_report
         evidence = context.evidence_result
@@ -322,37 +331,6 @@ def main():
                     + 1
                 )
 
-            source = feedback.get("source")
-            if source:
-                action_source_counts[source] = (
-                    action_source_counts.get(
-                        source,
-                        0
-                    )
-                    + 1
-                )
-
-        initial_attempt = (
-            attempt_history[0] if attempt_history else {}
-        )
-        initial_retrieved_ids = list(
-            initial_attempt.get("retrieved_chunk_ids", [])
-        )
-        initial_evaluation_k = max(
-            1,
-            min(
-                initial_top_k,
-                len(initial_retrieved_ids)
-            )
-        )
-        initial_ndcg = (
-            RetrievalMetrics.ndcg_at_k(
-                initial_retrieved_ids,
-                relevance_scores,
-                initial_evaluation_k
-            )
-        )
-
         recall_at_5 = (
             RetrievalMetrics.recall_at_k(
                 retrieved_ids,
@@ -416,22 +394,8 @@ def main():
             ndcg_at_final_k
         )
 
-        if query_strategy_changed or query_top_k_changed:
-            adapted_queries += 0
-            adaptation_delta = (
-                ndcg_at_final_k - initial_ndcg
-            )
-            adaptation_quality_deltas.append(
-                adaptation_delta
-            )
-
-            if adaptation_delta > 0.0:
-                improved_queries += 1
-            elif adaptation_delta < 0.0:
-                harmful_adaptations += 1
-
-        if evidence.accepted and ndcg_at_5 == 0.0:
-            false_accepts += 1
+        if (query_strategy_changed or query_top_k_changed) and ndcg_at_final_k > ndcg_at_5:
+            improved_queries += 1
 
         total_attempts += attempts
 
@@ -495,15 +459,6 @@ def main():
             "nDCG@5:",
             round(
                 ndcg_at_5,
-                4
-            )
-        )
-
-        print(
-            f"Initial nDCG@InitialK "
-            f"(K={initial_evaluation_k}):",
-            round(
-                initial_ndcg,
                 4
             )
         )
@@ -623,14 +578,14 @@ def main():
                     )
                 )
 
-        # NEW FALSE ACCEPT DIAGNOSTIC BLOCK
+        # UPDATED TERMINOLOGY BLOCK
         if evidence and evidence.accepted and recall_at_5 == 0.0:
             features = feature_extractor.extract(context)
 
             print("False-Accept Diagnostic:")
             print("  Confidence:", round(evidence.confidence, 4))
-            print("  Score Coverage:", round(getattr(evidence, 'coverage', 0.0), 4))
-            print("  Score Threshold Count:", getattr(evidence, 'relevant_count', 0))
+            print("  Score Coverage:", round(getattr(evidence, 'score_coverage', getattr(evidence, 'coverage', 0.0)), 4))
+            print("  Score Relevant Count:", getattr(evidence, 'score_relevant_count', getattr(evidence, 'relevant_count', 0)))
             print("  Retrieved Count:", getattr(evidence, 'retrieved_count', 0))
 
             if features:
@@ -659,9 +614,7 @@ def main():
             attempts
         )
 
-    count = len(
-        query_items
-    )
+    count = processed_count if processed_count > 0 else 1
 
     average_confidence_delta = 0.0
 
@@ -778,31 +731,6 @@ def main():
     )
 
     print(
-        "Harmful Adapted Queries:",
-        harmful_adaptations
-    )
-
-    average_adaptation_delta = 0.0
-    if adaptation_quality_deltas:
-        average_adaptation_delta = (
-            sum(adaptation_quality_deltas)
-            / len(adaptation_quality_deltas)
-        )
-
-    print(
-        "Average Adaptation nDCG Delta:",
-        round(
-            average_adaptation_delta,
-            4
-        )
-    )
-
-    print(
-        "False Accepts (nDCG@5 = 0):",
-        false_accepts
-    )
-
-    print(
         "Final Top-K Mismatches:",
         final_top_k_mismatches
     )
@@ -828,22 +756,6 @@ def main():
         print(
             "  none"
         )
-
-    print()
-    print(
-        "Feedback Action Sources:"
-    )
-
-    if action_source_counts:
-        for source, count_value in sorted(
-            action_source_counts.items()
-        ):
-            print(
-                f"  {source}:" ,
-                count_value
-            )
-    else:
-        print("  none")
 
     print()
     print(

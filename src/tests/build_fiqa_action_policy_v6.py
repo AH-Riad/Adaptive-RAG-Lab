@@ -6,37 +6,16 @@ from src.embeddings.sentence_transformer_embedding import SentenceTransformerEmb
 from src.retrievers.benchmark_dense_retriever import BenchmarkDenseRetriever
 from src.retrievers.benchmark_bm25s_retriever import BenchmarkBM25SRetriever
 from src.retrievers.benchmark_hybrid_retriever import BenchmarkHybridRetriever
-
-
-TOP_K_VALUES = (3, 5, 8, 10, 15)
-
-
-def count_results(result):
-    chunks = getattr(result, "retrieved_chunks", None)
-    return len(chunks) if chunks is not None else 0
-
-
-# FIXED: Renamed to "check_retriever" so Pytest doesn't mistake it for a unit test
-def check_retriever(name, retriever, query):
-    print(name)
-    failures = []
-
-    for top_k in TOP_K_VALUES:
-        retriever.top_k = top_k
-        result = retriever.retrieve(query)
-        actual = count_results(result)
-        status = "OK" if actual == top_k else "MISMATCH"
-        print(f"  requested={top_k} actual={actual} status={status}")
-        if actual != top_k:
-            failures.append((top_k, actual))
-
-    if failures:
-        raise AssertionError(f"{name} Top-K mismatches: {failures}")
+from src.analyzer.query_analyzer import QueryAnalyzer
+from src.evaluation.action_policy_builder import FailureConditionedActionPolicyBuilder
 
 
 def main():
+    print("FIQA DEVELOPMENT ACTION POLICY V6")
+    print("Policy type: failure-conditioned dual-action policy")
+
     dataset = BEIRDataset(name="fiqa")
-    corpus, queries, _ = dataset.load(split="dev")
+    corpus, queries, qrels = dataset.load(split="dev")
 
     benchmark_corpus = BenchmarkCorpus(
         dataset_name="fiqa",
@@ -60,8 +39,8 @@ def main():
     )
     dense_index.load()
 
-    bm25s_index = BM25SBenchmarkIndex(dataset_name="fiqa")
-    bm25s_index.load()
+    bm25_index = BM25SBenchmarkIndex(dataset_name="fiqa")
+    bm25_index.load()
 
     embedding_model = SentenceTransformerEmbedding()
 
@@ -71,11 +50,13 @@ def main():
         embedding_model=embedding_model,
         top_k=5,
     )
+
     bm25 = BenchmarkBM25SRetriever(
-        index=bm25s_index,
+        index=bm25_index,
         documents_by_id=documents_by_id,
         top_k=5,
     )
+
     hybrid = BenchmarkHybridRetriever(
         dense_retriever=dense,
         bm25_retriever=bm25,
@@ -83,18 +64,45 @@ def main():
         alpha=0.7,
     )
 
-    query_id, query = next(iter(queries.items()))
+    retrievers = {
+        "dense": dense,
+        "bm25": bm25,
+        "hybrid": hybrid,
+    }
 
-    print("Top-K Integrity Test V6")
-    print("Query ID:", query_id)
+    analyzer = QueryAnalyzer()
+    query_types = {
+        query_id: analyzer.analyze(query)["query_type"]
+        for query_id, query in queries.items()
+    }
+
+    builder = FailureConditionedActionPolicyBuilder(
+        output_path=(
+            "results/logs/"
+            "fiqa_dev_action_policy_v6.json"
+        ),
+        cost_weight=0.10,
+        minimum_gain=0.03,
+        minimum_query_support=5,
+    )
+
+    artifact = builder.build(
+        queries=queries,
+        qrels=qrels,
+        query_types=query_types,
+        retrievers=retrievers,
+    )
+
+    summary = artifact["training_summary"]
     print()
-
-    # FIXED: Updated the calls to the new function name
-    check_retriever("Dense", dense, query)
-    check_retriever("BM25", bm25, query)
-    check_retriever("Hybrid", hybrid, query)
-
-    print("TOP-K INTEGRITY V6 TEST PASSED")
+    print("Strategy policy states:", summary["policy_states_strategy"])
+    print("Top-K policy states:", summary["policy_states_topk"])
+    print("Combined policy states:", summary["policy_states_combined"])
+    print("Rejected states used:", summary["rejected_states_used"])
+    print("Accepted states skipped:", summary["accepted_states_skipped"])
+    print("Supported Top-K:", artifact["supported_top_k"])
+    print("Saved: results/logs/fiqa_dev_action_policy_v6.json")
+    print("FIQA ACTION POLICY V6 COMPLETED")
 
 
 if __name__ == "__main__":

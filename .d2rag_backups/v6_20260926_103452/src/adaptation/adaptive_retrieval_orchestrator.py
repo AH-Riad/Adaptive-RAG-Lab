@@ -136,14 +136,6 @@ class AdaptiveRetrievalOrchestrator(Component):
                 "top_k": plan.top_k,
                 "requested_top_k": requested_top_k,
                 "actual_retrieved_count": actual_retrieved_count,
-                "retrieved_chunk_ids": [
-                    chunk.chunk_id
-                    for chunk in getattr(
-                        getattr(context, "retrieval_result", None),
-                        "retrieved_chunks",
-                        []
-                    )
-                ],
                 "evidence_confidence": evidence.confidence,
                 "evidence_accepted": evidence.accepted,
                 "confidence_change": confidence_change

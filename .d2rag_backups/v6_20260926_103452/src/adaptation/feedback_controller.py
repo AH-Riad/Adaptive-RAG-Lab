@@ -1,3 +1,4 @@
+import ast
 import json
 from pathlib import Path
 
@@ -7,34 +8,32 @@ from src.assessment.evidence_features import EvidenceFeatureExtractor
 
 
 class FeedbackController(Component):
-    """Runtime controller for the frozen failure-conditioned D²RAG policy."""
-
-    SUPPORTED_TOP_K = (3, 5, 8, 10, 15)
+    SUPPORTED_TOP_K = (3, 5, 10, 15)
 
     ACTION_COSTS = {
         "keep": 0.0,
         "increase_top_k": 0.20,
-        "switch_strategy": 0.40,
+        "switch_strategy": 0.40
     }
 
     STRATEGY_DIAGNOSES = {
         "retrieval_disagreement",
         "lexical_strategy_mismatch",
         "semantic_strategy_mismatch",
-        "ambiguous_strategy_risk",
+        "ambiguous_strategy_risk"
     }
 
     TOP_K_DIAGNOSES = {
         "coverage_gap",
         "ranking_uncertainty",
-        "comparison_coverage_risk",
+        "comparison_coverage_risk"
     }
 
     def __init__(
         self,
         policy_path: str,
         minimum_samples: int = 5,
-        minimum_improvement: float = 0.03,
+        minimum_improvement: float = 0.03
     ):
         self.policy_path = Path(policy_path)
         self.minimum_samples = minimum_samples
@@ -73,37 +72,13 @@ class FeedbackController(Component):
             if item.get("action")
         }
 
-    def _policy_state(
-        self,
-        query_type,
-        current_strategy,
-        confidence_bucket,
-        diagnosis,
-        top_k,
-    ):
+    def _policy_state(self, query_type, current_strategy, confidence_bucket, top_k):
         return str(
             (
                 query_type,
                 current_strategy,
                 confidence_bucket,
-                diagnosis,
-                top_k,
-            )
-        )
-
-    def _legacy_policy_state(
-        self,
-        query_type,
-        current_strategy,
-        confidence_bucket,
-        top_k,
-    ):
-        return str(
-            (
-                query_type,
-                current_strategy,
-                confidence_bucket,
-                top_k,
+                top_k
             )
         )
 
@@ -113,8 +88,7 @@ class FeedbackController(Component):
         query_type,
         current_strategy,
         confidence_bucket,
-        diagnosis,
-        current_top_k,
+        current_top_k
     ):
         if not self.policy:
             return None
@@ -124,21 +98,9 @@ class FeedbackController(Component):
             query_type=query_type,
             current_strategy=current_strategy,
             confidence_bucket=confidence_bucket,
-            diagnosis=diagnosis,
-            top_k=current_top_k,
+            top_k=current_top_k
         )
-        record = policy_section.get(state)
-        if record is not None:
-            return record
-
-        legacy_section = self.policy.get(section, {})
-        legacy_state = self._legacy_policy_state(
-            query_type=query_type,
-            current_strategy=current_strategy,
-            confidence_bucket=confidence_bucket,
-            top_k=current_top_k,
-        )
-        return legacy_section.get(legacy_state)
+        return policy_section.get(state)
 
     def _policy_candidate(self, record, current_top_k):
         if record is None:
@@ -147,94 +109,96 @@ class FeedbackController(Component):
         selected_action = record.get("selected_action", "keep")
         candidates = record.get("candidates", {})
         candidate = candidates.get(selected_action, {})
-        support = int(candidate.get("count", 0))
+        support = candidate.get("count", 0)
 
         if support < self.minimum_samples:
             return None
 
-        if not self._validate_action(
-            action=selected_action,
-            current_strategy=None,
-            current_top_k=current_top_k,
-            allow_none_strategy=True,
-        ):
-            return None
+        if selected_action.startswith("set_top_k_"):
+            try:
+                target_top_k = int(selected_action[len("set_top_k_"):])
+            except ValueError:
+                return None
 
-        average_gain = float(
-            candidate.get(
-                "average_gain",
-                candidate.get("utility_gain", 0.0),
-            )
-        )
-        average_utility = float(
-            candidate.get("average_utility", 0.0)
-        )
+            if target_top_k <= current_top_k:
+                return {
+                    "action": "keep",
+                    "support": support,
+                    "utility": candidate.get("average_utility", 0.0),
+                    "source": "frozen_topk_policy",
+                    "policy_action": selected_action
+                }
 
         return {
             "action": selected_action,
             "support": support,
-            "average_gain": average_gain,
-            "utility": average_utility,
-            "source": "failure_conditioned_policy_v6",
-            "policy_action": selected_action,
+            "utility": candidate.get("average_utility", 0.0),
+            "source": "frozen_policy",
+            "policy_action": selected_action
         }
 
     def _learned_action(
         self,
+        context,
         query_type,
         current_strategy,
         confidence_bucket,
         current_top_k,
-        diagnosis,
+        diagnosis
     ):
         strategy_record = self._get_policy_record(
             section="strategy_policy",
             query_type=query_type,
             current_strategy=current_strategy,
             confidence_bucket=confidence_bucket,
-            diagnosis=diagnosis,
-            current_top_k=current_top_k,
+            current_top_k=current_top_k
         )
+
         topk_record = self._get_policy_record(
             section="topk_policy",
             query_type=query_type,
             current_strategy=current_strategy,
             confidence_bucket=confidence_bucket,
-            diagnosis=diagnosis,
-            current_top_k=current_top_k,
-        )
-        combined_record = self._get_policy_record(
-            section="combined_policy",
-            query_type=query_type,
-            current_strategy=current_strategy,
-            confidence_bucket=confidence_bucket,
-            diagnosis=diagnosis,
-            current_top_k=current_top_k,
+            current_top_k=current_top_k
         )
 
         if diagnosis in self.STRATEGY_DIAGNOSES:
-            ordered = [strategy_record, combined_record, topk_record]
-        elif diagnosis in self.TOP_K_DIAGNOSES:
-            ordered = [topk_record, combined_record, strategy_record]
-        else:
-            ordered = [combined_record, strategy_record, topk_record]
-
-        candidates = []
-        for record in ordered:
-            candidate = self._policy_candidate(record, current_top_k)
+            candidate = self._policy_candidate(
+                strategy_record,
+                current_top_k
+            )
             if candidate is not None:
-                candidates.append(candidate)
+                return candidate
+
+        if diagnosis in self.TOP_K_DIAGNOSES:
+            candidate = self._policy_candidate(
+                topk_record,
+                current_top_k
+            )
+            if candidate is not None:
+                return candidate
+
+        strategy_candidate = self._policy_candidate(
+            strategy_record,
+            current_top_k
+        )
+        topk_candidate = self._policy_candidate(
+            topk_record,
+            current_top_k
+        )
+
+        candidates = [
+            candidate
+            for candidate in (strategy_candidate, topk_candidate)
+            if candidate is not None
+        ]
 
         if not candidates:
             return None
 
         return max(
             candidates,
-            key=lambda item: (
-                item["average_gain"],
-                item["support"],
-                item["utility"],
-            ),
+            key=lambda item: item["utility"]
         )
 
     def _diagnose(self, context, features, confidence):
@@ -257,60 +221,60 @@ class FeedbackController(Component):
         if disagreement is not None and 0.0 < disagreement < 0.50:
             return (
                 "retrieval_disagreement",
-                "Dense and lexical retrieval signals disagree strongly.",
+                "Dense and lexical retrieval signals disagree strongly."
             )
 
         if score_coverage < 0.50 and evidence.retrieved_count >= 3:
             return (
                 "coverage_gap",
-                "Retrieved evidence has insufficient score-based coverage.",
+                "Retrieved evidence has insufficient score-based coverage."
             )
 
         if top1 >= 0.45 and top1_top2_gap < 0.05:
             return (
                 "ranking_uncertainty",
-                "Top-ranked evidence is weakly separated from the next result.",
+                "Top-ranked evidence is weakly separated from the next result."
             )
 
         if confidence < 0.25:
             return (
                 "very_weak_evidence",
-                "Calibrated evidence confidence is very low.",
+                "Calibrated evidence confidence is very low."
             )
 
         if query_type == "lexical" and strategy == "dense":
             return (
                 "lexical_strategy_mismatch",
-                "The query is lexical but dense retrieval is currently being used.",
+                "The query is lexical but dense retrieval is currently being used."
             )
 
         if query_type == "semantic" and strategy == "bm25":
             return (
                 "semantic_strategy_mismatch",
-                "The query is semantic but lexical retrieval is currently being used.",
+                "The query is semantic but lexical retrieval is currently being used."
             )
 
         if query_type == "ambiguous" and strategy == "dense":
             return (
                 "ambiguous_strategy_risk",
-                "The query is ambiguous and dense retrieval may benefit from lexical support.",
+                "The query is ambiguous and dense retrieval may benefit from lexical support."
             )
 
         if query_type == "comparison" and strategy == "hybrid" and top_k < 10:
             return (
                 "comparison_coverage_risk",
-                "Comparison queries may require broader evidence coverage.",
+                "Comparison queries may require broader evidence coverage."
             )
 
         if confidence < 0.50:
             return (
                 "weak_evidence",
-                "Evidence confidence is below the medium-confidence range.",
+                "Evidence confidence is below the medium-confidence range."
             )
 
         return (
             "uncertain_failure",
-            "Evidence was rejected but no dominant failure pattern was detected.",
+            "Evidence was rejected but no dominant failure pattern was detected."
         )
 
     def _next_larger_top_k(self, current_top_k):
@@ -371,12 +335,10 @@ class FeedbackController(Component):
 
         strategy_action = self._strategy_action(
             query_type=query_type,
-            current_strategy=current_strategy,
+            current_strategy=current_strategy
         )
-        if (
-            strategy_action != "keep"
-            and strategy_action not in previous_actions
-        ):
+
+        if strategy_action != "keep" and strategy_action not in previous_actions:
             return strategy_action
 
         next_top_k = self._next_larger_top_k(current_top_k)
@@ -387,17 +349,9 @@ class FeedbackController(Component):
 
         return "keep"
 
-    def _expected_improvement(
-        self,
-        diagnosis,
-        action,
-        policy_gain=None,
-    ):
+    def _expected_improvement(self, diagnosis, action):
         if action == "keep":
             return 0.0
-
-        if policy_gain is not None:
-            return max(0.0, float(policy_gain))
 
         if diagnosis == "coverage_gap":
             return 0.10 if action.startswith("set_top_k_") else 0.04
@@ -425,33 +379,20 @@ class FeedbackController(Component):
 
         return 0.05
 
-    def _validate_action(
-        self,
-        action,
-        current_strategy,
-        current_top_k,
-        allow_none_strategy=False,
-    ):
+    def _validate_action(self, action, current_strategy, current_top_k):
         if action == "keep":
             return True
 
         if action.startswith("switch_to_"):
             target_strategy = action[len("switch_to_"):]
-            if target_strategy not in {"dense", "bm25", "hybrid"}:
-                return False
-            if allow_none_strategy or current_strategy is None:
-                return True
-            return target_strategy != current_strategy
+            return target_strategy in {"dense", "bm25", "hybrid"} and target_strategy != current_strategy
 
         if action.startswith("set_top_k_"):
             try:
                 target_top_k = int(action[len("set_top_k_"):])
             except ValueError:
                 return False
-            return (
-                target_top_k > current_top_k
-                and target_top_k in self.SUPPORTED_TOP_K
-            )
+            return target_top_k > current_top_k and target_top_k in self.SUPPORTED_TOP_K
 
         return False
 
@@ -476,57 +417,53 @@ class FeedbackController(Component):
         diagnosis, diagnosis_reason = self._diagnose(
             context=context,
             features=features,
-            confidence=confidence,
+            confidence=confidence
         )
 
         learned_candidate = self._learned_action(
+            context=context,
             query_type=query_type,
             current_strategy=current_strategy,
             confidence_bucket=confidence_bucket,
             current_top_k=current_top_k,
-            diagnosis=diagnosis,
+            diagnosis=diagnosis
         )
 
         diagnostic_action = self._diagnostic_action(
             context=context,
-            diagnosis=diagnosis,
+            diagnosis=diagnosis
         )
 
         if learned_candidate is not None:
             selected_action = learned_candidate["action"]
             source = learned_candidate["source"]
             reason = (
-                "The failure-conditioned dev policy has sufficient support "
-                "for this retrieval state."
+                "The frozen dev policy has sufficient support for this state; "
+                "its selected action is authoritative."
             )
-            policy_gain = learned_candidate["average_gain"]
         else:
             selected_action = diagnostic_action
             source = "diagnostic_fallback"
             reason = diagnosis_reason
-            policy_gain = None
 
         if not self._validate_action(
             action=selected_action,
             current_strategy=current_strategy,
-            current_top_k=current_top_k,
+            current_top_k=current_top_k
         ):
             selected_action = "keep"
             source = "safety_fallback"
-            reason = "The selected action was invalid for the current retrieval state."
-            policy_gain = None
+            reason = "The selected policy or diagnostic action was invalid for the current retrieval state."
 
         previous_actions = self._previous_actions(context)
         if selected_action in previous_actions:
             selected_action = "keep"
             source = "retry_guard"
             reason = "The selected action was already attempted for this query."
-            policy_gain = None
 
         expected_improvement = self._expected_improvement(
             diagnosis=diagnosis,
-            action=selected_action,
-            policy_gain=policy_gain,
+            action=selected_action
         )
         action_cost = self._action_cost(selected_action)
         should_retry = (
@@ -539,6 +476,7 @@ class FeedbackController(Component):
 
         if selected_action.startswith("switch_to_"):
             target_strategy = selected_action[len("switch_to_"):]
+
         elif selected_action.startswith("set_top_k_"):
             target_top_k = int(selected_action[len("set_top_k_"):])
 
@@ -556,18 +494,16 @@ class FeedbackController(Component):
             previous_confidence=getattr(
                 context,
                 "previous_evidence_confidence",
-                None,
+                None
             ),
             metadata={
                 "query_type": query_type,
                 "current_strategy": current_strategy,
                 "current_top_k": current_top_k,
                 "confidence_bucket": confidence_bucket,
-                "diagnosis": diagnosis,
                 "evidence_features": features,
-                "policy_available": self.policy is not None,
-                "policy_gain": policy_gain,
-            },
+                "policy_available": self.policy is not None
+            }
         )
 
         context.feedback_decision = decision
@@ -578,8 +514,7 @@ class FeedbackController(Component):
             "confidence": confidence,
             "expected_improvement": expected_improvement,
             "action_cost": action_cost,
-            "source": source,
-            "policy_gain": policy_gain,
+            "source": source
         })
 
         context.add_event("feedback_decision_created")
