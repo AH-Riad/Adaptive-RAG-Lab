@@ -26,6 +26,11 @@ class BenchmarkHybridRetriever(BaseRetriever):
         query: str
     ) -> RetrievalResult:
 
+        # CRITICAL FIX: Synchronize the requested top_k down to the underlying retrievers
+        # before they perform their individual searches.
+        self.dense_retriever.top_k = self.top_k
+        self.bm25_retriever.top_k = self.top_k
+
         dense_result = (
             self.dense_retriever.retrieve(
                 query
@@ -73,6 +78,7 @@ class BenchmarkHybridRetriever(BaseRetriever):
             if result.hybrid_score > 0
         ]
 
+        # The pool must have enough candidates to fulfill the top_k request
         fused = fused[:self.top_k]
 
         retrieved_chunks = []
