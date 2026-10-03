@@ -186,7 +186,6 @@ def test_retry_guard_blocks_repeated_action():
         assert context.feedback_decision.source == "retry_guard"
         assert context.feedback_decision.should_retry is False
 
-
 def main():
     test_strategy_policy_action()
     test_hierarchical_backoff_action()
