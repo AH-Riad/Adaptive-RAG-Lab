@@ -96,6 +96,5 @@ def main():
 
     print("TOP-K INTEGRITY V6 TEST PASSED")
 
-
 if __name__ == "__main__":
     main()
